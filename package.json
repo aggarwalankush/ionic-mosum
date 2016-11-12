@@ -26,6 +26,8 @@
     "ionic-native": "2.2.3",
     "ionicons": "3.0.0",
     "lodash": "^4.16.6",
+    "moment": "^2.16.0",
+    "moment-timezone": "^0.5.9",
     "rxjs": "5.0.0-beta.12",
     "zone.js": "0.6.21"
   },
@@ -33,6 +35,8 @@
     "@ionic/app-scripts": "0.0.43",
     "@types/googlemaps": "^3.25.36",
     "@types/lodash": "^4.14.38",
+    "@types/moment": "^2.13.0",
+    "@types/moment-timezone": "^0.2.32",
     "typescript": "2.0.6"
   },
   "cordovaPlugins": [

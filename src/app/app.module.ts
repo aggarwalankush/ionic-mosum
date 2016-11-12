@@ -6,6 +6,8 @@ import {ContactPage} from "../pages/contact/contact";
 import {HomePage} from "../pages/home/home";
 import {TabsPage} from "../pages/tabs/tabs";
 import {ModalLocation} from "../pages/location/location";
+import {Sql, DatabaseService, UtilService, ForecastService} from "../pages/providers";
+import {JsonpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import {ModalLocation} from "../pages/location/location";
     ModalLocation
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    JsonpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,7 +31,12 @@ import {ModalLocation} from "../pages/location/location";
     TabsPage,
     ModalLocation
   ],
-  providers: []
+  providers: [
+    Sql,
+    DatabaseService,
+    UtilService,
+    ForecastService
+  ]
 })
 export class AppModule {
 }

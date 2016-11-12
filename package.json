@@ -1,9 +1,15 @@
 {
   "name": "ionic2-mosum",
+  "description": "Ionic 2 Weather App",
   "author": "Ankush Aggarwal",
   "scripts": {
-    "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "build": "ionic-app-scripts build",
+    "watch": "ionic-app-scripts watch",
+    "serve:before": "watch",
+    "emulate:before": "build",
+    "deploy:before": "build",
+    "build:before": "build",
+    "run:before": "build"
   },
   "dependencies": {
     "@angular/common": "2.1.1",
@@ -19,11 +25,14 @@
     "ionic-angular": "2.0.0-rc.2",
     "ionic-native": "2.2.3",
     "ionicons": "3.0.0",
+    "lodash": "^4.16.6",
     "rxjs": "5.0.0-beta.12",
     "zone.js": "0.6.21"
   },
   "devDependencies": {
     "@ionic/app-scripts": "0.0.43",
+    "@types/googlemaps": "^3.25.36",
+    "@types/lodash": "^4.14.38",
     "typescript": "2.0.6"
   },
   "cordovaPlugins": [
@@ -35,12 +44,15 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
-    "ios",
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    },
     {
       "platform": "ios",
       "version": "",
       "locator": "ios"
     }
-  ],
-  "description": "Ionic 2 Weather App"
+  ]
 }

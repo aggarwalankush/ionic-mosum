@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
-import {NavController} from "ionic-angular";
+import {ModalController} from "ionic-angular";
+import {ModalLocation} from "../location/location";
 
 @Component({
   selector: 'page-about',
@@ -7,8 +8,17 @@ import {NavController} from "ionic-angular";
 })
 export class AboutPage {
 
-  constructor(public navCtrl: NavController) {
+  data: any ;
 
+  constructor(public modalCtrl: ModalController) {
   }
 
+  showModal() {
+    let modal = this.modalCtrl.create(ModalLocation);
+    modal.onDidDismiss(data => {
+      console.debug('page > modal dismissed > data > ', data);
+      this.data = data;
+    });
+    modal.present();
+  }
 }

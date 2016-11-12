@@ -1,0 +1,26 @@
+<!--suppress ALL -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search City</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span showWhen="ios">Cancel</span>
+        <span showWhen="android,windows">Cancel</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    [(ngModel)]="query"
+    (ionInput)="updateSearch()"
+    (ionCancel)="dismiss()" #searchInput>
+  </ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of autocompleteItems"
+              (click)="chooseItem(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+</ion-content>

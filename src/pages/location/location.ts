@@ -1,5 +1,5 @@
 import {Component, OnInit, NgZone, ViewChild} from "@angular/core";
-import {ViewController} from "ionic-angular";
+import {ViewController, NavParams} from "ionic-angular";
 import * as _ from "lodash";
 
 @Component({
@@ -7,12 +7,15 @@ import * as _ from "lodash";
 })
 export class ModalLocation implements OnInit {
   @ViewChild('searchInput') searchInput;
+  heading: string;
   autocompleteItems: Array<{description: string,place_id: string}>;
   query: string;
   acService: any;
   locationObj: {name: string,lat: number,lng: number};
 
-  constructor(public viewCtrl: ViewController, public zone: NgZone) {
+  constructor(public viewCtrl: ViewController,
+              public zone: NgZone,
+              public params: NavParams) {
   }
 
   ionViewDidEnter() {
@@ -28,6 +31,7 @@ export class ModalLocation implements OnInit {
       lat: null,
       lng: null
     };
+    this.heading = this.params.get('heading') ? this.params.get('heading') : 'Search City Name';
   }
 
   dismiss() {

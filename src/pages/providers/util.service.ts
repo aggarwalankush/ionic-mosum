@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Metrics, MetricTemp, MetricLength, MetricDistance, MetricPressure} from "./model";
-import moment from 'moment';
+import moment from "moment";
 import * as _ from "lodash";
 import "moment-timezone";
 
@@ -16,7 +16,7 @@ export class UtilService {
   }
 
   getCalendarDay(epoch: number, tz: string): string {
-    if(!epoch) {
+    if (!epoch) {
       return null;
     }
     return moment(epoch * 1000).tz(tz).calendar(null, {
@@ -55,7 +55,7 @@ export class UtilService {
     if (metrics.length === MetricLength.CM) {
       length = length * 2.54;
     }
-    return _.round(length, 2) + ' ' + _.lowerCase(MetricLength[metrics.length]);
+    return _.round(length, 5) + ' ' + _.lowerCase(MetricLength[metrics.length]);
   }
 
   formatDistance(distance: number, metrics: Metrics): string {
@@ -65,7 +65,7 @@ export class UtilService {
     if (metrics.distance === MetricDistance.KM) {
       distance = distance * 1.60934;
     }
-    return _.round(distance, 2) + ' ' + _.lowerCase(MetricDistance[metrics.distance]);
+    return _.round(distance, 5) + ' ' + _.lowerCase(MetricDistance[metrics.distance]);
   }
 
   formatPressure(pressure: number, metrics: Metrics): string {
@@ -76,7 +76,7 @@ export class UtilService {
     if (metrics.pressure === MetricPressure.HPA) {
       unit = 'hPa';
     }
-    return _.round(pressure, 2) + ' ' + unit;
+    return _.round(pressure, 5) + ' ' + unit;
   }
 
   formatWind(windSpeed: number, windDegree: number, metrics: Metrics): string {
@@ -86,7 +86,7 @@ export class UtilService {
     if (metrics.distance === MetricDistance.KM) {
       windSpeed = windSpeed * 1.60934;
     }
-    return _.round(windSpeed, 2) + ' ' + _.lowerCase(MetricDistance[metrics.distance]) + '/h ' + this.degToCard(windDegree);
+    return _.round(windSpeed, 5) + ' ' + _.lowerCase(MetricDistance[metrics.distance]) + '/h ' + this.degToCard(windDegree);
   }
 
   formatPI(pi: number, metrics: Metrics): string {
@@ -96,7 +96,7 @@ export class UtilService {
     if (metrics.length === MetricLength.CM) {
       pi = pi * 25.4;
     }
-    return _.round(pi, 2) + ' mm/h';
+    return _.round(pi, 5) + ' mm/h';
   }
 
   getWeatherIcon(icon: string): string {
@@ -143,8 +143,11 @@ export class UtilService {
     }
   }
 
-  uppercase(text:string):string{
+  uppercase(text: string): string {
     return _.upperCase(text);
   }
 
+  startCase(text: string): string {
+    return _.startCase(text);
+  }
 }

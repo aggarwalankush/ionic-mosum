@@ -1,49 +1,34 @@
 <!--suppress ALL -->
 <ion-header>
-  <ion-navbar color="blackish">
+  <ion-navbar color="white" [attr.no-border-bottom]="showSegment ? true : null">
     <ion-title>Weather Detail</ion-title>
   </ion-navbar>
+  <ion-toolbar color="white" no-border-top *ngIf="showSegment">
+    <ion-segment [(ngModel)]="whichSegment" (ionChange)="segmentChanged()" color="blackish">
+      <ion-segment-button value="detail">
+        Detail
+      </ion-segment-button>
+      <ion-segment-button value="hourly">
+        Hourly
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
-<!--<ion-content padding color="light" style="text-align: center;">-->
-<!--<h3 color="primary-text">{{utilService.getFullDayString(weatherObj?.dt,timeFormat)}}</h3>-->
-<!--<h6 style="font-size:6rem;" color="light-text">-->
-<!--{{utilService.formatTemp(weatherObj?.main.temp,metric)}}</h6>-->
-<!--<br>-->
-<!--<ion-grid>-->
-<!--<ion-row>-->
-<!--<ion-col width-33>-->
-<!--<div class="vertical-center">-->
-<!--<img [src]="utilService.getWeatherIcon(weatherObj?.weather[0],weatherObj?.dt)"-->
-<!--*ngIf="weatherObj?.weather">-->
-<!--<h3 *ngIf="weatherObj?.weather" color="lighter-text">{{weatherObj?.weather[0].main}}</h3>-->
-<!--</div>-->
-<!--</ion-col>-->
-<!--<ion-col width-67>-->
-<!--<div class="vertical-center" style="margin-left:20px;text-align:left">-->
-<!--<h4 color="light-text">{{'Humidity: ' + weatherObj.main.humidity + ' %'}}</h4>-->
-<!--<h4 color="light-text">{{'Pressure: ' + utilService.roundVal(weatherObj.main.pressure) + ' hpa'}}</h4>-->
-<!--<h4 color="light-text">{{'Wind: ' +-->
-<!--utilService.getFormattedWind(weatherObj.wind.speed,weatherObj.wind.deg)}}</h4>-->
-<!--</div>-->
-<!--</ion-col>-->
-<!--</ion-row>-->
-<!--</ion-grid>-->
-<!--</ion-content>-->
 <ion-content>
-  <ion-list *ngIf="forecast && currentForecast && currentLocation && metrics">
-
-    <ion-item style="text-align: center" text-wrap>
+  <ion-list style="height:100%;margin:0"
+            *ngIf="forecast && currentForecast && currentLocation && metrics">
+    <ion-item style="text-align: center;height:50%;" text-wrap>
       <h1 style="font-weight: bold;">{{currentLocation.name}}</h1>
       <h2>{{utilService.getCalendarDay(currentForecast.time,forecast.timezone)}}</h2>
       <ion-grid>
         <ion-row>
           <ion-col width-33>
             <div class="vertical-center">
-              <span style="font-size:3.2rem;">
+              <span style="font-size:3.2rem;" color="text1">
                 {{utilService.formatTemp(currentForecast.temperatureMax,metrics)}}
               </span>
-              <span style="font-size:2.6rem;">
+              <span style="font-size:2.6rem;" color="text1">
                 {{utilService.formatTemp(currentForecast.temperatureMin,metrics)}}
               </span>
               <h5 color="text1">RealFeel</h5>
@@ -58,24 +43,32 @@
           <ion-col width-33>
             <img [src]="utilService.getWeatherIcon(currentForecast.icon)"
                  onerror="this.src=utilService.getDefaultIcon()">
-            <h2>{{utilService.uppercase(currentForecast.icon)}}</h2>
+            <h2 style="font-weight: bold;font-size: 1.8rem" color="text1">
+              {{utilService.startCase(currentForecast.icon)}}</h2>
           </ion-col>
           <ion-col width-33>
             <div class="vertical-center">
               <img [src]="utilService.getWeatherIcon('sunrise')" style="max-width:40%"
                    onerror="this.src=utilService.getDefaultIcon()">
-              <h2>{{utilService.getTime(currentForecast.sunriseTime,metrics,forecast.timezone)}}</h2>
+              <h2 style="font-weight: bold;" color="text1">
+                {{utilService.getTime(currentForecast.sunriseTime,metrics,forecast.timezone)}}</h2>
               <img [src]="utilService.getWeatherIcon('sunset')" style="max-width:40%">
-              <h2>{{utilService.getTime(currentForecast.sunsetTime,metrics,forecast.timezone)}}</h2>
+              <h2 style="font-weight: bold;" color="text2">
+                {{utilService.getTime(currentForecast.sunsetTime,metrics,forecast.timezone)}}</h2>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
 
-
-
-
+    <ion-item text-wrap color="blackish" style="height:50%;">
+      <ion-grid>
+        <ion-row *ngFor="let detail of detailsArray">
+          <ion-col><h2 style="font-weight: bold;font-size: 1.8rem" color="text3">{{detail.name}}</h2></ion-col>
+          <ion-col><h2 style="font-weight: bold;font-size: 1.8rem">{{detail.value}}</h2></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
 
   </ion-list>
 </ion-content>

@@ -51,10 +51,10 @@
            onerror="this.src=utilService.getDefaultIcon()"
            item-left style="max-width: 12%">
       <h2>{{utilService.getCalendarDay(item.time,forecast.timezone)}}</h2>
-      <p color="text3" style="font-weight: bold">{{utilService.uppercase(item.icon)}}</p>
+      <p color="text2" style="font-weight: bold">{{utilService.uppercase(item.icon)}}</p>
       <h3 style="font-size:2.2rem;" item-right>
         {{utilService.formatTemp(forecast.daily.data[i+1]?.temperatureMax,metrics)}}</h3>
-      <p color="text3" style="font-size:1.8rem;font-weight: bold;" item-right padding-right>
+      <p color="text2" style="font-size:1.8rem;font-weight: bold;" item-right padding-right>
         {{utilService.formatTemp(forecast.daily.data[i+1]?.temperatureMin,metrics)}}</p>
     </ion-item>
   </ion-list>

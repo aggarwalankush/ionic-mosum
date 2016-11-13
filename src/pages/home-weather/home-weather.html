@@ -10,9 +10,10 @@
 
 <ion-content>
   <ion-list *ngIf="forecast && metrics && homeLocation">
-    <ion-item *ngIf="todayForecast"
-              (click)="itemClicked(todayForecast)"
-              color="primary" style="text-align: center" text-wrap>
+    <button ion-item detail-none text-wrap
+            *ngIf="todayForecast"
+            (click)="itemClicked(todayForecast)"
+            color="primary" style="text-align: center">
       <h1 style="font-weight: bold;">{{homeLocation.name}}</h1>
       <h2>{{utilService.getCalendarDay(todayForecast.time,forecast.timezone)}}</h2>
       <ion-grid>
@@ -43,10 +44,10 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-item>
-    <ion-item *ngFor="let item of forecast.daily?.data | slice:1;let i = index"
-              (click)="itemClicked(item)"
-              text-wrap>
+    </button>
+    <button ion-item detail-none text-wrap
+            *ngFor="let item of forecast.daily?.data | slice:1;let i = index"
+            (click)="itemClicked(item)">
       <img [src]="utilService.getWeatherIcon(item.icon)"
            onerror="this.src=utilService.getDefaultIcon()"
            item-left style="max-width: 12%">
@@ -56,6 +57,6 @@
         {{utilService.formatTemp(forecast.daily.data[i+1]?.temperatureMax,metrics)}}</h3>
       <p color="text2" style="font-size:1.8rem;font-weight: bold;" item-right padding-right>
         {{utilService.formatTemp(forecast.daily.data[i+1]?.temperatureMin,metrics)}}</p>
-    </ion-item>
+    </button>
   </ion-list>
 </ion-content>

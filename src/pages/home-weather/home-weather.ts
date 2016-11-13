@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {UtilService, ForecastService, Forecast, DatabaseService, Metrics, DataPoint, Location} from "../providers";
 import {NavController} from "ionic-angular";
+import {UtilService, ForecastService, Forecast, DatabaseService, Metrics, DataPoint, Location} from "../providers";
+import {WeatherDetailPage} from "../weather-detail/weather-detail";
 
 @Component({
   selector: 'page-home-weather',
@@ -47,6 +48,11 @@ export class HomeWeatherPage implements OnInit {
 
   itemClicked(item: any) {
     console.debug('clicked weather item > ', item);
-    // this.navCtrl.push(WeatherDetailPage, {weatherObj: item, metric: this.metric, timeFormat: this.timeFormat})
+    this.navCtrl.push(WeatherDetailPage, {
+      forecast: this.forecast,
+      currentForecast: item,
+      currentLocation: this.homeLocation,
+      metrics: this.metrics
+    });
   }
 }

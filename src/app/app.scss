@@ -18,9 +18,11 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
 ion-content {
   background: #F2F2F2 !important;
 }
-ion-item {
+
+button[ion-item], ion-item {
   border: 0 !important;
 }

@@ -8,6 +8,7 @@ import {TabsPage} from "../pages/tabs/tabs";
 import {ModalLocation} from "../pages/location/location";
 import {Sql, DatabaseService, UtilService, ForecastService} from "../pages/providers";
 import {JsonpModule} from "@angular/http";
+import {HomeWeatherPage} from "../pages/home-weather/home-weather";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {JsonpModule} from "@angular/http";
     ContactPage,
     HomePage,
     TabsPage,
-    ModalLocation
+    ModalLocation,
+    HomeWeatherPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -29,7 +31,8 @@ import {JsonpModule} from "@angular/http";
     ContactPage,
     HomePage,
     TabsPage,
-    ModalLocation
+    ModalLocation,
+    HomeWeatherPage
   ],
   providers: [
     Sql,

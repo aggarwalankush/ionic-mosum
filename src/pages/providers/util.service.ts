@@ -1,120 +1,150 @@
 import {Injectable} from "@angular/core";
-import * as moment from "moment";
-import {DatabaseService} from "./database.service";
+import {Metrics, MetricTemp, MetricLength, MetricDistance, MetricPressure} from "./model";
+import moment from 'moment';
+import * as _ from "lodash";
+import "moment-timezone";
 
 @Injectable()
 export class UtilService {
 
-  constructor(public databaseService: DatabaseService) {
-
+  constructor() {
   }
 
-  getMetric(): Promise<string> {
-    return this.databaseService.get('metric').then(metric=> metric ? metric : 'F');
+  getStandardDay(epoch: number, tz: string): string {
+    let pattern = 'dddd, MMM D';
+    return epoch ? this.formatEpoch(epoch, pattern, tz) : null;
   }
 
-  getTimeFormat(): Promise<string> {
-    return this.databaseService.get('timeFormat').then(timeFormat=> timeFormat ? timeFormat : '12');
+  getCalendarDay(epoch: number, tz: string): string {
+    if(!epoch) {
+      return null;
+    }
+    return moment(epoch * 1000).tz(tz).calendar(null, {
+      sameDay: '[Today], MMM D',
+      nextDay: '[Tomorrow], MMM D',
+      nextWeek: 'dddd, MMM D',
+      lastDay: '[Yesterday], MMM D',
+      lastWeek: '[Last] dddd, MMM D',
+      sameElse: 'dddd, MMM D'
+    });
   }
 
-  getLocation(): Promise<string> {
-    return this.databaseService.get('location').then(location=> location ? location : '95134');
+  getTime(epoch: number, metrics: Metrics, tz: string): string {
+    let pattern = metrics.time === 24 ? 'HH:mm' : 'hh:mm A';
+    return epoch ? this.formatEpoch(epoch, pattern, tz) : null;
   }
 
-  formatTemp(temp: number, metric: string): string {
+  formatEpoch(epoch: number, pattern: string, tz: string): string {
+    return moment(epoch * 1000).tz(tz).format(pattern);
+  }
+
+  formatTemp(temp: number, metrics: Metrics): string {
     if (!temp) {
       return null;
     }
-    if (metric === 'F') {
-      temp = (temp * 1.8) + 32;
+    if (metrics.temp === MetricTemp.C) {
+      temp = (temp - 32) / 1.8;
     }
-    return Math.round(temp) + '\u00B0' + metric;
+    return _.round(temp) + '\u00B0';
   }
 
-  getMediumDayString(epoch: number, timeFormat: string): string {
-    return epoch ? moment.unix(epoch).format('ddd, MMM D') + ' ' + this.getTimeString(epoch, timeFormat) : null;
-  }
-
-  getFullDayString(epoch: number, timeFormat: string): string {
-    return epoch ? moment.unix(epoch).format('dddd, MMMM D') + ' ' + this.getTimeString(epoch, timeFormat) : null;
-  }
-
-  getTodayString(epoch: number, timeFormat: string): string {
-    return epoch ? 'Today, ' + moment.unix(epoch).format('MMMM D') : null;
-  }
-
-  getTimeString(epoch: number, timeFormat: string): string {
-    let pattern = 'hh:mm A';
-    if (timeFormat === '24') {
-      pattern = 'HH:mm';
+  formatLength(length: number, metrics: Metrics): string {
+    if (!length) {
+      return null;
     }
-    return epoch ? moment.unix(epoch).format(pattern) : null;
+    if (metrics.length === MetricLength.CM) {
+      length = length * 2.54;
+    }
+    return _.round(length, 2) + ' ' + _.lowerCase(MetricLength[metrics.length]);
   }
 
-  getWeatherIcon(weatherObj: any, epoch: number): string {
-    let weatherId: number = weatherObj.id;
-    let iconSrc = 'assets/img/weather';
-    const hour = moment.unix(epoch).get('hour');
-    if (hour >= 18 || hour <= 6) {
-      iconSrc += '/night';
+  formatDistance(distance: number, metrics: Metrics): string {
+    if (!distance) {
+      return null;
+    }
+    if (metrics.distance === MetricDistance.KM) {
+      distance = distance * 1.60934;
+    }
+    return _.round(distance, 2) + ' ' + _.lowerCase(MetricDistance[metrics.distance]);
+  }
+
+  formatPressure(pressure: number, metrics: Metrics): string {
+    if (!pressure) {
+      return null;
+    }
+    let unit = 'mbar';
+    if (metrics.pressure === MetricPressure.HPA) {
+      unit = 'hPa';
+    }
+    return _.round(pressure, 2) + ' ' + unit;
+  }
+
+  formatWind(windSpeed: number, windDegree: number, metrics: Metrics): string {
+    if (!windSpeed) {
+      return null;
+    }
+    if (metrics.distance === MetricDistance.KM) {
+      windSpeed = windSpeed * 1.60934;
+    }
+    return _.round(windSpeed, 2) + ' ' + _.lowerCase(MetricDistance[metrics.distance]) + '/h ' + this.degToCard(windDegree);
+  }
+
+  formatPI(pi: number, metrics: Metrics): string {
+    if (!pi) {
+      return null;
+    }
+    if (metrics.length === MetricLength.CM) {
+      pi = pi * 25.4;
+    }
+    return _.round(pi, 2) + ' mm/h';
+  }
+
+  getWeatherIcon(icon: string): string {
+    return 'assets/img/' + icon + '.png';
+  }
+
+  getDefaultIcon(): string {
+    return 'assets/img/default-weather.png';
+  }
+
+  degToCard(deg: number): string {
+    if (deg > 11.25 && deg < 33.75) {
+      return "NNE";
+    } else if (deg > 33.75 && deg < 56.25) {
+      return "ENE";
+    } else if (deg > 56.25 && deg < 78.75) {
+      return "E";
+    } else if (deg > 78.75 && deg < 101.25) {
+      return "ESE";
+    } else if (deg > 101.25 && deg < 123.75) {
+      return "ESE";
+    } else if (deg > 123.75 && deg < 146.25) {
+      return "SE";
+    } else if (deg > 146.25 && deg < 168.75) {
+      return "SSE";
+    } else if (deg > 168.75 && deg < 191.25) {
+      return "S";
+    } else if (deg > 191.25 && deg < 213.75) {
+      return "SSW";
+    } else if (deg > 213.75 && deg < 236.25) {
+      return "SW";
+    } else if (deg > 236.25 && deg < 258.75) {
+      return "WSW";
+    } else if (deg > 258.75 && deg < 281.25) {
+      return "W";
+    } else if (deg > 281.25 && deg < 303.75) {
+      return "WNW";
+    } else if (deg > 303.75 && deg < 326.25) {
+      return "NW";
+    } else if (deg > 326.25 && deg < 348.75) {
+      return "NNW";
     } else {
-      iconSrc += '/day';
+      return "N";
     }
-    if (weatherId >= 200 && weatherId <= 232) {
-      return iconSrc + '/storm.png';
-    } else if (weatherId >= 300 && weatherId <= 321) {
-      return iconSrc + '/drizzle.png';
-    } else if (weatherId >= 500 && weatherId <= 504) {
-      return iconSrc + '/rain.png';
-    } else if (weatherId == 511) {
-      return iconSrc + '/snow.png';
-    } else if (weatherId >= 520 && weatherId <= 531) {
-      return iconSrc + '/rain.png';
-    } else if (weatherId >= 600 && weatherId <= 622) {
-      return iconSrc + '/snow.png';
-    } else if (weatherId >= 701 && weatherId <= 761) {
-      return iconSrc + '/fog.png';
-    } else if (weatherId == 761 || weatherId == 781) {
-      return iconSrc + '/storm.png';
-    } else if (weatherId == 800) {
-      return iconSrc + '/clear.png';
-    } else if (weatherId >= 801 && weatherId <= 804) {
-      return iconSrc + '/cloud.png';
-    }
-    return 'http://openweathermap.org/img/w/' + weatherObj.icon + '.png';
   }
 
-  getFormattedWind(windSpeed: number, degrees: number): string {
-    let windFormat: string = 'km/h';
-    this.getMetric().then(metric=> {
-      if (metric === 'F') {
-        windFormat = 'mph';
-        windSpeed = 0.621371192237334 * windSpeed;
-      }
-    });
-
-    let direction: string = "Unknown";
-    if (degrees >= 337.5 || degrees < 22.5) {
-      direction = "N";
-    } else if (degrees >= 22.5 && degrees < 67.5) {
-      direction = "NE";
-    } else if (degrees >= 67.5 && degrees < 112.5) {
-      direction = "E";
-    } else if (degrees >= 112.5 && degrees < 157.5) {
-      direction = "SE";
-    } else if (degrees >= 157.5 && degrees < 202.5) {
-      direction = "S";
-    } else if (degrees >= 202.5 && degrees < 247.5) {
-      direction = "SW";
-    } else if (degrees >= 247.5 && degrees < 292.5) {
-      direction = "W";
-    } else if (degrees >= 292.5 && degrees < 337.5) {
-      direction = "NW";
-    }
-    return this.roundVal(windSpeed) + ' ' + windFormat + ' ' + direction;
+  uppercase(text:string):string{
+    return _.upperCase(text);
   }
 
-  roundVal(val: number): number {
-    return Math.round(val);
-  }
 }

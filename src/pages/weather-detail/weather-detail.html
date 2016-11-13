@@ -1,0 +1,31 @@
+<!--<ion-header>-->
+  <!--<ion-navbar color="primary">-->
+    <!--<ion-title>Weather Detail</ion-title>-->
+  <!--</ion-navbar>-->
+<!--</ion-header>-->
+
+<!--<ion-content padding color="light" style="text-align: center;">-->
+  <!--<h3 color="primary-text">{{utilService.getFullDayString(weatherObj?.dt,timeFormat)}}</h3>-->
+  <!--<h6 style="font-size:6rem;" color="light-text">-->
+    <!--{{utilService.formatTemp(weatherObj?.main.temp,metric)}}</h6>-->
+  <!--<br>-->
+  <!--<ion-grid>-->
+    <!--<ion-row>-->
+      <!--<ion-col width-33>-->
+        <!--<div class="vertical-center">-->
+          <!--<img [src]="utilService.getWeatherIcon(weatherObj?.weather[0],weatherObj?.dt)"-->
+               <!--*ngIf="weatherObj?.weather">-->
+          <!--<h3 *ngIf="weatherObj?.weather" color="lighter-text">{{weatherObj?.weather[0].main}}</h3>-->
+        <!--</div>-->
+      <!--</ion-col>-->
+      <!--<ion-col width-67>-->
+        <!--<div class="vertical-center" style="margin-left:20px;text-align:left">-->
+          <!--<h4 color="light-text">{{'Humidity: ' + weatherObj.main.humidity + ' %'}}</h4>-->
+          <!--<h4 color="light-text">{{'Pressure: ' + utilService.roundVal(weatherObj.main.pressure) + ' hpa'}}</h4>-->
+          <!--<h4 color="light-text">{{'Wind: ' +-->
+            <!--utilService.getFormattedWind(weatherObj.wind.speed,weatherObj.wind.deg)}}</h4>-->
+        <!--</div>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+  <!--</ion-grid>-->
+<!--</ion-content>-->

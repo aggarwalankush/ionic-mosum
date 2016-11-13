@@ -1,6 +1,7 @@
 import {Component, OnInit, NgZone, ViewChild} from "@angular/core";
 import {ViewController, NavParams} from "ionic-angular";
 import * as _ from "lodash";
+import {Location} from "../providers";
 
 @Component({
   templateUrl: 'location.html'
@@ -11,7 +12,7 @@ export class ModalLocation implements OnInit {
   autocompleteItems: Array<{description: string,place_id: string}>;
   query: string;
   acService: any;
-  locationObj: {name: string,lat: number,lng: number};
+  locationObj: Location;
 
   constructor(public viewCtrl: ViewController,
               public zone: NgZone,
@@ -62,7 +63,7 @@ export class ModalLocation implements OnInit {
     let request = {
       placeId: item.place_id
     };
-    let response;
+    let response:Location;
     let placesService = new google.maps.places.PlacesService(document.createElement('div'));
     placesService.getDetails(request, (place, status)=> {
       if (status == google.maps.places.PlacesServiceStatus.OK) {

@@ -2,8 +2,9 @@ import {Component} from "@angular/core";
 import {Platform, ModalController} from "ionic-angular";
 import {StatusBar, Splashscreen} from "ionic-native";
 import {TabsPage} from "../pages/tabs/tabs";
-import {DatabaseService} from "../pages/providers";
+import {DatabaseService, MetricTemp, MetricLength, MetricDistance, MetricPressure} from "../pages/providers";
 import {ModalLocation} from "../pages/location/location";
+import {Location} from "../pages/providers/model";
 
 
 @Component({
@@ -26,16 +27,27 @@ export class MyApp {
 
   init() {
     let self = this;
-    this.databaseService.getJson('location')
-      .then(data=> {
-        if (data === null) {
-          let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City Name'});
-          modal.onDidDismiss(data => {
-            console.debug('page > modal dismissed > data > ', data);
-            self.databaseService.setJson('location', data);
-          });
-          modal.present();
-        }
-      });
+    this.databaseService.getJson('homeLocation').then(data=> {
+      if (data === null) {
+        let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City Name'});
+        modal.onDidDismiss((data: Location) => {
+          console.debug('page > modal dismissed > data > ', data);
+          self.databaseService.setJson('homeLocation', data);
+        });
+        modal.present();
+      }
+    });
+    let metrics = {
+      temp: MetricTemp.F,
+      length: MetricLength.IN,
+      distance: MetricDistance.MI,
+      time: 12,
+      pressure: MetricPressure.MBAR
+    };
+    this.databaseService.getJson('metrics').then(data=> {
+      if (data === null) {
+        self.databaseService.setJson('metrics', metrics);
+      }
+    });
   }
 }

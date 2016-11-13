@@ -3,6 +3,7 @@ import {Http, Response, Jsonp} from "@angular/http";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/toPromise";
+import {Forecast} from "./model";
 
 @Injectable()
 export class ForecastService {
@@ -14,7 +15,7 @@ export class ForecastService {
   constructor(public http: Http, public jsonp: Jsonp) {
   }
 
-  get(lat: number, lng: number): Promise<any> {
+  get(lat: number, lng: number): Promise<Forecast> {
     // return this.jsonp.get(this.getRequestUri(lat, lng, 'currently,minutely,alerts,flags'))
     //   .map(this.extractData)
     //   .toPromise()

@@ -19,7 +19,7 @@ export class UtilService {
     if (!epoch) {
       return null;
     }
-    return moment(epoch * 1000).tz(tz).calendar(null, {
+    return (<any>moment(epoch * 1000)).tz(tz).calendar(null, {
       sameDay: '[Today], MMM D',
       nextDay: '[Tomorrow], MMM D',
       nextWeek: 'dddd, MMM D',
@@ -35,7 +35,7 @@ export class UtilService {
   }
 
   formatEpoch(epoch: number, pattern: string, tz: string): string {
-    return moment(epoch * 1000).tz(tz).format(pattern);
+    return (<any>moment(epoch * 1000)).tz(tz).format(pattern);
   }
 
   formatTemp(temp: number, metrics: Metrics): string {

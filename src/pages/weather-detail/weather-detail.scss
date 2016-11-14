@@ -1,2 +1,6 @@
 page-weather-detail {
+  //negative margin to remove unused space in toolbar
+  ion-navbar.toolbar-md, ion-segment.segment-md {
+    margin-bottom: -14px !important;
+  }
 }

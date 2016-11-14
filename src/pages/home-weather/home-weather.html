@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="blackish">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -13,7 +13,7 @@
     <button ion-item detail-none text-wrap
             *ngIf="todayForecast"
             (click)="itemClicked(todayForecast)"
-            color="primary" style="text-align: center">
+            color="blackish" style="text-align: center">
       <h1 style="font-weight: bold;">{{homeLocation.name}}</h1>
       <h2>{{utilService.getCalendarDay(todayForecast.time,forecast.timezone)}}</h2>
       <ion-grid>

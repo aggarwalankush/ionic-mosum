@@ -4,6 +4,11 @@ export interface Location {
   lng: number
 }
 
+export interface KV {
+  key: string,
+  value: string
+}
+
 export interface Forecast {
   latitude: number,
   longitude: number,

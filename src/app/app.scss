@@ -26,3 +26,13 @@ ion-content {
 button[ion-item], ion-item {
   border: 0 !important;
 }
+
+.fullScreen {
+  height: 100% !important;
+  margin: 0 !important;
+}
+
+.halfScreen {
+  min-height: 50% !important;
+  margin: 0 !important;
+}

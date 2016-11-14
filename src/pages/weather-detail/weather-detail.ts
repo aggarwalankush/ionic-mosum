@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {NavParams} from "ionic-angular";
-import {UtilService, Forecast, DataPoint, Metrics, Location} from "../providers";
+import {UtilService, Forecast, DataPoint, Metrics, Location, KV} from "../providers";
 import * as _ from "lodash";
 
 @Component({
@@ -15,9 +15,17 @@ export class WeatherDetailPage implements OnInit {
   detailsElem: Array<string> = ['humidity', 'pressure', 'windSpeed', 'ozone',
     'dewPoint', 'cloudCover', 'visibility', 'precipType',
     'precipIntensity', 'precipProbability', 'precipAccumulation'];
-  detailsArray: Array<{name: string,value: string}> = [];
+  detailsArray: Array<KV> = [];
   showSegment: boolean = false;
   whichSegment: string = 'detail';
+  hourlyArray: Array<{
+    time: number,
+    icon: string,
+    temperature: number,
+    showDetails: boolean,
+    details: Array<KV>
+  }> = [];
+  firstHourlyObj: DataPoint;
 
   constructor(public params: NavParams,
               public utilService: UtilService) {
@@ -30,19 +38,50 @@ export class WeatherDetailPage implements OnInit {
   ngOnInit() {
     let self = this;
     try {
-      this.showSegment = this.currentForecast.time < this.forecast.hourly.data[0].time;
+      this.firstHourlyObj = _.find(this.forecast.hourly.data, obj=> self.currentForecast.time <= obj.time);
+      this.showSegment = !!this.firstHourlyObj;
     } catch (err) {
       this.showSegment = false;
     }
-    this.detailsArray = [];
+    this.detailsArray = this.getDetailsArray(this.currentForecast);
+    console.debug('Details Array > ' + JSON.stringify(this.detailsArray));
+  }
+
+  ionViewDidLoad() {
+    let self = this;
+    this.hourlyArray = [];
+    if (this.showSegment && this.firstHourlyObj) {
+      _.forEach(self.forecast.hourly.data, (obj: DataPoint)=> {
+        if (obj.time < self.firstHourlyObj.time) {
+          return;
+        }
+        self.hourlyArray.push({
+          time: obj.time,
+          icon: obj.icon,
+          temperature: obj.temperature,
+          showDetails: false,
+          details: self.getDetailsArray(obj)
+        });
+      });
+    }
+  }
+
+
+  toggleDetails(item) {
+    item.showDetails = !item.showDetails;
+  }
+
+  getDetailsArray(dp: DataPoint): Array<KV> {
+    let self = this;
+    let detailsArray = [];
     _.forEach(this.detailsElem, (elem)=> {
-      let elemVal = _.get(self.currentForecast, elem, 0);
+      let elemVal = _.get(dp, elem, 0);
       if (elemVal !== 0) {
         let value = self.formatDetailElem(elem, elemVal);
-        self.detailsArray.push({name: _.startCase(elem), value: value});
+        detailsArray.push({key: _.startCase(elem), value: value});
       }
     });
-    console.debug(JSON.stringify(this.detailsArray));
+    return detailsArray;
   }
 
   formatDetailElem(detailElem: string, elemVal: any): string {
@@ -63,7 +102,7 @@ export class WeatherDetailPage implements OnInit {
       case 'visibility':
         return this.utilService.formatDistance(elemVal, this.metrics);
       case 'precipType':
-        return elemVal;
+        return this.utilService.startCase(elemVal);
       case 'precipIntensity':
         return this.utilService.formatPI(elemVal, this.metrics);
       case 'precipAccumulation':
@@ -71,9 +110,5 @@ export class WeatherDetailPage implements OnInit {
       default:
         return elemVal + '';
     }
-  }
-
-  segmentChanged() {
-
   }
 }

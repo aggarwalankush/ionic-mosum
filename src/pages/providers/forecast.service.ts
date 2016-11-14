@@ -1,9 +1,10 @@
-import {Injectable} from "@angular/core";
-import {Http, Response, Jsonp} from "@angular/http";
+import {Injectable, EventEmitter} from "@angular/core";
+import {Response, Jsonp} from "@angular/http";
+import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
-import "rxjs/add/operator/toPromise";
 import {Forecast} from "./model";
+import {DatabaseService} from "./database.service";
 
 @Injectable()
 export class ForecastService {
@@ -11,22 +12,34 @@ export class ForecastService {
   private apiKey: string = '9bb59ff3063ac4930fc96890570b0c6f';
   private apiUnits: string = 'us';
   private apiLanguage: string = 'en';
+  refreshThreshold = 6 * 60 * 60 * 1000; //6 hours
 
-  constructor(public http: Http,
-              public jsonp: Jsonp) {
+  constructor(public jsonp: Jsonp,
+              public databaseService: DatabaseService) {
   }
 
-  get(lat: number, lng: number): Promise<Forecast> {
-    // return this.jsonp.get(this.getRequestUri(lat, lng, 'currently,minutely,alerts,flags'))
-    //   .map(this.extractData)
-    //   .toPromise()
-    //   .catch(this.handleError);
-
-    //TODO
-    return this.http.get('assets/sampleData.json')
-      .map(this.extractData)
-      .toPromise()
-      .catch(this.handleError);
+  get(lat: number, lng: number): Observable<Forecast> {
+    let self = this;
+    let forecastData: EventEmitter<Forecast> = new EventEmitter<Forecast>();
+    self.databaseService.get('lastUpdated')
+      .then(lastUpdated=> {
+        if (lastUpdated && Date.now() - +lastUpdated < self.refreshThreshold) {
+          console.debug('getting database data');
+          self.databaseService.getJson('homeWeather')
+            .then(homeWeather=> forecastData.emit(homeWeather));
+        } else {
+          console.debug('getting server data');
+          self.jsonp.get(self.getRequestUri(lat, lng, 'currently,minutely,alerts,flags'))
+            .map(self.extractData)
+            .catch(self.handleError)
+            .subscribe(data=> {
+              forecastData.emit(data);
+              self.databaseService.setJson('homeWeather', data);
+              self.databaseService.set('lastUpdated', Date.now() + '');
+            });
+        }
+      });
+    return forecastData;
   }
 
   private extractData(res: Response) {
@@ -34,9 +47,17 @@ export class ForecastService {
     return body || {};
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+  private handleError(error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 
   private getRequestUri(lat: number, lng: number, exclude: string): string {

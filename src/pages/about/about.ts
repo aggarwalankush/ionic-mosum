@@ -17,13 +17,6 @@ export class AboutPage {
               public httpService: ForecastService,
               public ds: DatabaseService,
               public us: UtilService) {
-    httpService.get(10, 10)
-      .then(data=> {
-        console.debug(JSON.stringify(data));
-      })
-      .catch(err=> {
-        console.error(err);
-      });
 
     ds.get('location')
       .then(data=> {

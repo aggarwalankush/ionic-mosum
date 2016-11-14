@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {NavController, ModalController} from "ionic-angular";
 import {
   UtilService,
@@ -12,16 +12,18 @@ import {
 } from "../providers";
 import {WeatherDetailPage} from "../weather-detail/weather-detail";
 import {ModalLocation} from "../location/location";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'page-home-weather',
   templateUrl: 'home-weather.html'
 })
-export class HomeWeatherPage implements OnInit {
+export class HomeWeatherPage {
   forecast: Forecast;
   homeLocation: Location;
   metrics: Metrics;
   todayForecast: DataPoint;
+  forecastSubscriber: Subscription;
 
   constructor(public navCtrl: NavController,
               public forecastService: ForecastService,
@@ -31,7 +33,6 @@ export class HomeWeatherPage implements OnInit {
   }
 
   itemClicked(item: any) {
-    console.debug('clicked weather item > ', item);
     this.navCtrl.push(WeatherDetailPage, {
       forecast: this.forecast,
       currentForecast: item,
@@ -40,7 +41,7 @@ export class HomeWeatherPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     let self = this;
     this.databaseService.getJson('homeLocation').then(data=> {
       if (data === null) {
@@ -69,15 +70,22 @@ export class HomeWeatherPage implements OnInit {
 
   getForecast() {
     let self = this;
-    self.forecastService.get(self.homeLocation.lat, self.homeLocation.lng)
-      .then((data: Forecast)=> {
+    this.forecastSubscriber = self.forecastService.get(self.homeLocation.lat, self.homeLocation.lng)
+      .subscribe((data: Forecast)=> {
         self.forecast = data;
         if (self.forecast && self.forecast.daily && self.forecast.daily.data) {
           self.todayForecast = self.forecast.daily.data[0];
         }
-      })
-      .catch(err=> {
-        console.error(err);
+      }, err=> {
+        console.debug(err);
       });
   }
+
+  ionViewWillLeave() {
+    if (this.forecastSubscriber) {
+      this.forecastSubscriber.unsubscribe();
+    }
+  }
+
 }
+

@@ -5,21 +5,6 @@ import {Sql} from "./sql";
 export class DatabaseService {
 
   constructor(public _db: Sql) {
-    this.get('location').then(val=> {
-      if (!val) {
-        this.set('location', '95134');
-      }
-    });
-    this.get('timeFormat').then(val=> {
-      if (!val) {
-        this.set('timeFormat', '12');
-      }
-    });
-    this.get('metric').then(val=> {
-      if (!val) {
-        this.set('metric', 'F');
-      }
-    });
   }
 
   set(key: string, value: string): Promise<boolean> {
@@ -52,7 +37,7 @@ export class DatabaseService {
         return JSON.parse(value);
       } catch (err) {
         console.warn('Storage getJson(): unable to parse value for key', key, ' as JSON');
-        throw null; // rethrowing exception so it can be handled with .catch()
+        throw null;
       }
     });
   }

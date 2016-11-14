@@ -12,7 +12,8 @@ export class ForecastService {
   private apiUnits: string = 'us';
   private apiLanguage: string = 'en';
 
-  constructor(public http: Http, public jsonp: Jsonp) {
+  constructor(public http: Http,
+              public jsonp: Jsonp) {
   }
 
   get(lat: number, lng: number): Promise<Forecast> {

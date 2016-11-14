@@ -85,3 +85,11 @@ export enum MetricDistance{
 export enum MetricPressure{
   MBAR, HPA
 }
+
+export const DEFAULT_METRICS = {
+  temp: MetricTemp.F,
+  length: MetricLength.IN,
+  distance: MetricDistance.MI,
+  time: 12,
+  pressure: MetricPressure.MBAR
+};

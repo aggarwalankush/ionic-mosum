@@ -98,7 +98,8 @@
             {{utilService.formatTemp(item.temperature,metrics)}}</h3>
           <ion-icon item-right [name]="item.showDetails?'arrow-up':'arrow-down'" color="text1"></ion-icon>
         </button>
-        <ion-item text-wrap color="blackish" *ngIf="item.showDetails">
+
+        <ion-item text-wrap color="blackish" *ngIf="item.showDetails" [@collapseExpand]="'default'">
           <ion-grid>
             <ion-row *ngFor="let detail of item.details">
               <ion-col><h2 style="font-weight: bold;font-size: 1.8rem" color="text3">{{detail.key}}</h2></ion-col>
@@ -106,6 +107,7 @@
             </ion-row>
           </ion-grid>
         </ion-item>
+
       </div>
 
     </ion-list>

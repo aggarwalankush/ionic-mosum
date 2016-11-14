@@ -1,11 +1,24 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, style, state, animate, transition, trigger} from "@angular/core";
 import {NavParams} from "ionic-angular";
 import {UtilService, Forecast, DataPoint, Metrics, Location, KV} from "../providers";
 import * as _ from "lodash";
 
 @Component({
   selector: 'page-weather-detail',
-  templateUrl: 'weather-detail.html'
+  templateUrl: 'weather-detail.html',
+  animations: [
+    trigger('collapseExpand', [
+      state('default', style({height: '*'})),
+      transition('* => void', [
+        style({height: '*'}),
+        animate(100, style({height: 0}))
+      ]),
+      transition('void => *', [
+        style({height: 0}),
+        animate(100, style({height: '*'}))
+      ])
+    ])
+  ]
 })
 export class WeatherDetailPage implements OnInit {
   forecast: Forecast;

@@ -12,10 +12,20 @@ import * as _ from "lodash";
 export class MosumApp {
   @ViewChild(Nav) nav: Nav;
   rootPage = TabsPage;
-  appPages: PageInterface[] = [
-    {title: 'Home', component: TabsPage, index: 0, icon: 'home', active: true},
-    {title: 'World', component: TabsPage, index: 1, icon: 'globe', active: false},
-    {title: 'Settings', component: SettingsPage, icon: 'settings', active: false}
+  pages: Array<{heading: string,items: PageInterface[]}> = [
+    {
+      heading: 'Weather',
+      items: [
+        {title: 'Home', component: TabsPage, index: 0, icon: 'home', active: true},
+        {title: 'World', component: TabsPage, index: 1, icon: 'globe', active: false}
+      ]
+    },
+    {
+      heading: 'Settings',
+      items: [
+        {title: 'Settings', component: SettingsPage, icon: 'settings', active: false}
+      ]
+    }
   ];
 
   constructor(platform: Platform, public utilService: UtilService) {
@@ -37,7 +47,6 @@ export class MosumApp {
     this.resetMenu();
     //active current page
     page.active = !page.active;
-
     if (page.index === undefined) {
       this.nav.setRoot(page.component);
     } else {
@@ -46,9 +55,9 @@ export class MosumApp {
   }
 
   init() {
-    this.utilService.getTabChangeEvent().subscribe(data=> {
+    this.utilService.getTabChangeEvent().subscribe(tabIndex=> {
       this.resetMenu();
-      let obj = _.find(this.appPages, {index: data});
+      let obj = this.findPage(tabIndex);
       if (obj) {
         _.set(obj, 'active', true);
       }
@@ -56,6 +65,18 @@ export class MosumApp {
   }
 
   resetMenu() {
-    _.map(this.appPages, obj=> _.set(obj, 'active', false));
+    _.forEach(this.pages, page=> _.forEach(page.items, item => {item.active = false}));
+  }
+
+  findPage(index: number): PageInterface {
+    let result = null;
+    _.forEach(this.pages, page=> {
+      let obj = _.find(page.items, {index: index});
+      if (obj) {
+        result = obj;
+        return false;
+      }
+    });
+    return result;
   }
 }

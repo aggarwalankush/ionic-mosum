@@ -4,10 +4,13 @@
     <div style="width:100%;height:22%">
       <img src="assets/img/mountains.png" style="height:150%;width:100%;background:#2b393f;"/>
     </div>
-    <ion-list>
-      <button ion-item menuClose *ngFor="let page of appPages" (click)="openPage(page)" detail-none>
-        <ion-icon item-left [name]="page.icon"></ion-icon>
-        {{page.title}}
+    <ion-list no-lines *ngFor="let page of pages">
+      <ion-list-header>{{page.heading}}</ion-list-header>
+      <button ion-item detail-none menuClose
+              [color]="item.active?'light':null"
+              *ngFor="let item of page.items" (click)="openPage(item)">
+        <ion-icon item-left [name]="item.icon" [color]="item.active?null:'text2'" style="margin-right:0"></ion-icon>
+        <span [color]="item.active?null:'text1'">{{item.title}}</span>
       </button>
     </ion-list>
   </ion-content>

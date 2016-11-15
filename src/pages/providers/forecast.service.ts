@@ -5,11 +5,10 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import {Forecast} from "./model";
 import {DatabaseService} from "./database.service";
+import {FORECAST_CONFIG, HOME_CONFIG} from "./constants";
 
 @Injectable()
 export class ForecastService {
-  private API_ENDPOINT: string = 'https://api.darksky.net/forecast/';
-  private apiKey: string = '9bb59ff3063ac4930fc96890570b0c6f';
   private apiUnits: string = 'us';
   private apiLanguage: string = 'en';
   refreshThreshold = 6 * 60 * 60 * 1000; //6 hours
@@ -21,12 +20,12 @@ export class ForecastService {
   get(lat: number, lng: number): Observable<Forecast> {
     let self = this;
     let forecastData: EventEmitter<Forecast> = new EventEmitter<Forecast>();
-    self.databaseService.get('lastUpdated')
+    self.databaseService.get(HOME_CONFIG.LAST_UPDATED)
       .then(lastUpdated=> {
         if (lastUpdated && Date.now() - +lastUpdated < self.refreshThreshold) {
           console.debug('getting database data');
-          self.databaseService.getJson('homeWeather')
-            .then(homeWeather=> forecastData.emit(homeWeather));
+          self.databaseService.getJson(HOME_CONFIG.FORECAST)
+            .then(homeForecast=> forecastData.emit(homeForecast));
         } else {
           console.debug('getting server data');
           self.jsonp.get(self.getRequestUri(lat, lng, 'currently,minutely,alerts,flags'))
@@ -34,8 +33,8 @@ export class ForecastService {
             .catch(self.handleError)
             .subscribe(data=> {
               forecastData.emit(data);
-              self.databaseService.setJson('homeWeather', data);
-              self.databaseService.set('lastUpdated', Date.now() + '');
+              self.databaseService.setJson(HOME_CONFIG.FORECAST, data);
+              self.databaseService.set(HOME_CONFIG.LAST_UPDATED, Date.now() + '');
             });
         }
       });
@@ -62,7 +61,7 @@ export class ForecastService {
 
   private getRequestUri(lat: number, lng: number, exclude: string): string {
     return [
-      this.API_ENDPOINT, this.apiKey, '/',
+      FORECAST_CONFIG.API_ENDPOINT, FORECAST_CONFIG.API_KEY, '/',
       lat, ',', lng,
       '?units=', this.apiUnits,
       '&lang=', this.apiLanguage,

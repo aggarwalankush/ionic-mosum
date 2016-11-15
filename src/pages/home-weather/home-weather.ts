@@ -8,14 +8,15 @@ import {
   Metrics,
   DataPoint,
   Location,
-  DEFAULT_METRICS
+  DEFAULT_METRICS,
+  HOME_CONFIG,
+  CONFIG
 } from "../providers";
 import {WeatherDetailPage} from "../weather-detail/weather-detail";
 import {ModalLocation} from "../location/location";
 import {Subscription} from "rxjs/Subscription";
 
 @Component({
-  selector: 'page-home-weather',
   templateUrl: 'home-weather.html'
 })
 export class HomeWeatherPage {
@@ -43,12 +44,12 @@ export class HomeWeatherPage {
 
   ionViewWillEnter() {
     let self = this;
-    this.databaseService.getJson('homeLocation').then(data=> {
+    this.databaseService.getJson(HOME_CONFIG.LOCATION).then(data=> {
       if (data === null) {
         let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City Name'});
         modal.onDidDismiss((data: Location) => {
           console.debug('page > modal dismissed > data > ', data);
-          self.databaseService.setJson('homeLocation', data);
+          self.databaseService.setJson(HOME_CONFIG.LOCATION, data);
           self.homeLocation = data;
           self.getForecast();
         });
@@ -58,9 +59,9 @@ export class HomeWeatherPage {
         self.getForecast();
       }
     });
-    this.databaseService.getJson('metrics').then(data=> {
+    this.databaseService.getJson(CONFIG.METRICS).then(data=> {
       if (data === null) {
-        self.databaseService.setJson('metrics', DEFAULT_METRICS);
+        self.databaseService.setJson(CONFIG.METRICS, DEFAULT_METRICS);
         self.metrics = DEFAULT_METRICS;
       } else {
         self.metrics = data;
@@ -86,6 +87,4 @@ export class HomeWeatherPage {
       this.forecastSubscriber.unsubscribe();
     }
   }
-
 }
-

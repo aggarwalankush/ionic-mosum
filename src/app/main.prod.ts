@@ -1,7 +1,7 @@
 import {platformBrowser} from "@angular/platform-browser";
 import {enableProdMode} from "@angular/core";
-//noinspection TypeScriptCheckImport
 import {AppModuleNgFactory} from "./app.module.ngfactory";
+//noinspection TypeScriptCheckImport
 
 enableProdMode();
 platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);

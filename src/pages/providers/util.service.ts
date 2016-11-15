@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {Metrics, MetricTemp, MetricLength, MetricDistance, MetricPressure} from "./model";
 import moment from "moment";
 import * as _ from "lodash";
@@ -6,8 +6,10 @@ import "moment-timezone";
 
 @Injectable()
 export class UtilService {
+  tabChangeEvent;
 
   constructor() {
+    this.tabChangeEvent = new EventEmitter<string>();
   }
 
   getStandardDay(epoch: number, tz: string): string {
@@ -149,5 +151,9 @@ export class UtilService {
 
   startCase(text: string): string {
     return _.startCase(text);
+  }
+
+  getTabChangeEvent() {
+    return this.tabChangeEvent;
   }
 }

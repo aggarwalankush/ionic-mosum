@@ -85,3 +85,10 @@ export enum MetricDistance{
 export enum MetricPressure{
   MBAR, HPA
 }
+
+export interface PageInterface {
+  title: string,
+  component: any,
+  icon: string,
+  index?: number
+}

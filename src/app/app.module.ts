@@ -8,6 +8,7 @@ import {ModalLocation} from "../pages/location/location";
 import {HomeWeatherPage} from "../pages/home-weather/home-weather";
 import {WeatherDetailPage} from "../pages/weather-detail/weather-detail";
 import {WorldWeatherPage} from "../pages/world-weather/world-weather";
+import {SettingsPage} from "../pages/settings/settings";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {WorldWeatherPage} from "../pages/world-weather/world-weather";
     ModalLocation,
     HomeWeatherPage,
     WeatherDetailPage,
-    WorldWeatherPage
+    WorldWeatherPage,
+    SettingsPage
   ],
   imports: [
     IonicModule.forRoot(MosumApp, {tabsPlacement: 'bottom'}),
@@ -29,7 +31,8 @@ import {WorldWeatherPage} from "../pages/world-weather/world-weather";
     ModalLocation,
     HomeWeatherPage,
     WeatherDetailPage,
-    WorldWeatherPage
+    WorldWeatherPage,
+    SettingsPage
   ],
   providers: [
     Sql,

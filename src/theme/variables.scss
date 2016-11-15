@@ -21,11 +21,13 @@ $background-color: #fff;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:#455A64,
-  text1:#6D6D6D,
-  text2:#939393,
-  text3:#a7afb2,
-  white:#ffffff
+  primary: #455A64,
+  //TODO - can remove in rc3 - https://github.com/driftyco/ionic/issues/8266
+  light: #f4f4f4,
+  text1: #6D6D6D,
+  text2: #939393,
+  text3: #a7afb2,
+  white: #ffffff
 );
 
 // App iOS Variables

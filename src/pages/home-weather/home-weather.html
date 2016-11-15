@@ -13,7 +13,7 @@
     <button ion-item detail-none text-wrap
             *ngIf="todayForecast"
             (click)="itemClicked(todayForecast)"
-            color="primary" style="text-align: center">
+            color="primary" style="text-align: center;margin-bottom:-1px;">
       <h1 style="font-weight: bold;">{{homeLocation.name}}</h1>
       <h2>{{utilService.getCalendarDay(todayForecast.time,forecast.timezone)}}</h2>
       <ion-grid>

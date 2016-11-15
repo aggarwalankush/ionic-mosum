@@ -3,4 +3,7 @@ page-weather-detail {
   ion-navbar.toolbar-md, ion-segment.segment-md {
     margin-bottom: -14px !important;
   }
+  ion-toolbar.toolbar-md {
+    padding: 0 !important;
+  }
 }

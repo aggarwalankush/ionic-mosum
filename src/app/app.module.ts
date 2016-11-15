@@ -1,41 +1,35 @@
 import {NgModule} from "@angular/core";
+import {JsonpModule} from "@angular/http";
 import {IonicApp, IonicModule} from "ionic-angular";
-import {MyApp} from "./app.component";
-import {AboutPage} from "../pages/about/about";
-import {ContactPage} from "../pages/contact/contact";
-import {HomePage} from "../pages/home/home";
+import {Sql, DatabaseService, UtilService, ForecastService} from "../pages/providers";
+import {MosumApp} from "./app.component";
 import {TabsPage} from "../pages/tabs/tabs";
 import {ModalLocation} from "../pages/location/location";
-import {Sql, DatabaseService, UtilService, ForecastService} from "../pages/providers";
-import {JsonpModule} from "@angular/http";
 import {HomeWeatherPage} from "../pages/home-weather/home-weather";
 import {WeatherDetailPage} from "../pages/weather-detail/weather-detail";
+import {WorldWeatherPage} from "../pages/world-weather/world-weather";
 
 @NgModule({
   declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
+    MosumApp,
     TabsPage,
     ModalLocation,
     HomeWeatherPage,
-    WeatherDetailPage
+    WeatherDetailPage,
+    WorldWeatherPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MosumApp, {tabsPlacement: 'bottom'}),
     JsonpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
+    MosumApp,
     TabsPage,
     ModalLocation,
     HomeWeatherPage,
-    WeatherDetailPage
+    WeatherDetailPage,
+    WorldWeatherPage
   ],
   providers: [
     Sql,

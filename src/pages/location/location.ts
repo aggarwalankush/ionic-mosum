@@ -1,4 +1,4 @@
-import {Component, OnInit, NgZone, ViewChild} from "@angular/core";
+import {Component, NgZone, ViewChild} from "@angular/core";
 import {ViewController, NavParams} from "ionic-angular";
 import * as _ from "lodash";
 import {Location} from "../providers";
@@ -6,7 +6,7 @@ import {Location} from "../providers";
 @Component({
   templateUrl: 'location.html'
 })
-export class ModalLocation implements OnInit {
+export class ModalLocation {
   @ViewChild('searchInput') searchInput;
   heading: string;
   autocompleteItems: Array<{description: string,place_id: string}>;
@@ -23,7 +23,7 @@ export class ModalLocation implements OnInit {
     this.searchInput.setFocus();
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.acService = new google.maps.places.AutocompleteService();
     this.autocompleteItems = [];
     this.query = '';
@@ -63,7 +63,7 @@ export class ModalLocation implements OnInit {
     let request = {
       placeId: item.place_id
     };
-    let response:Location;
+    let response: Location;
     let placesService = new google.maps.places.PlacesService(document.createElement('div'));
     placesService.getDetails(request, (place, status)=> {
       if (status == google.maps.places.PlacesServiceStatus.OK) {

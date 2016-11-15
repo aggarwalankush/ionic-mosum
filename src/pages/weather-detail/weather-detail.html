@@ -4,7 +4,7 @@
     <ion-title>Weather Detail</ion-title>
   </ion-navbar>
   <ion-toolbar color="white" no-border-top *ngIf="showSegment">
-    <ion-segment [(ngModel)]="whichSegment" color="blackish">
+    <ion-segment [(ngModel)]="whichSegment" color="primary">
       <ion-segment-button value="detail">
         Detail
       </ion-segment-button>
@@ -65,7 +65,7 @@
           </ion-row>
         </ion-grid>
       </ion-item>
-      <ion-item text-wrap color="blackish" class="halfScreen">
+      <ion-item text-wrap color="primary" class="halfScreen">
         <ion-grid>
           <ion-row *ngFor="let detail of detailsArray">
             <ion-col><h2 style="font-weight: bold;font-size: 1.8rem" color="text3">{{detail.key}}</h2></ion-col>
@@ -79,7 +79,7 @@
 
     <ion-list class="fullScreen"
               *ngIf="whichSegment==='hourly'">
-      <!--TODO - change to color='blackish' in rc3-->
+      <!--TODO - change to color='primary' in rc3-->
       <ion-list-header style="text-align: center;background-color: #455A64;color:#ffffff;">
         <span style="font-weight: bold;">{{currentLocation.name}}</span>
       </ion-list-header>
@@ -99,7 +99,7 @@
           <ion-icon item-right [name]="item.showDetails?'arrow-up':'arrow-down'" color="text1"></ion-icon>
         </button>
 
-        <ion-item text-wrap color="blackish" *ngIf="item.showDetails" [@collapseExpand]="'default'">
+        <ion-item text-wrap color="primary" *ngIf="item.showDetails" [@collapseExpand]="'default'">
           <ion-grid>
             <ion-row *ngFor="let detail of item.details">
               <ion-col><h2 style="font-weight: bold;font-size: 1.8rem" color="text3">{{detail.key}}</h2></ion-col>

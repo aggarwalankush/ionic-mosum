@@ -1,73 +1,73 @@
 export interface Location {
-  name: string,
-  lat: number,
-  lng: number
+  name: string;
+  lat: number;
+  lng: number;
 }
 
 export interface KV {
-  key: string,
-  value: string
+  key: string;
+  value: string;
 }
 
 export interface Forecast {
-  latitude: number,
-  longitude: number,
+  latitude: number;
+  longitude: number;
   //IANA timezone
-  timezone: string,
+  timezone: string;
   hourly?: {
     data: Array<DataPoint>
-  },
+  };
   daily?: {
     data: Array<DataPoint>
-  }
+  };
 }
 
 export interface DataPoint {
   //Fahrenheit
-  apparentTemperature?: number,
-  apparentTemperatureMax?: number,
-  apparentTemperatureMin?: number,
+  apparentTemperature?: number;
+  apparentTemperatureMax?: number;
+  apparentTemperatureMin?: number;
   //The percentage of sky occluded by clouds, between 0 and 1, inclusive
-  cloudCover?: number,
+  cloudCover?: number;
   //Fahrenheit
-  dewPoint?: number,
+  dewPoint?: number;
   //The relative humidity, between 0 and 1, inclusive.
-  humidity?: number,
-  icon?: string,
+  humidity?: number;
+  icon?: string;
   //Dobson(DU)
-  ozone?: number,
+  ozone?: number;
   //inches
-  precipAccumulation?: number,
+  precipAccumulation?: number;
   //inches/h
-  precipIntensity?: number,
+  precipIntensity?: number;
   //The probability of precipitation occurring, between 0 and 1, inclusive.
-  precipProbability?: number,
+  precipProbability?: number;
   // "rain", "snow", or "sleet"
-  precipType?: string,
+  precipType?: string;
   //millibars
-  pressure?: number,
-  summary?: string,
-  sunriseTime?: number,
-  sunsetTime?: number,
+  pressure?: number;
+  summary?: string;
+  sunriseTime?: number;
+  sunsetTime?: number;
   //Fahrenheit
-  temperature?: number,
-  temperatureMax?: number,
-  temperatureMin?: number,
-  time?: number,
+  temperature?: number;
+  temperatureMax?: number;
+  temperatureMin?: number;
+  time?: number;
   //miles
-  visibility?: number,
+  visibility?: number;
   //degree
-  windBearing?: number,
+  windBearing?: number;
   //miles per hour
-  windSpeed?: number
+  windSpeed?: number;
 }
 
 export interface Metrics {
-  temp: MetricTemp,
-  length: MetricLength,
-  distance: MetricDistance,
-  time: number,
-  pressure: MetricPressure
+  temp: MetricTemp;
+  length: MetricLength;
+  distance: MetricDistance;
+  time: number;
+  pressure: MetricPressure;
 }
 
 export enum MetricTemp{
@@ -87,8 +87,8 @@ export enum MetricPressure{
 }
 
 export interface PageInterface {
-  title: string,
-  component: any,
-  icon: string,
-  index?: number
+  title: string;
+  component: any;
+  icon: string;
+  index?: number;
 }

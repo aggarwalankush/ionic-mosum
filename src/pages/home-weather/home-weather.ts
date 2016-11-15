@@ -17,6 +17,7 @@ import {ModalLocation} from "../location/location";
 import {Subscription} from "rxjs/Subscription";
 
 @Component({
+  selector: 'page-home-weather',
   templateUrl: 'home-weather.html'
 })
 export class HomeWeatherPage {

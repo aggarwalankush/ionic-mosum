@@ -28,8 +28,8 @@
         <h2>{{utilService.getCalendarDay(currentForecast.time,forecast.timezone)}}</h2>
         <ion-grid>
           <ion-row>
-            <ion-col width-33>
-              <div class="vertical-center">
+            <ion-col width-33 class="center-contents">
+              <div>
               <span style="font-size:3.2rem;" color="text1">
                 {{utilService.formatTemp(currentForecast.temperatureMax,metrics)}}
               </span>
@@ -51,8 +51,8 @@
               <h2 style="font-weight: bold;font-size: 1.8rem" color="text1">
                 {{utilService.startCase(currentForecast.icon)}}</h2>
             </ion-col>
-            <ion-col width-33>
-              <div class="vertical-center">
+            <ion-col width-33 class="center-contents">
+              <div>
                 <img [src]="utilService.getWeatherIcon('sunrise')" style="max-width:40%"
                      onerror="this.src=utilService.getDefaultIcon()">
                 <h2 style="font-weight: bold;" color="text1">

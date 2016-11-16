@@ -65,7 +65,9 @@ export class MosumApp {
   }
 
   resetMenu() {
-    _.forEach(this.pages, page=> _.forEach(page.items, item => {item.active = false}));
+    _.forEach(this.pages, page=> _.forEach(page.items, item => {
+      item.active = false
+    }));
   }
 
   findPage(index: number): PageInterface {

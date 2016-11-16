@@ -17,28 +17,37 @@ export class ForecastService {
               public databaseService: DatabaseService) {
   }
 
-  get(lat: number, lng: number): Observable<Forecast> {
+  getHomeForecast(lat: number, lng: number): Observable<Forecast> {
     let self = this;
     let forecastData: EventEmitter<Forecast> = new EventEmitter<Forecast>();
-    self.databaseService.get(HOME_CONFIG.LAST_UPDATED)
-      .then(lastUpdated=> {
-        if (lastUpdated && Date.now() - +lastUpdated < self.refreshThreshold) {
-          console.debug('getting database data');
-          self.databaseService.getJson(HOME_CONFIG.FORECAST)
-            .then(homeForecast=> forecastData.emit(homeForecast));
-        } else {
-          console.debug('getting server data');
-          self.jsonp.get(self.getRequestUri(lat, lng, 'currently,minutely,alerts,flags'))
-            .map(self.extractData)
-            .catch(self.handleError)
-            .subscribe(data=> {
-              forecastData.emit(data);
-              self.databaseService.setJson(HOME_CONFIG.FORECAST, data);
-              self.databaseService.set(HOME_CONFIG.LAST_UPDATED, Date.now() + '');
-            });
-        }
-      });
+    self.databaseService.get(HOME_CONFIG.LAST_UPDATED).then(lastUpdated=> {
+      if (lastUpdated && Date.now() - +lastUpdated < self.refreshThreshold) {
+        console.debug('getting database data');
+        self.databaseService.getJson(HOME_CONFIG.FORECAST).then(homeForecast=> {
+          if (homeForecast) {
+            forecastData.emit(homeForecast)
+          } else {
+            self.getServerData(lat, lng, forecastData);
+          }
+        });
+      } else {
+        console.debug('getting server data');
+        self.getServerData(lat, lng, forecastData);
+      }
+    });
     return forecastData;
+  }
+
+  getServerData(lat: number, lng: number, forecastData: EventEmitter<Forecast>) {
+    let self = this;
+    self.jsonp.get(self.getRequestUri(lat, lng, 'currently,minutely,alerts,flags'))
+      .map(self.extractData)
+      .catch(self.handleError)
+      .subscribe(data=> {
+        forecastData.emit(data);
+        self.databaseService.setJson(HOME_CONFIG.FORECAST, data);
+        self.databaseService.set(HOME_CONFIG.LAST_UPDATED, Date.now() + '');
+      });
   }
 
   private extractData(res: Response) {

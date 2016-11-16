@@ -77,7 +77,7 @@ export class HomeWeatherPage {
 
   getForecast() {
     let self = this;
-    this.forecastSubscriber = self.forecastService.get(self.homeLocation.lat, self.homeLocation.lng)
+    this.forecastSubscriber = self.forecastService.getHomeForecast(self.homeLocation.lat, self.homeLocation.lng)
       .subscribe((data: Forecast)=> {
         self.forecast = data;
         if (self.forecast && self.forecast.daily && self.forecast.daily.data) {

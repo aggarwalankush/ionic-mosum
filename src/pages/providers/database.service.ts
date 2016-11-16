@@ -31,6 +31,15 @@ export class DatabaseService {
       });
   }
 
+  remove(key: string): Promise<boolean> {
+    return this._db.remove(key)
+      .then(()=> true)
+      .catch(err=> {
+        console.error('[Error] Removing ' + key + ' - ' + JSON.stringify(err));
+        return false;
+      });
+  }
+
   getJson(key: string): Promise<any> {
     return this.get(key).then(value => {
       try {

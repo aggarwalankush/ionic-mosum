@@ -88,7 +88,7 @@ export class UtilService {
     if (metrics.distance === MetricDistance.KM) {
       windSpeed = windSpeed * 1.60934;
     }
-    return _.round(windSpeed, 5) + ' ' + _.lowerCase(MetricDistance[metrics.distance]) + '/h ' + this.degToCard(windDegree);
+    return _.round(windSpeed, 2) + ' ' + _.lowerCase(MetricDistance[metrics.distance]) + '/h ' + this.degToCard(windDegree);
   }
 
   formatPI(pi: number, metrics: Metrics): string {

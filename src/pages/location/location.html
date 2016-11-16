@@ -2,7 +2,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{heading}}</ion-title>
-    <ion-buttons start>
+    <ion-buttons start *ngIf="showCancel">
       <button ion-button (click)="dismiss()">
         <span showWhen="ios">Cancel</span>
         <span showWhen="android,windows">Cancel</span>
@@ -15,7 +15,7 @@
   <ion-searchbar
     [(ngModel)]="query"
     (ionInput)="updateSearch()"
-    (ionCancel)="dismiss()" #searchInput>
+    #searchInput>
   </ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of autocompleteItems"

@@ -13,10 +13,13 @@ export class ModalLocation {
   query: string;
   acService: any;
   locationObj: Location;
+  showCancel: boolean;
 
   constructor(public viewCtrl: ViewController,
               public zone: NgZone,
               public params: NavParams) {
+    this.heading = params.get('heading') ? params.get('heading') : 'Search City Name';
+    this.showCancel = params.data.showCancel !== undefined ? params.data.showCancel : true;
   }
 
   ionViewDidEnter() {
@@ -32,7 +35,6 @@ export class ModalLocation {
       lat: null,
       lng: null
     };
-    this.heading = this.params.get('heading') ? this.params.get('heading') : 'Search City Name';
   }
 
   dismiss() {

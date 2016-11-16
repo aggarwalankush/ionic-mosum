@@ -47,12 +47,17 @@ export class HomeWeatherPage {
     let self = this;
     this.databaseService.getJson(HOME_CONFIG.LOCATION).then(data=> {
       if (data === null) {
-        let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City Name'});
+        let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City Name', showCancel: false});
         modal.onDidDismiss((data: Location) => {
           console.debug('page > modal dismissed > data > ', data);
-          self.databaseService.setJson(HOME_CONFIG.LOCATION, data);
-          self.homeLocation = data;
-          self.getForecast();
+          if (data) {
+            self.databaseService.remove(HOME_CONFIG.LAST_UPDATED)
+              .then(()=> {
+                self.databaseService.setJson(HOME_CONFIG.LOCATION, data);
+                self.homeLocation = data;
+                self.getForecast();
+              });
+          }
         });
         modal.present();
       } else {

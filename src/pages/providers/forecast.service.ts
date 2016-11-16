@@ -22,7 +22,7 @@ export class ForecastService {
     let forecastData: EventEmitter<Forecast> = new EventEmitter<Forecast>();
     self.databaseService.get(HOME_CONFIG.LAST_UPDATED).then(lastUpdated=> {
       if (lastUpdated && Date.now() - +lastUpdated < self.refreshThreshold) {
-        console.debug('getting database data');
+        console.debug('getting forecast data from DATABASE');
         self.databaseService.getJson(HOME_CONFIG.FORECAST).then(homeForecast=> {
           if (homeForecast) {
             forecastData.emit(homeForecast)
@@ -31,14 +31,14 @@ export class ForecastService {
           }
         });
       } else {
-        console.debug('getting server data');
         self.getServerData(lat, lng, forecastData);
       }
     });
     return forecastData;
   }
 
-  getServerData(lat: number, lng: number, forecastData: EventEmitter<Forecast>) {
+  private getServerData(lat: number, lng: number, forecastData: EventEmitter<Forecast>) {
+    console.debug('getting forecast data from SERVER');
     let self = this;
     self.jsonp.get(self.getRequestUri(lat, lng, 'currently,minutely,alerts,flags'))
       .map(self.extractData)

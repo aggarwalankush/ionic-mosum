@@ -43,7 +43,8 @@
     {
       "locator": "https://github.com/driftyco/cordova-plugin-wkwebview-engine.git",
       "id": "cordova-plugin-wkwebview-engine"
-    }
+    },
+    "cordova-plugin-inappbrowser"
   ],
   "cordovaPlatforms": [
     {

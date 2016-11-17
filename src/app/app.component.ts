@@ -1,6 +1,6 @@
 import {Component, ViewChild} from "@angular/core";
 import {Platform, Nav} from "ionic-angular";
-import {StatusBar, Splashscreen} from "ionic-native";
+import {StatusBar, Splashscreen, InAppBrowser} from "ionic-native";
 import {TabsPage} from "../pages/tabs/tabs";
 import {SettingsPage} from "../pages/settings/settings";
 import {PageInterface, UtilService} from "../pages/providers";
@@ -80,5 +80,9 @@ export class MosumApp {
       }
     });
     return result;
+  }
+
+  poweredBy() {
+    new InAppBrowser('https://darksky.net/poweredby/', '_system');
   }
 }

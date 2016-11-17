@@ -69,7 +69,6 @@ export class ModalLocation {
     let placesService = new google.maps.places.PlacesService(document.createElement('div'));
     placesService.getDetails(request, (place, status)=> {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
-        console.debug('page > getPlaceDetail > place > ', place);
         self.locationObj.lat = place.geometry.location.lat();
         self.locationObj.lng = place.geometry.location.lng();
         let obj = _.find(place.address_components, ['types[0]', 'locality']);

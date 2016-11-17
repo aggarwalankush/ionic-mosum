@@ -3,56 +3,50 @@ import {Response, Jsonp} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
-import {Forecast} from "./model";
+import {Forecast, Location} from "./model";
 import {DatabaseService} from "./database.service";
-import {FORECAST_CONFIG, HOME_CONFIG} from "./constants";
+import {FORECAST_CONFIG, REFRESH_THRESHOLD} from "./constants";
+import * as _ from "lodash";
 
 @Injectable()
 export class ForecastService {
-  private apiUnits: string = 'us';
-  private apiLanguage: string = 'en';
-  refreshThreshold = 6 * 60 * 60 * 1000; //6 hours
 
   constructor(public jsonp: Jsonp,
               public databaseService: DatabaseService) {
   }
 
-  getHomeForecast(lat: number, lng: number): Observable<Forecast> {
+  getForecast(location: Location): Observable<Forecast> {
     let self = this;
-    let forecastData: EventEmitter<Forecast> = new EventEmitter<Forecast>();
-    self.databaseService.get(HOME_CONFIG.LAST_UPDATED).then(lastUpdated=> {
-      if (lastUpdated && Date.now() - +lastUpdated < self.refreshThreshold) {
-        console.debug('getting forecast data from DATABASE');
-        self.databaseService.getJson(HOME_CONFIG.FORECAST).then(homeForecast=> {
-          if (homeForecast) {
-            forecastData.emit(homeForecast)
-          } else {
-            self.getServerData(lat, lng, forecastData);
-          }
-        });
-      } else {
-        self.getServerData(lat, lng, forecastData);
-      }
-    });
-    return forecastData;
+    let emitterForecast: EventEmitter<Forecast> = new EventEmitter<Forecast>();
+    self.databaseService.getForecast(location.name)
+      .then(data=> {
+        if (_.isEmpty(data) || !data.lastUpdated || _.isEmpty(data.forecast)
+          || Date.now() - data.lastUpdated > REFRESH_THRESHOLD) {
+          throw new Error('Invalid database forecast, fallback to server > ' + location.name);
+        } else {
+          console.debug('getting forecast data from DATABASE');
+          emitterForecast.emit(data.forecast);
+        }
+      })
+      .catch(err=> {
+        if (err && err.message) {
+          console.error(err.message);
+        }
+        self.getServerData(location, emitterForecast);
+      });
+    return emitterForecast;
   }
 
-  private getServerData(lat: number, lng: number, forecastData: EventEmitter<Forecast>) {
+  private getServerData(location: Location, emitterForecast: EventEmitter<Forecast>) {
     console.debug('getting forecast data from SERVER');
     let self = this;
-    self.jsonp.get(self.getRequestUri(lat, lng, 'currently,minutely,alerts,flags'))
-      .map(self.extractData)
+    self.jsonp.get(self.getRequestUri(location))
+      .map(res=>res.json())
       .catch(self.handleError)
       .subscribe(data=> {
-        forecastData.emit(data);
-        self.databaseService.setJson(HOME_CONFIG.FORECAST, data);
-        self.databaseService.set(HOME_CONFIG.LAST_UPDATED, Date.now() + '');
+        emitterForecast.emit(data);
+        self.databaseService.setForecast(location.name, data);
       });
-  }
-
-  private extractData(res: Response) {
-    let body = res.json();
-    return body || {};
   }
 
   private handleError(error: Response | any) {
@@ -68,14 +62,8 @@ export class ForecastService {
     return Observable.throw(errMsg);
   }
 
-  private getRequestUri(lat: number, lng: number, exclude: string): string {
-    return [
-      FORECAST_CONFIG.API_ENDPOINT, FORECAST_CONFIG.API_KEY, '/',
-      lat, ',', lng,
-      '?units=', this.apiUnits,
-      '&lang=', this.apiLanguage,
-      '&exclude=', exclude,
-      '&callback=JSONP_CALLBACK'
-    ].join('');
+  private getRequestUri(location: Location): string {
+    return FORECAST_CONFIG.API_ENDPOINT + FORECAST_CONFIG.API_KEY + '/' + location.lat + ',' + location.lng
+      + '?units=us&lang=en&exclude=currently,minutely,alerts,flags&callback=JSONP_CALLBACK';
   }
 }

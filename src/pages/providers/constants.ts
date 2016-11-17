@@ -13,12 +13,9 @@ export const FORECAST_CONFIG = {
   API_KEY: '9bb59ff3063ac4930fc96890570b0c6f'
 };
 
-export const HOME_CONFIG = {
-  FORECAST: 'homeForecast',
-  LOCATION: 'homeLocation',
-  LAST_UPDATED: 'homeLastUpdated'
+export const CONFIG = {
+  METRICS: 'metrics',
+  HOME_LOCATION: 'homeLocation'
 };
 
-export const CONFIG = {
-  METRICS: 'metrics'
-};
+export const REFRESH_THRESHOLD: number = 6 * 60 * 60 * 1000; //6 hours

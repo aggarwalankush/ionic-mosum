@@ -7,8 +7,7 @@ import {
   MetricDistance,
   MetricPressure,
   DatabaseService,
-  CONFIG,
-  HOME_CONFIG
+  CONFIG
 } from "../providers";
 import {ModalLocation} from "../location/location";
 import {ModalController} from "ionic-angular";
@@ -32,7 +31,7 @@ export class SettingsPage {
     this.databaseService.getJson(CONFIG.METRICS).then(data=> {
       this.metrics = data;
     });
-    this.databaseService.getJson(HOME_CONFIG.LOCATION).then(data=> {
+    this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data=> {
       this.homeLocation = data;
     });
   }
@@ -42,16 +41,12 @@ export class SettingsPage {
   }
 
   changeHomeLocation() {
-    console.debug('changing home location');
     let self = this;
     let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City Name'});
     modal.onDidDismiss((data: Location) => {
       if (data) {
-        self.databaseService.remove(HOME_CONFIG.LAST_UPDATED)
-          .then(()=> {
-            self.databaseService.setJson(HOME_CONFIG.LOCATION, data);
-            self.homeLocation = data;
-          });
+        self.databaseService.setJson(CONFIG.HOME_LOCATION, data);
+        self.homeLocation = data;
       }
     });
     modal.present();

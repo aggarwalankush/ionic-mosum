@@ -9,7 +9,6 @@ import {
   DataPoint,
   Location,
   DEFAULT_METRICS,
-  HOME_CONFIG,
   CONFIG
 } from "../providers";
 import {WeatherDetailPage} from "../weather-detail/weather-detail";
@@ -45,24 +44,19 @@ export class HomeWeatherPage {
 
   ionViewWillEnter() {
     let self = this;
-    this.databaseService.getJson(HOME_CONFIG.LOCATION).then(data=> {
+    this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data=> {
       if (data === null) {
         let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City Name', showCancel: false});
         modal.onDidDismiss((data: Location) => {
           console.debug('page > modal dismissed > data > ', data);
           if (data) {
-            self.databaseService.remove(HOME_CONFIG.LAST_UPDATED)
-              .then(()=> {
-                self.databaseService.setJson(HOME_CONFIG.LOCATION, data);
-                self.homeLocation = data;
-                self.getForecast();
-              });
+            self.databaseService.setJson(CONFIG.HOME_LOCATION, data);
+            self.getForecast(data);
           }
         });
         modal.present();
       } else {
-        self.homeLocation = data;
-        self.getForecast();
+        self.getForecast(data);
       }
     });
     this.databaseService.getJson(CONFIG.METRICS).then(data=> {
@@ -75,16 +69,17 @@ export class HomeWeatherPage {
     });
   }
 
-  getForecast() {
+  getForecast(homeLocation: Location) {
     let self = this;
-    this.forecastSubscriber = self.forecastService.getHomeForecast(self.homeLocation.lat, self.homeLocation.lng)
+    this.homeLocation = homeLocation;
+    this.forecastSubscriber = self.forecastService.getForecast(homeLocation)
       .subscribe((data: Forecast)=> {
         self.forecast = data;
         if (self.forecast && self.forecast.daily && self.forecast.daily.data) {
           self.todayForecast = self.forecast.daily.data[0];
         }
       }, err=> {
-        console.debug(err);
+        console.error(err);
       });
   }
 

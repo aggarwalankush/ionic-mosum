@@ -1,6 +1,6 @@
 <!--suppress ALL -->
-<ion-header>
-  <ion-navbar>
+<ion-header no-shadow>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -8,6 +8,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Global Warming on Earth, let's move to Mars</h2>
+<ion-content>
+  <ion-fab right bottom>
+    <button ion-fab (click)="addCity()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list *ngIf="locations">
+    <ion-item-sliding *ngFor="let location of locations">
+      <button ion-item text-wrap (click)="locationClicked(location)">
+        <h2>{{location.name}}</h2>
+      </button>
+      <ion-item-options>
+        <button ion-button color="danger" (click)="delete(location)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

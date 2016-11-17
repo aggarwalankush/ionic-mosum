@@ -42,7 +42,7 @@ export class SettingsPage {
 
   changeHomeLocation() {
     let self = this;
-    let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City Name'});
+    let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City'});
     modal.onDidDismiss((data: Location) => {
       if (data) {
         self.databaseService.setJson(CONFIG.HOME_LOCATION, data);

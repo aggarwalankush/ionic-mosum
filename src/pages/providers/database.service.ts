@@ -14,7 +14,7 @@ export class DatabaseService {
   //
   // table_forecast queries
   //
-  setForecast(name: string, forecast: Forecast): Promise<boolean> {
+  addForecast(name: string, forecast: Forecast): Promise<boolean> {
     let lastUpdated: number = Date.now();
     let insertQuery: string = `INSERT OR REPLACE INTO ${this.table_forecast} (name, forecast, lastUpdated) VALUES (?, ?, ?)`;
     let createTableQuery: string = `CREATE TABLE IF NOT EXISTS ${this.table_forecast} (name TEXT PRIMARY KEY, forecast TEXT, lastUpdated TEXT)`;
@@ -53,7 +53,7 @@ export class DatabaseService {
   //
   // table_world_location queries
   //
-  setWorldLocation(location: Location): Promise<boolean> {
+  addWorldLocation(location: Location): Promise<boolean> {
     let insertQuery: string = `INSERT OR REPLACE INTO ${this.table_world_location} (name, lat, lng) VALUES (?, ?, ?)`;
     let createTableQuery: string = `CREATE TABLE IF NOT EXISTS ${this.table_world_location} (name TEXT PRIMARY KEY, lat TEXT, lng TEXT)`;
     let self = this;
@@ -85,6 +85,38 @@ export class DatabaseService {
       }).catch(error => {
         console.log("Getting world location error -> " + error.err.message);
         return null;
+      });
+  }
+
+  removeWorldLocation(name: string): Promise<boolean> {
+    let query: string = `DELETE FROM ${this.table_world_location} WHERE name = ?`;
+    let self = this;
+    return self._db.query(query, [name])
+      .then(()=> true)
+      .catch(error => {
+        console.log("Removing world location error -> " + error.err.message);
+        return false;
+      });
+  }
+
+  getAllWorldLocations(): Promise<Array<Location>> {
+    let getQuery: string = `SELECT name, lat, lng FROM ${this.table_world_location}`;
+    let self = this;
+    let resultArray: Array<Location> = [];
+    return self._db.query(getQuery)
+      .then(data=> {
+        for (var i = 0; i < data.res.rows.length; i++) {
+          let obj: any = data.res.rows.item(i);
+          resultArray.push({
+            name: obj.name,
+            lat: +obj.lat,
+            lng: +obj.lng
+          });
+        }
+        return resultArray;
+      }).catch(error => {
+        console.log("Getting all world locations error -> " + error.err.message);
+        return resultArray;
       });
   }
 

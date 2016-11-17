@@ -46,7 +46,7 @@ export class HomeWeatherPage {
     let self = this;
     this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data=> {
       if (data === null) {
-        let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City Name', showCancel: false});
+        let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City', showCancel: false});
         modal.onDidDismiss((data: Location) => {
           console.debug('page > modal dismissed > data > ', data);
           if (data) {

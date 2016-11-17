@@ -45,7 +45,7 @@ export class ForecastService {
       .catch(self.handleError)
       .subscribe(data=> {
         emitterForecast.emit(data);
-        self.databaseService.setForecast(location.name, data);
+        self.databaseService.addForecast(location.name, data);
       });
   }
 

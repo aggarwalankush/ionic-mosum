@@ -9,6 +9,8 @@ import {HomeWeatherPage} from "../pages/home-weather/home-weather";
 import {WeatherDetailPage} from "../pages/weather-detail/weather-detail";
 import {WorldWeatherPage} from "../pages/world-weather/world-weather";
 import {SettingsPage} from "../pages/settings/settings";
+import {WorldWeatherDetailPage} from "../pages/world-weather-detail/world-weather-detail";
+import {WeatherListTemplate} from "../pages/template/weather-list.template";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {SettingsPage} from "../pages/settings/settings";
     HomeWeatherPage,
     WeatherDetailPage,
     WorldWeatherPage,
-    SettingsPage
+    SettingsPage,
+    WeatherListTemplate,
+    WorldWeatherDetailPage
   ],
   imports: [
     IonicModule.forRoot(MosumApp, {tabsPlacement: 'bottom'}),
@@ -32,7 +36,9 @@ import {SettingsPage} from "../pages/settings/settings";
     HomeWeatherPage,
     WeatherDetailPage,
     WorldWeatherPage,
-    SettingsPage
+    SettingsPage,
+    WeatherListTemplate,
+    WorldWeatherDetailPage
   ],
   providers: [
     Sql,

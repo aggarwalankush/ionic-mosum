@@ -30,17 +30,17 @@
           <ion-row>
             <ion-col width-33 class="center-contents">
               <div>
-              <span style="font-size:3.2rem;" color="text1">
+              <span style="font-size:3.2rem;" ion-text color="text1">
                 {{utilService.formatTemp(currentForecast.temperatureMax,metrics)}}
               </span>
-                <span style="font-size:2.6rem;" color="text1">
+                <span style="font-size:2.6rem;" ion-text  color="text1">
                 {{utilService.formatTemp(currentForecast.temperatureMin,metrics)}}
               </span>
-                <h5 color="text1">RealFeel</h5>
-                <span style="font-size:2.6rem;" color="text2">
+                <h5 ion-text  color="text1">RealFeel</h5>
+                <span style="font-size:2.6rem;" ion-text  color="text2">
                 {{utilService.formatTemp(currentForecast.apparentTemperatureMax,metrics)}}
               </span>
-                <span style="font-size:2.0rem;" color="text2">
+                <span style="font-size:2.0rem;" ion-text  color="text2">
                 {{utilService.formatTemp(currentForecast.apparentTemperatureMin,metrics)}}
               </span>
               </div>
@@ -48,17 +48,17 @@
             <ion-col width-33>
               <img [src]="utilService.getWeatherIcon(currentForecast.icon)"
                    onerror="this.src=utilService.getDefaultIcon()">
-              <h2 style="font-weight: bold;font-size: 1.8rem" color="text1">
+              <h2 style="font-weight: bold;font-size: 1.8rem" ion-text  color="text1">
                 {{utilService.startCase(currentForecast.icon)}}</h2>
             </ion-col>
             <ion-col width-33 class="center-contents">
               <div>
                 <img [src]="utilService.getWeatherIcon('sunrise')" style="max-width:40%"
                      onerror="this.src=utilService.getDefaultIcon()">
-                <h2 style="font-weight: bold;" color="text1">
+                <h2 style="font-weight: bold;" ion-text  color="text1">
                   {{utilService.getTime(currentForecast.sunriseTime,metrics,forecast.timezone)}}</h2>
                 <img [src]="utilService.getWeatherIcon('sunset')" style="max-width:40%">
-                <h2 style="font-weight: bold;" color="text2">
+                <h2 style="font-weight: bold;" ion-text  color="text2">
                   {{utilService.getTime(currentForecast.sunsetTime,metrics,forecast.timezone)}}</h2>
               </div>
             </ion-col>
@@ -68,7 +68,7 @@
       <ion-item text-wrap color="primary" class="halfScreen" style="padding-left: 12%;">
         <ion-grid>
           <ion-row *ngFor="let detail of detailsArray">
-            <ion-col><h2 style="font-weight: bold;font-size: 1.8rem" color="text3">{{detail.key}}</h2></ion-col>
+            <ion-col><h2 style="font-weight: bold;font-size: 1.8rem"  ion-text  color="text3">{{detail.key}}</h2></ion-col>
             <ion-col><h2 style="font-weight: bold;font-size: 1.8rem">{{detail.value}}</h2></ion-col>
           </ion-row>
         </ion-grid>
@@ -79,8 +79,7 @@
 
     <ion-list class="fullScreen"
               *ngIf="whichSegment==='hourly'">
-      <!--TODO - change to color='primary' in rc3-->
-      <ion-list-header style="text-align: center;background-color: #35474f;color:#ffffff;">
+      <ion-list-header color="primary" style="text-align: center">
         <span style="font-weight: bold;">{{currentLocation.name}}</span>
       </ion-list-header>
 
@@ -91,9 +90,9 @@
                onerror="this.src=utilService.getDefaultIcon()"
                item-left style="max-width: 12%">
           <h2>{{utilService.getCalendarDay(item.time,forecast.timezone)}}
-            <span color="text2">{{utilService.getTime(item.time,metrics,forecast.timezone)}}</span>
+            <span  ion-text color="text2">{{utilService.getTime(item.time,metrics,forecast.timezone)}}</span>
           </h2>
-          <p color="text2" style="font-weight: bold">{{utilService.startCase(item.icon)}}</p>
+          <p  ion-text color="text2" style="font-weight: bold">{{utilService.startCase(item.icon)}}</p>
           <h3 style="font-size:2.2rem;" item-right>
             {{utilService.formatTemp(item.temperature,metrics)}}</h3>
           <ion-icon item-right [name]="item.showDetails?'arrow-up':'arrow-down'" color="text1"></ion-icon>
@@ -103,7 +102,7 @@
                   *ngIf="item.showDetails" [@collapseExpand]="'default'">
           <ion-grid>
             <ion-row *ngFor="let detail of item.details">
-              <ion-col><h2 style="font-weight: bold;font-size: 1.8rem" color="text3">{{detail.key}}</h2></ion-col>
+              <ion-col><h2 style="font-weight: bold;font-size: 1.8rem" ion-text  color="text3">{{detail.key}}</h2></ion-col>
               <ion-col><h2 style="font-weight: bold;font-size: 1.8rem">{{detail.value}}</h2></ion-col>
             </ion-row>
           </ion-grid>

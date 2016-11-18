@@ -20,12 +20,14 @@ export class ForecastService {
     let emitterForecast: EventEmitter<Forecast> = new EventEmitter<Forecast>();
     self.databaseService.getForecast(location.name)
       .then(data=> {
-        if (_.isEmpty(data) || !data.lastUpdated || _.isEmpty(data.forecast)
-          || Date.now() - data.lastUpdated > REFRESH_THRESHOLD) {
+        if (_.isEmpty(data) || !data.lastUpdated || _.isEmpty(data.forecast)) {
           throw new Error('Invalid database forecast, fallback to server > ' + location.name);
         } else {
           console.debug('getting forecast data from DATABASE');
           emitterForecast.emit(data.forecast);
+          if(Date.now() - data.lastUpdated > REFRESH_THRESHOLD) {
+            throw new Error('Outdated database forecast, refreshing from server > ' + location.name);
+          }
         }
       })
       .catch(err=> {

@@ -13,12 +13,6 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.vertical-center {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .fullScreen {
   height: 100% !important;
   margin: 0 !important;
@@ -65,4 +59,8 @@
   bottom: 0;
   position: absolute;
   width: 100%;
+}
+
+ion-list-header {
+  margin-bottom: 0 !important;
 }

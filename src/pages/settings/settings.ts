@@ -13,7 +13,12 @@ import {ModalLocation} from "../location/location";
 import {ModalController} from "ionic-angular";
 
 @Component({
-  templateUrl: 'settings.html'
+  templateUrl: 'settings.html',
+  styles: [`
+    .list-ios {
+      margin-bottom: 10px;
+    }
+  `]
 })
 export class SettingsPage {
   public enumTemp = MetricTemp;

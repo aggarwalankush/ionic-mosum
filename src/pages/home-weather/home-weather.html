@@ -8,7 +8,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content style="background: #F2F2F2;">
+<ion-content class="bg-light">
   <weather-list [location]="location" *ngIf="location"
                 [onInitEmitter]="onInitEmitter"
                 [onDestroyEmitter]="onDestroyEmitter"></weather-list>

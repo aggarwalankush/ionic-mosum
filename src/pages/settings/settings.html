@@ -10,44 +10,44 @@
 
 <ion-content>
   <ion-list *ngIf="homeLocation">
-    <ion-list-header color="light">Location</ion-list-header>
+    <ion-list-header>Location</ion-list-header>
     <button ion-item class="item-select" (click)="changeHomeLocation()">
-      <ion-label>Home Location</ion-label>
+      <ion-label color="primary">Home Location</ion-label>
       <ion-note item-right style="color:inherit">{{homeLocation.name}}</ion-note>
     </button>
   </ion-list>
   <ion-list *ngIf="metrics">
-    <ion-list-header color="light">Metrics</ion-list-header>
+    <ion-list-header>Metrics</ion-list-header>
     <ion-item>
-      <ion-label>Temperature</ion-label>
+      <ion-label color="primary">Temperature</ion-label>
       <ion-select [(ngModel)]="metrics.temp" (ionChange)="metricChange()">
         <ion-option [value]="enumTemp.F">Fahrenheit</ion-option>
         <ion-option [value]="enumTemp.C">Celsius</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Time</ion-label>
+      <ion-label color="primary">Time</ion-label>
       <ion-select [(ngModel)]="metrics.time" (ionChange)="metricChange()">
         <ion-option [value]="12">12 Hour</ion-option>
         <ion-option [value]="24">24 Hour</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Length</ion-label>
+      <ion-label color="primary">Length</ion-label>
       <ion-select [(ngModel)]="metrics.length" (ionChange)="metricChange()">
         <ion-option [value]="enumLength.IN">Inch</ion-option>
         <ion-option [value]="enumLength.CM">Centimeter</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Distance</ion-label>
+      <ion-label color="primary">Distance</ion-label>
       <ion-select [(ngModel)]="metrics.distance" (ionChange)="metricChange()">
         <ion-option [value]="enumDistance.MI">Miles</ion-option>
         <ion-option [value]="enumDistance.KM">Kilometre</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Pressure</ion-label>
+      <ion-label color="primary">Pressure</ion-label>
       <ion-select [(ngModel)]="metrics.pressure" (ionChange)="metricChange()">
         <ion-option [value]="enumPressure.MBAR">mbar</ion-option>
         <ion-option [value]="enumPressure.HPA">hPa</ion-option>

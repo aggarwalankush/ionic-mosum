@@ -1,19 +1,18 @@
 <!--suppress ALL -->
 <ion-list *ngIf="forecast && metrics && location">
-  <button ion-item detail-none text-wrap
-          *ngIf="todayForecast"
-          (click)="itemClicked(todayForecast)"
-          color="primary" style="text-align: center;margin-bottom:-1px;">
-    <h1 style="font-weight: bold;">{{location.name}}</h1>
-    <h2>{{utilService.getCalendarDay(todayForecast.time,forecast.timezone)}}</h2>
+  <button ion-item detail-none text-wrap color="primary"
+          class="center" style="margin-bottom:-1px;"
+          *ngIf="todayForecast" (click)="itemClicked(todayForecast)">
+    <div class="bold large">{{location.name}}</div>
+    <div class="small">{{utilService.getCalendarDay(todayForecast.time,forecast.timezone)}}</div>
     <ion-grid>
       <ion-row>
-        <ion-col width-33 class="center-contents">
+        <ion-col width-33 class="center-child">
           <div>
-            <div style="font-size:4.6rem;">
+            <div class="xx-large">
               {{utilService.formatTemp(todayForecast.temperatureMax,metrics)}}
             </div>
-            <div style="font-size:2.6rem;">
+            <div class="large">
               {{utilService.formatTemp(todayForecast.temperatureMin,metrics)}}
             </div>
           </div>
@@ -21,15 +20,19 @@
         <ion-col width-33>
           <img [src]="utilService.getWeatherIcon(todayForecast.icon)"
                onerror="this.src=utilService.getDefaultIcon()">
-          <h2 style="font-weight: bold;font-size: 1.8rem;">{{utilService.startCase(todayForecast.icon)}}</h2>
+          <span class="bold small">{{utilService.startCase(todayForecast.icon)}}</span>
         </ion-col>
-        <ion-col width-33 class="center-contents">
+        <ion-col width-33 class="center-child">
           <div>
             <img [src]="utilService.getWeatherIcon('sunrise')" style="max-width:40%"
                  onerror="this.src=utilService.getDefaultIcon()">
-            <h2>{{utilService.getTime(todayForecast.sunriseTime,metrics,forecast.timezone)}}</h2>
+            <div class="bold small">
+              {{utilService.getTime(todayForecast.sunriseTime,metrics,forecast.timezone)}}
+            </div>
             <img [src]="utilService.getWeatherIcon('sunset')" style="max-width:40%">
-            <h2>{{utilService.getTime(todayForecast.sunsetTime,metrics,forecast.timezone)}}</h2>
+            <div class="bold small">
+              {{utilService.getTime(todayForecast.sunsetTime,metrics,forecast.timezone)}}
+            </div>
           </div>
         </ion-col>
       </ion-row>
@@ -41,11 +44,12 @@
     <img [src]="utilService.getWeatherIcon(item.icon)"
          onerror="this.src=utilService.getDefaultIcon()"
          item-left style="max-width: 12%">
-    <h2>{{utilService.getCalendarDay(item.time,forecast.timezone)}}</h2>
-    <p ion-text color="text2" style="font-weight: bold">{{utilService.startCase(item.icon)}}</p>
-    <h3 style="font-size:2.2rem;" item-right>
-      {{utilService.formatTemp(forecast.daily.data[i+1]?.temperatureMax,metrics)}}</h3>
-    <p ion-text color="text2" style="font-size:1.8rem;font-weight: bold;" item-right padding-right>
+    <div class="small">{{utilService.getCalendarDay(item.time,forecast.timezone)}}</div>
+    <p class="bold" ion-text color="text2">{{utilService.startCase(item.icon)}}</p>
+    <div class="large" ion-text color="text1" item-right>
+      {{utilService.formatTemp(forecast.daily.data[i+1]?.temperatureMax,metrics)}}
+    </div>
+    <p class="small bold" ion-text color="text2" item-right>
       {{utilService.formatTemp(forecast.daily.data[i+1]?.temperatureMin,metrics)}}</p>
   </button>
 </ion-list>

@@ -25,7 +25,7 @@ export class ForecastService {
         } else {
           console.debug('getting forecast data from DATABASE');
           emitterForecast.emit(data.forecast);
-          if(Date.now() - data.lastUpdated > REFRESH_THRESHOLD) {
+          if (Date.now() - data.lastUpdated > REFRESH_THRESHOLD) {
             throw new Error('Outdated database forecast, refreshing from server > ' + location.name);
           }
         }

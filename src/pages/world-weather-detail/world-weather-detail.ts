@@ -9,7 +9,7 @@ import {Location} from "../providers";
         <ion-title>{{location?.name}} Weather</ion-title>
       </ion-navbar>
     </ion-header>
-    <ion-content style="background: #F2F2F2;">
+    <ion-content class="bg-light">
       <weather-list [location]="location"></weather-list>
     </ion-content>  
   `

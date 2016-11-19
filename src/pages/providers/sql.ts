@@ -87,7 +87,7 @@ export class Sql {
       try {
         return JSON.parse(value);
       } catch (e) {
-        console.warn('Storage getJson(): unable to parse value for key', key, ' as JSON');
+        console.error('Storage getJson(): unable to parse value for key', key, ' as JSON');
         throw e; // rethrowing exception so it can be handled with .catch()
       }
     });

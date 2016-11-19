@@ -25,11 +25,11 @@ export class DatabaseService {
       .then(()=> self._db.query(createTableQuery))
       .then(()=> self._db.query(insertQuery, [name, JSON.stringify(forecast), '' + lastUpdated]))
       .then(data=> {
-        console.log(name + " > Inserted with id -> " + data.res.insertId);
+        console.debug(name + " > Inserted with id -> " + data.res.insertId);
         return true;
       })
       .catch(error=> {
-        console.log("Saving forecast error -> " + error.err.message);
+        console.error("Saving forecast error -> " + error.err.message);
         return false;
       });
   }
@@ -48,7 +48,7 @@ export class DatabaseService {
         }
         return null;
       }).catch(error => {
-        console.log("Getting forecast error -> " + error.err.message);
+        console.error("Getting forecast error -> " + error.err.message);
         return null;
       });
   }
@@ -64,11 +64,11 @@ export class DatabaseService {
       .then(()=> self._db.query(createTableQuery))
       .then(()=> self._db.query(insertQuery, [location.name, location.lat, location.lng]))
       .then(data=> {
-        console.log(location.name + " > Inserted with id -> " + data.res.insertId);
+        console.debug(location.name + " > Inserted with id -> " + data.res.insertId);
         return true;
       })
       .catch(error=> {
-        console.log("Saving world location error -> " + error.err.message);
+        console.error("Saving world location error -> " + error.err.message);
         return false;
       });
   }
@@ -88,7 +88,7 @@ export class DatabaseService {
         }
         return null;
       }).catch(error => {
-        console.log("Getting world location error -> " + error.err.message);
+        console.error("Getting world location error -> " + error.err.message);
         return null;
       });
   }
@@ -100,7 +100,7 @@ export class DatabaseService {
       .then(()=> self._db.query(query, [name]))
       .then(()=> true)
       .catch(error => {
-        console.log("Removing world location error -> " + error.err.message);
+        console.error("Removing world location error -> " + error.err.message);
         return false;
       });
   }
@@ -122,7 +122,7 @@ export class DatabaseService {
         }
         return resultArray;
       }).catch(error => {
-        console.log("Getting all world locations error -> " + error.err.message);
+        console.error("Getting all world locations error -> " + error.err.message);
         return resultArray;
       });
   }
@@ -171,7 +171,7 @@ export class DatabaseService {
       try {
         return JSON.parse(value);
       } catch (err) {
-        console.warn('Storage getJson(): unable to parse value for key', key, ' as JSON');
+        console.error('Storage getJson(): unable to parse value for key', key, ' as JSON');
         throw null;
       }
     });

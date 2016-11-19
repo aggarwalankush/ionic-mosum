@@ -1,25 +1,31 @@
 import {Injectable} from "@angular/core";
-import {SQLite} from "ionic-native";
+import {Platform} from "ionic-angular";
 
 const DB_NAME: string = '__sunshine';
 const win: any = window;
 
 @Injectable()
 export class Sql {
-  private _db: any;
+  _db: any;
 
-  constructor() {
-    if (win.sqlitePlugin) {
-      let db = new SQLite();
-      this._db = db.openDatabase({
-        name: DB_NAME,
-        location: 'default'
-      });
-    } else {
-      console.warn('Storage: SQLite plugin not installed, falling back to WebSQL. Make sure to install cordova-sqlite-storage in production!');
-      this._db = win.openDatabase(DB_NAME, '1.0', 'database', 5 * 1024 * 1024);
-    }
-    this._tryInit();
+  constructor(public platform: Platform) {
+  }
+
+  init() {
+    return this.platform.ready()
+      .then(()=> {
+        if (this.platform.is('cordova') && win.sqlitePlugin) {
+          this._db = win.sqlitePlugin.openDatabase({
+            name: DB_NAME,
+            location: 'default'
+          });
+        } else {
+          console.warn('Storage: SQLite plugin not installed, falling back to WebSQL. Make sure to install cordova-sqlite-storage in production!');
+          this._db = win.openDatabase(DB_NAME, '1.0', 'database', 5 * 1024 * 1024);
+        }
+        return this._db;
+      })
+      .then(()=> this._tryInit());
   }
 
   // Initialize the DB with our required tables

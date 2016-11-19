@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {NavController, ModalController} from "ionic-angular";
 import {Subscription} from "rxjs/Subscription";
 import {
@@ -19,9 +19,9 @@ import * as _ from "lodash";
 @Component({
   templateUrl: 'world-weather.html'
 })
-export class WorldWeatherPage {
+export class WorldWeatherPage implements OnInit {
   arrWorldWeather: Array<WorldWeather>;
-  subscribers: Array<Subscription> = [];
+  subscribers: Array<Subscription>;
   metrics: Metrics;
 
   constructor(public navCtrl: NavController,
@@ -29,6 +29,22 @@ export class WorldWeatherPage {
               public utilService: UtilService,
               public forecastService: ForecastService,
               public modalCtrl: ModalController) {
+  }
+
+  ngOnInit() {
+    let self = this;
+    self.arrWorldWeather = [];
+    self.subscribers = [];
+    this.databaseService.getAllWorldLocations().then(locations=> {
+      _.forEach(locations, location=> {
+        self.arrWorldWeather.push({
+          location: location,
+          firstDailyForecast: null,
+          timezone: null
+        });
+      });
+      self.updateForecast();
+    });
   }
 
   ionViewWillEnter() {
@@ -41,36 +57,21 @@ export class WorldWeatherPage {
         self.metrics = data;
       }
     });
-    this.databaseService.getAllWorldLocations().then(locations=> {
-      locations = _.sortBy(locations, ['name']);
-      this.fillArray(locations);
-    });
+    self.updateForecast();
   }
 
   ionViewWillLeave() {
     _.forEach(this.subscribers, sub=>sub.unsubscribe());
   }
 
-  fillArray(locations: Array<Location>) {
+  updateForecast() {
     let self = this;
-    self.arrWorldWeather = [];
-    _.forEach(locations, location=> {
-      self.arrWorldWeather.push({
-        location: location,
-        firstDailyForecast: null,
-        timezone: null
-      });
-    });
-    _.forEach(locations, location=> {
-      let sub = self.forecastService.getForecast(location, true)
+    _.forEach(self.arrWorldWeather, wwObj=> {
+      let sub = self.forecastService.getForecast(wwObj.location, true)
         .subscribe((forecast: Forecast)=> {
           if (forecast && forecast.daily && forecast.daily.data) {
-            _.map(self.arrWorldWeather, obj=> {
-              if (obj.location === location) {
-                obj.firstDailyForecast = forecast.daily.data[0];
-                obj.timezone = forecast.timezone;
-              }
-            });
+            wwObj.firstDailyForecast = forecast.daily.data[0];
+            wwObj.timezone = forecast.timezone;
           }
         }, err=> {
           console.error(err);

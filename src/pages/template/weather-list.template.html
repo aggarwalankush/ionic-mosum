@@ -19,13 +19,13 @@
         </ion-col>
         <ion-col width-33>
           <img [src]="utilService.getWeatherIcon(todayForecast.icon)"
-               onerror="this.src=utilService.getDefaultIcon()">
+               onerror="this.src='assets/img/default.png'">
           <span class="bold small">{{utilService.startCase(todayForecast.icon)}}</span>
         </ion-col>
         <ion-col width-33 class="center-child">
           <div>
             <img [src]="utilService.getWeatherIcon('sunrise')" style="max-width:40%"
-                 onerror="this.src=utilService.getDefaultIcon()">
+                 onerror="this.src='assets/img/default.png'">
             <div class="bold small">
               {{utilService.getTime(todayForecast.sunriseTime,metrics,forecast.timezone)}}
             </div>
@@ -42,7 +42,7 @@
           *ngFor="let item of forecast.daily?.data | slice:1;let i = index"
           (click)="itemClicked(item)">
     <img [src]="utilService.getWeatherIcon(item.icon)"
-         onerror="this.src=utilService.getDefaultIcon()"
+         onerror="this.src='assets/img/default.png'"
          item-left style="max-width: 12%">
     <div class="small">{{utilService.getCalendarDay(item.time,forecast.timezone)}}</div>
     <p class="bold" ion-text color="text2">{{utilService.startCase(item.icon)}}</p>

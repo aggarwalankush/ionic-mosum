@@ -1,4 +1,5 @@
 import {Injectable, EventEmitter} from "@angular/core";
+import {ToastController} from "ionic-angular";
 import {Metrics, MetricTemp, MetricLength, MetricDistance, MetricPressure} from "./model";
 import moment from "moment";
 import * as _ from "lodash";
@@ -8,7 +9,7 @@ import "moment-timezone";
 export class UtilService {
   tabChangeEvent;
 
-  constructor() {
+  constructor(public toastCtrl: ToastController) {
     this.tabChangeEvent = new EventEmitter<string>();
   }
 
@@ -102,11 +103,11 @@ export class UtilService {
   }
 
   getWeatherIcon(icon: string): string {
-    return 'assets/img/' + icon + '.png';
-  }
-
-  getDefaultIcon(): string {
-    return 'assets/img/default-weather.png';
+    if (icon) {
+      return 'assets/img/' + icon + '.png';
+    } else {
+      return 'assets/img/default.png';
+    }
   }
 
   degToCard(deg: number): string {
@@ -155,5 +156,13 @@ export class UtilService {
 
   getTabChangeEvent() {
     return this.tabChangeEvent;
+  }
+
+  showToast(message, duration?) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: duration || 3000
+    });
+    toast.present();
   }
 }

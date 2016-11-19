@@ -15,7 +15,7 @@ export class ForecastService {
               public databaseService: DatabaseService) {
   }
 
-  getForecast(location: Location): Observable<Forecast> {
+  getForecast(location: Location, cacheOnly: boolean = false): Observable<Forecast> {
     let self = this;
     let emitterForecast: EventEmitter<Forecast> = new EventEmitter<Forecast>();
     self.databaseService.getForecast(location.name)
@@ -34,7 +34,11 @@ export class ForecastService {
         if (err && err.message) {
           console.error(err.message);
         }
-        self.getServerData(location, emitterForecast);
+        if (cacheOnly) {
+          console.debug('Cache only flag > not refreshing from server > ' + location.name);
+        } else {
+          self.getServerData(location, emitterForecast);
+        }
       });
     return emitterForecast;
   }

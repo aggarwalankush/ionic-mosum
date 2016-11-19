@@ -15,13 +15,25 @@
     </button>
   </ion-fab>
 
-  <ion-list *ngIf="locations">
-    <ion-item-sliding *ngFor="let location of locations">
-      <button ion-item text-wrap (click)="locationClicked(location)">
-        <h2>{{location.name}}</h2>
+  <ion-list *ngIf="arrWorldWeather">
+    <ion-item-sliding *ngFor="let item of arrWorldWeather">
+      <button ion-item text-wrap (click)="locationClicked(item.location)">
+        <img [src]="utilService.getWeatherIcon(item?.firstDailyForecast?.icon)"
+             onerror="this.src='assets/img/default.png'"
+             item-left style="max-width: 12%">
+        <div class="medium">{{item.location.name}}</div>
+        <p *ngIf="item.firstDailyForecast" class="bold" ion-text color="text2">
+          {{utilService.getStandardDay(item.firstDailyForecast.time,item.timezone)}}
+        </p>
+        <div *ngIf="item.firstDailyForecast && metrics" class="large" ion-text color="text1" item-right>
+          {{utilService.formatTemp(item.firstDailyForecast.temperatureMax,metrics)}}
+        </div>
+        <p *ngIf="item.firstDailyForecast && metrics" class="medium bold" ion-text color="text2" item-right>
+          {{utilService.formatTemp(item.firstDailyForecast.temperatureMin,metrics)}}
+        </p>
       </button>
       <ion-item-options>
-        <button ion-button color="danger" (click)="delete(location)">
+        <button ion-button color="danger" (click)="delete(item.location)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>

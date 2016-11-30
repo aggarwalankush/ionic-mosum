@@ -13,7 +13,7 @@ export class Sql {
 
   init() {
     return this.platform.ready()
-      .then(()=> {
+      .then(() => {
         if (this.platform.is('cordova') && win.sqlitePlugin) {
           this._db = win.sqlitePlugin.openDatabase({
             name: DB_NAME,
@@ -25,7 +25,7 @@ export class Sql {
         }
         return this._db;
       })
-      .then(()=> this._tryInit());
+      .then(() => this._tryInit());
   }
 
   // Initialize the DB with our required tables

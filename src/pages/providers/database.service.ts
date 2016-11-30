@@ -22,13 +22,13 @@ export class DatabaseService {
     let createTableQuery: string = `CREATE TABLE IF NOT EXISTS ${this.table_forecast} (name TEXT PRIMARY KEY, forecast TEXT, lastUpdated TEXT)`;
     let self = this;
     return this.initDb
-      .then(()=> self._db.query(createTableQuery))
-      .then(()=> self._db.query(insertQuery, [name, JSON.stringify(forecast), '' + lastUpdated]))
-      .then(data=> {
+      .then(() => self._db.query(createTableQuery))
+      .then(() => self._db.query(insertQuery, [name, JSON.stringify(forecast), '' + lastUpdated]))
+      .then(data => {
         console.debug(name + " > Inserted with id -> " + data.res.insertId);
         return true;
       })
-      .catch(error=> {
+      .catch(error => {
         console.error("Saving forecast error -> " + error.err.message);
         return false;
       });
@@ -37,8 +37,8 @@ export class DatabaseService {
   getForecast(name: string): Promise<{forecast: Forecast,lastUpdated: number}> {
     let getQuery: string = `SELECT forecast, lastUpdated FROM ${this.table_forecast} WHERE name = ?`;
     return this.initDb
-      .then(()=> this._db.query(getQuery, [name]))
-      .then(data=> {
+      .then(() => this._db.query(getQuery, [name]))
+      .then(data => {
         if (data.res.rows.length > 0) {
           let obj: any = data.res.rows.item(0);
           return {
@@ -61,13 +61,13 @@ export class DatabaseService {
     let createTableQuery: string = `CREATE TABLE IF NOT EXISTS ${this.table_world_location} (name TEXT PRIMARY KEY, lat TEXT, lng TEXT)`;
     let self = this;
     return this.initDb
-      .then(()=> self._db.query(createTableQuery))
-      .then(()=> self._db.query(insertQuery, [location.name, location.lat, location.lng]))
-      .then(data=> {
+      .then(() => self._db.query(createTableQuery))
+      .then(() => self._db.query(insertQuery, [location.name, location.lat, location.lng]))
+      .then(data => {
         console.debug(location.name + " > Inserted with id -> " + data.res.insertId);
         return true;
       })
-      .catch(error=> {
+      .catch(error => {
         console.error("Saving world location error -> " + error.err.message);
         return false;
       });
@@ -76,8 +76,8 @@ export class DatabaseService {
   getWorldLocation(name: string): Promise<Location> {
     let getQuery: string = `SELECT name, lat, lng FROM ${this.table_world_location} WHERE name = ?`;
     return this.initDb
-      .then(()=> this._db.query(getQuery, [name]))
-      .then(data=> {
+      .then(() => this._db.query(getQuery, [name]))
+      .then(data => {
         if (data.res.rows.length > 0) {
           let obj: any = data.res.rows.item(0);
           return {
@@ -97,8 +97,8 @@ export class DatabaseService {
     let query: string = `DELETE FROM ${this.table_world_location} WHERE name = ?`;
     let self = this;
     return this.initDb
-      .then(()=> self._db.query(query, [name]))
-      .then(()=> true)
+      .then(() => self._db.query(query, [name]))
+      .then(() => true)
       .catch(error => {
         console.error("Removing world location error -> " + error.err.message);
         return false;
@@ -110,8 +110,8 @@ export class DatabaseService {
     let self = this;
     let resultArray: Array<Location> = [];
     return this.initDb
-      .then(()=> self._db.query(getQuery))
-      .then(data=> {
+      .then(() => self._db.query(getQuery))
+      .then(data => {
         for (var i = 0; i < data.res.rows.length; i++) {
           let obj: any = data.res.rows.item(i);
           resultArray.push({
@@ -132,9 +132,9 @@ export class DatabaseService {
   //
   set(key: string, value: string): Promise<boolean> {
     return this.initDb
-      .then(()=> this._db.set(key, value))
-      .then(()=> true)
-      .catch(err=> {
+      .then(() => this._db.set(key, value))
+      .then(() => true)
+      .catch(err => {
         console.error('[Error] Saving ' + key + ' - ' + JSON.stringify(err));
         return false;
       });
@@ -142,15 +142,15 @@ export class DatabaseService {
 
   get(key: string): Promise<string> {
     return this.initDb
-      .then(()=> this._db.get(key))
-      .then(value=> {
+      .then(() => this._db.get(key))
+      .then(value => {
         if (value) {
           return value;
         } else {
           throw new Error('Undefined value');
         }
       })
-      .catch(err=> {
+      .catch(err => {
         console.error('[Error] Getting ' + key + ' - ' + JSON.stringify(err));
         return null;
       });
@@ -158,9 +158,9 @@ export class DatabaseService {
 
   remove(key: string): Promise<boolean> {
     return this.initDb
-      .then(()=> this._db.remove(key))
-      .then(()=> true)
-      .catch(err=> {
+      .then(() => this._db.remove(key))
+      .then(() => true)
+      .catch(err => {
         console.error('[Error] Removing ' + key + ' - ' + JSON.stringify(err));
         return false;
       });

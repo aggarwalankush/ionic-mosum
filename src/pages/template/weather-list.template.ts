@@ -51,10 +51,10 @@ export class WeatherListTemplate implements OnInit, OnDestroy {
     //these emitters are used to programmatically activate lifecycle events
     //because in Ionic 2, changing tabs doesn't activate lifecycle of templates
     if (this.onInitEmitter) {
-      this.onInitEmitter.subscribe(()=> this.init());
+      this.onInitEmitter.subscribe(() => this.init());
     }
     if (this.onDestroyEmitter) {
-      this.onDestroyEmitter.subscribe(()=> this.destroy());
+      this.onDestroyEmitter.subscribe(() => this.destroy());
     }
     this.init();
   }
@@ -64,7 +64,7 @@ export class WeatherListTemplate implements OnInit, OnDestroy {
     if (self.location) {
       self.getForecast(self.location);
     }
-    this.databaseService.getJson(CONFIG.METRICS).then(data=> {
+    this.databaseService.getJson(CONFIG.METRICS).then(data => {
       if (data === null) {
         self.databaseService.setJson(CONFIG.METRICS, DEFAULT_METRICS);
         self.metrics = DEFAULT_METRICS;
@@ -77,12 +77,12 @@ export class WeatherListTemplate implements OnInit, OnDestroy {
   getForecast(location: Location) {
     let self = this;
     this.forecastSubscriber = self.forecastService.getForecast(location)
-      .subscribe((data: Forecast)=> {
+      .subscribe((data: Forecast) => {
         self.forecast = data;
         if (self.forecast && self.forecast.daily && self.forecast.daily.data) {
           self.todayForecast = self.forecast.daily.data[0];
         }
-      }, err=> {
+      }, err => {
         console.error(err);
       });
   }

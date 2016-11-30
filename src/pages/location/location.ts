@@ -52,7 +52,7 @@ export class ModalLocation {
       types: ['(cities)'],
       input: this.query
     };
-    this.acService.getPlacePredictions(config, (predictions, status)=> {
+    this.acService.getPlacePredictions(config, (predictions, status) => {
       console.debug('modal > getPlacePredictions > status > ', status);
       self.zone.run(() => {
         self.autocompleteItems = predictions ? predictions : [];
@@ -67,7 +67,7 @@ export class ModalLocation {
     };
     let response: Location;
     let placesService = new google.maps.places.PlacesService(document.createElement('div'));
-    placesService.getDetails(request, (place, status)=> {
+    placesService.getDetails(request, (place, status) => {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         self.locationObj.lat = place.geometry.location.lat();
         self.locationObj.lng = place.geometry.location.lng();

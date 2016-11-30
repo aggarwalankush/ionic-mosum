@@ -19,7 +19,7 @@ export class HomeWeatherPage {
 
   ionViewWillEnter() {
     let self = this;
-    this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data=> {
+    this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data => {
       if (data === null) {
         let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City', showCancel: false});
         modal.onDidDismiss((data: Location) => {

@@ -35,8 +35,8 @@ export class WorldWeatherPage implements OnInit {
     let self = this;
     self.arrWorldWeather = [];
     self.subscribers = [];
-    this.databaseService.getAllWorldLocations().then(locations=> {
-      _.forEach(locations, location=> {
+    this.databaseService.getAllWorldLocations().then(locations => {
+      _.forEach(locations, location => {
         self.arrWorldWeather.push({
           location: location,
           firstDailyForecast: null,
@@ -49,7 +49,7 @@ export class WorldWeatherPage implements OnInit {
 
   ionViewWillEnter() {
     let self = this;
-    this.databaseService.getJson(CONFIG.METRICS).then(data=> {
+    this.databaseService.getJson(CONFIG.METRICS).then(data => {
       if (data === null) {
         self.databaseService.setJson(CONFIG.METRICS, DEFAULT_METRICS);
         self.metrics = DEFAULT_METRICS;
@@ -61,19 +61,19 @@ export class WorldWeatherPage implements OnInit {
   }
 
   ionViewWillLeave() {
-    _.forEach(this.subscribers, sub=>sub.unsubscribe());
+    _.forEach(this.subscribers, sub => sub.unsubscribe());
   }
 
   updateForecast() {
     let self = this;
-    _.forEach(self.arrWorldWeather, wwObj=> {
+    _.forEach(self.arrWorldWeather, wwObj => {
       let sub = self.forecastService.getForecast(wwObj.location, true)
-        .subscribe((forecast: Forecast)=> {
+        .subscribe((forecast: Forecast) => {
           if (forecast && forecast.daily && forecast.daily.data) {
             wwObj.firstDailyForecast = forecast.daily.data[0];
             wwObj.timezone = forecast.timezone;
           }
-        }, err=> {
+        }, err => {
           console.error(err);
         });
       self.subscribers.push(sub);
@@ -85,9 +85,9 @@ export class WorldWeatherPage implements OnInit {
     let modal = self.modalCtrl.create(ModalLocation, {heading: 'Add New City'});
     modal.onDidDismiss((data: Location) => {
       if (data) {
-        self.databaseService.addWorldLocation(data).then(success=> {
+        self.databaseService.addWorldLocation(data).then(success => {
           if (success) {
-            let exists = _.find(self.arrWorldWeather, obj=> obj.location.name === data.name);
+            let exists = _.find(self.arrWorldWeather, obj => obj.location.name === data.name);
             if (exists) {
               self.utilService.showToast(data.name + " already exists");
             } else {
@@ -106,9 +106,9 @@ export class WorldWeatherPage implements OnInit {
 
   delete(location: Location) {
     let self = this;
-    self.databaseService.removeWorldLocation(location.name).then(success=> {
+    self.databaseService.removeWorldLocation(location.name).then(success => {
       if (success) {
-        _.remove(self.arrWorldWeather, obj=> obj.location.name === location.name);
+        _.remove(self.arrWorldWeather, obj => obj.location.name === location.name);
       }
     })
   }

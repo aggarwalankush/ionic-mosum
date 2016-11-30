@@ -33,10 +33,10 @@ export class SettingsPage {
   }
 
   ionViewWillEnter() {
-    this.databaseService.getJson(CONFIG.METRICS).then(data=> {
+    this.databaseService.getJson(CONFIG.METRICS).then(data => {
       this.metrics = data;
     });
-    this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data=> {
+    this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data => {
       this.homeLocation = data;
     });
   }

@@ -55,7 +55,7 @@ export class MosumApp {
   }
 
   init() {
-    this.utilService.getTabChangeEvent().subscribe(tabIndex=> {
+    this.utilService.getTabChangeEvent().subscribe(tabIndex => {
       this.resetMenu();
       let obj = this.findPage(tabIndex);
       if (obj) {
@@ -65,14 +65,14 @@ export class MosumApp {
   }
 
   resetMenu() {
-    _.forEach(this.pages, page=> _.forEach(page.items, item => {
+    _.forEach(this.pages, page => _.forEach(page.items, item => {
       item.active = false
     }));
   }
 
   findPage(index: number): PageInterface {
     let result = null;
-    _.forEach(this.pages, page=> {
+    _.forEach(this.pages, page => {
       let obj = _.find(page.items, {index: index});
       if (obj) {
         result = obj;

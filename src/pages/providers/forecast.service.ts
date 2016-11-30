@@ -19,7 +19,7 @@ export class ForecastService {
     let self = this;
     let emitterForecast: EventEmitter<Forecast> = new EventEmitter<Forecast>();
     self.databaseService.getForecast(location.name)
-      .then(data=> {
+      .then(data => {
         if (_.isEmpty(data) || !data.lastUpdated || _.isEmpty(data.forecast)) {
           throw new Error('Invalid database forecast, fallback to server > ' + location.name);
         } else {
@@ -30,7 +30,7 @@ export class ForecastService {
           }
         }
       })
-      .catch(err=> {
+      .catch(err => {
         if (err && err.message) {
           console.error(err.message);
         }
@@ -47,9 +47,9 @@ export class ForecastService {
     console.debug('getting forecast data from SERVER');
     let self = this;
     self.jsonp.get(self.getRequestUri(location))
-      .map(res=>res.json())
+      .map(res => res.json())
       .catch(self.handleError)
-      .subscribe(data=> {
+      .subscribe(data => {
         emitterForecast.emit(data);
         self.databaseService.addForecast(location.name, data);
       });

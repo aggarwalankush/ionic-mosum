@@ -51,7 +51,7 @@ export class WeatherDetailPage implements OnInit {
   ngOnInit() {
     let self = this;
     try {
-      this.firstHourlyObj = _.find(this.forecast.hourly.data, obj=> self.currentForecast.time <= obj.time);
+      this.firstHourlyObj = _.find(this.forecast.hourly.data, obj => self.currentForecast.time <= obj.time);
       this.showSegment = !!this.firstHourlyObj;
     } catch (err) {
       this.showSegment = false;
@@ -64,7 +64,7 @@ export class WeatherDetailPage implements OnInit {
     let self = this;
     this.hourlyArray = [];
     if (this.showSegment && this.firstHourlyObj) {
-      _.forEach(self.forecast.hourly.data, (obj: DataPoint)=> {
+      _.forEach(self.forecast.hourly.data, (obj: DataPoint) => {
         if (obj.time < self.firstHourlyObj.time) {
           return;
         }
@@ -87,7 +87,7 @@ export class WeatherDetailPage implements OnInit {
   getDetailsArray(dp: DataPoint): Array<KV> {
     let self = this;
     let detailsArray = [];
-    _.forEach(this.detailsElem, (elem)=> {
+    _.forEach(this.detailsElem, (elem) => {
       let elemVal = _.get(dp, elem, 0);
       if (elemVal !== 0) {
         let value = self.formatDetailElem(elem, elemVal);

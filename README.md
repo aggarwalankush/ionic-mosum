@@ -14,17 +14,18 @@ Ionic 2 Weather App
     ```
 * Get weather API key from [DarkSky](https://darksky.net)
   * Replace API_KEY in `src/pages/providers/constants.ts`
-    ```js
-    export const FORECAST_CONFIG = {
-      API_ENDPOINT: 'https://api.darksky.net/forecast/',
-      API_KEY: '9bb59ff3063ac4930fc96890570b0c6f'
-    };
-    ```
+  ```js
+  export const FORECAST_CONFIG = {
+    API_ENDPOINT: 'https://api.darksky.net/forecast/'
+    API_KEY: '9bb59ff3063ac4930fc96890570b0c6f'
+  };
+  ```
 * Get google API key from [Google Developers Console](https://console.developers.google.com/apis/credentials)
   * Replace key in `src/index.html`
-    ```html
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAZL0jdvdtBV_DmzLZ8yW53GHnhlRrbIAY&libraries=places"></script>
-    ```
+  ```html
+  <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAZL0jdvdtBV_DmzLZ8yW53GHnhlRrbIAY&libraries=places">
+  </script>
+  ```
 
 ### Android
 

@@ -35,15 +35,18 @@ export class WorldWeatherPage implements OnInit {
     let self = this;
     self.arrWorldWeather = [];
     self.subscribers = [];
-    this.databaseService.getAllWorldLocations().then(locations => {
-      _.forEach(locations, location => {
-        self.arrWorldWeather.push({
-          location: location,
-          firstDailyForecast: null,
-          timezone: null
+    self.databaseService.get('stopDeleteAnimation').then(stop => {
+      self.databaseService.getAllWorldLocations().then(locations => {
+        _.forEach(locations, (location, index) => {
+          self.arrWorldWeather.push({
+            location: location,
+            firstDailyForecast: null,
+            timezone: null,
+            shouldAnimate: stop ? false : index === 0
+          });
         });
+        self.updateForecast();
       });
-      self.updateForecast();
     });
   }
 
@@ -94,7 +97,8 @@ export class WorldWeatherPage implements OnInit {
               self.arrWorldWeather.push({
                 location: data,
                 firstDailyForecast: null,
-                timezone: null
+                timezone: null,
+                shouldAnimate: false
               });
             }
           }
@@ -110,7 +114,8 @@ export class WorldWeatherPage implements OnInit {
       if (success) {
         _.remove(self.arrWorldWeather, obj => obj.location.name === location.name);
       }
-    })
+    });
+    self.databaseService.set('stopDeleteAnimation', 'true');
   }
 
   locationClicked(location: Location) {
@@ -122,4 +127,5 @@ export interface WorldWeather {
   location: Location;
   firstDailyForecast: DataPoint;
   timezone: string;
+  shouldAnimate: boolean;
 }

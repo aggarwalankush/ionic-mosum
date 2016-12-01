@@ -16,7 +16,7 @@
   </ion-fab>
 
   <ion-list *ngIf="arrWorldWeather">
-    <ion-item-sliding *ngFor="let item of arrWorldWeather">
+    <ion-item-sliding *ngFor="let item of arrWorldWeather" [animateItemSliding]="item.shouldAnimate">
       <button ion-item text-wrap (click)="locationClicked(item.location)">
         <img [src]="utilService.getWeatherIcon(item?.firstDailyForecast?.icon)"
              onerror="this.src='assets/img/default.png'"

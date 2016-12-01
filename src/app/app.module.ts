@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {JsonpModule} from "@angular/http";
 import {IonicApp, IonicModule} from "ionic-angular";
-import {Sql, DatabaseService, UtilService, ForecastService} from "../pages/providers";
+import {Sql, DatabaseService, UtilService, ForecastService, AnimateItemSliding} from "../pages/providers";
 import {MosumApp} from "./app.component";
 import {TabsPage} from "../pages/tabs/tabs";
 import {ModalLocation} from "../pages/location/location";
@@ -16,6 +16,7 @@ import {WeatherListTemplate} from "../pages/template/weather-list.template";
   declarations: [
     MosumApp,
     TabsPage,
+    AnimateItemSliding,
     ModalLocation,
     HomeWeatherPage,
     WeatherDetailPage,

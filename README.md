@@ -42,7 +42,7 @@ Ionic 2 Weather App
 ```    
     Run using XCode
     
-### icons
+### icon resources
 Run post_install script
 ```bash
     $ ./post_install.sh

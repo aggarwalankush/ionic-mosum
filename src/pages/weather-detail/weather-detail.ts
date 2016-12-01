@@ -2,6 +2,7 @@ import {Component, OnInit, style, state, animate, transition, trigger} from "@an
 import {NavParams} from "ionic-angular";
 import {UtilService, Forecast, DataPoint, Metrics, Location, KV} from "../providers";
 import * as _ from "lodash";
+import {StatusBar} from "ionic-native";
 
 @Component({
   selector: 'page-weather-detail',
@@ -58,6 +59,14 @@ export class WeatherDetailPage implements OnInit {
     }
     this.detailsArray = this.getDetailsArray(this.currentForecast);
     console.debug('Details Array > ' + JSON.stringify(this.detailsArray));
+  }
+
+  ionViewWillEnter(){
+    StatusBar.styleDefault();
+  }
+
+  ionViewWillLeave(){
+    StatusBar.styleLightContent();
   }
 
   ionViewDidLoad() {

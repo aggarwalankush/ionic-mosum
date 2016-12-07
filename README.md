@@ -1,6 +1,5 @@
 # ionic2-mosum
 Ionic 2 Weather App
-- iOS - https://itunes.apple.com/us/app/mosum/id1182452609
 - Android - https://play.google.com/store/apps/details?id=com.aggarwalankush.mosum
 
 ## Getting Started

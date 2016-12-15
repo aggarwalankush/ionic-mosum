@@ -33,8 +33,8 @@ export class UtilService {
   }
 
   getTime(epoch: number, metrics: Metrics, tz: string): string {
-    let pattern = metrics.time === 24 ? 'HH:mm' : 'hh:mm A';
-    return epoch ? this.formatEpoch(epoch, pattern, tz) : null;
+    let pattern = metrics.time === 24 ? 'HH:mm' : 'h:mm A';
+    return epoch ? this.formatEpoch(epoch, pattern, tz).replace(':00', '') : null;
   }
 
   formatEpoch(epoch: number, pattern: string, tz: string): string {

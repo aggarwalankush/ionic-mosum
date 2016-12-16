@@ -15,4 +15,12 @@ page-weather-detail {
   button[ion-item], ion-item {
     border: 0 !important;
   }
+
+  ion-segment-button {
+    color: #051326 !important;
+  }
+
+  .segment-button.activated, .segment-button.segment-activated {
+    border-color: #051326 !important;
+  }
 }

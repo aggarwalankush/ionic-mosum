@@ -1,9 +1,9 @@
 <!--suppress ALL -->
-<ion-header no-shadow>
-  <ion-navbar color="white" [attr.no-border-bottom]="showSegment ? true : null">
+<ion-header no-border>
+  <ion-navbar color="white">
     <ion-title>Weather Detail</ion-title>
   </ion-navbar>
-  <ion-toolbar color="white" no-border-top *ngIf="showSegment">
+  <ion-toolbar *ngIf="showSegment" color="white">
     <ion-segment [(ngModel)]="whichSegment">
       <ion-segment-button value="detail">
         Detail
@@ -84,7 +84,7 @@
 
     <ion-list class="full-screen" *ngIf="whichSegment==='hourly'">
       <ion-list-header color="primary" class="center">
-        <span class="bold">{{currentLocation.name}}</span>
+        <span class="x-small bold">{{currentLocation.name}}</span>
       </ion-list-header>
 
       <div *ngFor="let item of hourlyArray">

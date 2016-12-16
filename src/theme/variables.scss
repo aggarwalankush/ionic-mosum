@@ -1,3 +1,5 @@
+$font-path: "../assets/fonts";
+
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/v2/theming/
 @import "ionic.globals";
@@ -38,6 +40,12 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+// Use the primary color as the background for the toolbar-md-background
+$toolbar-md-background: color($colors, primary);
+
+// Change the color of the segment button text
+$toolbar-md-active-color: #fff;
+
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
@@ -56,5 +64,12 @@ $colors: (
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/v2/ionicons/
 
-$ionicons-font-path: "../assets/fonts";
 @import "ionicons";
+
+// Fonts
+// --------------------------------------------------
+// Roboto font is used by default for Material Design. Noto sans
+// is used by default for Windows.
+
+@import "roboto";
+@import "noto-sans";

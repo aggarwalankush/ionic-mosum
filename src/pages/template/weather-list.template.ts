@@ -17,12 +17,7 @@ import * as _ from "lodash";
 
 @Component({
   selector: 'weather-list',
-  templateUrl: 'weather-list.template.html',
-  styles: [`
-    button[ion-item], ion-item {
-        border: 0 !important;
-    }
-  `]
+  templateUrl: 'weather-list.template.html'
 })
 export class WeatherListTemplate implements OnInit, OnDestroy {
   @Input() onInitEmitter: EventEmitter<string>;

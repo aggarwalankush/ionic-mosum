@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <ion-list *ngIf="forecast && metrics && location">
   <button ion-item detail-none text-wrap color="primary"
-          class="center" style="margin-bottom:-1px;"
+          class="center no-label-margin" style="margin-bottom:-1px;"
           *ngIf="todayForecast" (click)="itemClicked(todayForecast)">
     <div class="bold large">{{location.name}}</div>
     <div class="small">{{utilService.getCalendarDay(todayForecast.time,forecast.timezone)}}</div>

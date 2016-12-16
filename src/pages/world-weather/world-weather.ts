@@ -87,23 +87,37 @@ export class WorldWeatherPage implements OnInit {
     let self = this;
     let modal = self.modalCtrl.create(ModalLocation, {heading: 'Add New City'});
     modal.onDidDismiss((data: Location) => {
-      if (data) {
-        self.databaseService.addWorldLocation(data).then(success => {
-          if (success) {
-            let exists = _.find(self.arrWorldWeather, obj => obj.location.name === data.name);
-            if (exists) {
-              self.utilService.showToast(data.name + " already exists");
-            } else {
-              self.arrWorldWeather.push({
-                location: data,
-                firstDailyForecast: null,
-                timezone: null,
-                shouldAnimate: false
-              });
-            }
-          }
-        });
+      if (!data) {
+        return;
       }
+      self.databaseService.addWorldLocation(data).then(success => {
+        if (!success) {
+          return;
+        }
+        let exists = _.find(self.arrWorldWeather, obj => obj.location.name === data.name);
+        if (exists) {
+          self.utilService.showToast(data.name + " already exists");
+          return;
+        }
+        self.arrWorldWeather.push({
+          location: data,
+          firstDailyForecast: null,
+          timezone: null,
+          shouldAnimate: false
+        });
+        self.forecastService.getForecast(data)
+          .subscribe((forecast: Forecast) => {
+            if (forecast && forecast.daily && forecast.daily.data) {
+              let obj = _.find(self.arrWorldWeather, {location: data});
+              if (obj) {
+                obj.firstDailyForecast = forecast.daily.data[0];
+                obj.timezone = forecast.timezone;
+              }
+            }
+          }, err => {
+            console.error(err);
+          });
+      });
     });
     modal.present();
   }

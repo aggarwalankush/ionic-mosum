@@ -18,4 +18,4 @@ export const CONFIG = {
   HOME_LOCATION: 'homeLocation'
 };
 
-export const REFRESH_THRESHOLD: number = 6 * 60 * 60 * 1000; //6 hours
+export const REFRESH_THRESHOLD: number = 3 * 60 * 60 * 1000; //3 hours

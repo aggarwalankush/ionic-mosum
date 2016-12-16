@@ -156,3 +156,14 @@ ion-list-header {
   -webkit-animation-duration: 1000ms;
   animation-duraton: 1000ms;
 }
+
+ion-col[width-22] {
+  flex: 0 0 22%;
+  max-width: 22%;
+}
+
+.scroll-hourly {
+  min-height: 65px !important;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #dedede !important;
+}

@@ -13,6 +13,7 @@ import {
 } from "../providers";
 import {WeatherDetailPage} from "../weather-detail/weather-detail";
 import {Subscription} from "rxjs/Subscription";
+import * as _ from "lodash";
 
 @Component({
   selector: 'weather-list',
@@ -31,6 +32,11 @@ export class WeatherListTemplate implements OnInit, OnDestroy {
   metrics: Metrics;
   todayForecast: DataPoint;
   forecastSubscriber: Subscription;
+  hourlyArray: Array<{
+    time: number,
+    icon: string,
+    temperature: number
+  }> = [];
 
   constructor(public navCtrl: NavController,
               public forecastService: ForecastService,
@@ -82,6 +88,23 @@ export class WeatherListTemplate implements OnInit, OnDestroy {
         if (self.forecast && self.forecast.daily && self.forecast.daily.data) {
           self.todayForecast = self.forecast.daily.data[0];
         }
+        self.hourlyArray = [];
+        let currentHour = self.utilService.getCurrentHour(self.forecast.timezone);
+        let flag = false;
+        _.forEach(self.forecast.hourly.data, (obj: DataPoint) => {
+          if (!flag && self.utilService.epochToHour(obj.time, self.forecast.timezone) < currentHour) {
+            return;
+          }
+          flag = true;
+          self.hourlyArray.push({
+            time: obj.time,
+            icon: obj.icon,
+            temperature: obj.temperature
+          });
+          if (self.hourlyArray.length > 10) {
+            return false;
+          }
+        });
       }, err => {
         console.error(err);
       });

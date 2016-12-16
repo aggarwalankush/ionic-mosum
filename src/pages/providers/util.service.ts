@@ -37,8 +37,16 @@ export class UtilService {
     return epoch ? this.formatEpoch(epoch, pattern, tz).replace(':00', '') : null;
   }
 
+  getCurrentHour(tz: string): number {
+    return moment().tz(tz).hour();
+  }
+
+  epochToHour(epoch: number, tz: string): number {
+    return moment(epoch * 1000).tz(tz).hour();
+  }
+
   formatEpoch(epoch: number, pattern: string, tz: string): string {
-    return (<any>moment(epoch * 1000)).tz(tz).format(pattern);
+    return moment(epoch * 1000).tz(tz).format(pattern);
   }
 
   formatTemp(temp: number, metrics: Metrics): string {

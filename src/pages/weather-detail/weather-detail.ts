@@ -61,11 +61,11 @@ export class WeatherDetailPage implements OnInit {
     console.debug('Details Array > ' + JSON.stringify(this.detailsArray));
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     StatusBar.styleDefault();
   }
 
-  ionViewWillLeave(){
+  ionViewWillLeave() {
     StatusBar.styleLightContent();
   }
 

@@ -1,3 +1,5 @@
+import {trigger, state, style, transition, animate, keyframes} from "@angular/core";
+
 export interface Location {
   name: string;
   lat: number;
@@ -91,5 +93,30 @@ export interface PageInterface {
   component: any;
   icon: string;
   index?: number;
-  tabComponent?:any;
+  tabComponent?: any;
+}
+
+//https://github.com/FuelInteractive/fuel-ui/tree/master/src/animations/Collapse
+export function collapse(duration: number = 200) {
+  return trigger('collapse', [
+    state('collapsed, true, void', style({
+      height: '0',
+      opacity: '0',
+      overflow: 'hidden'
+    })),
+    state('expanded, false', style({
+      height: '*',
+      opacity: '1',
+      overflow: 'hidden'
+    })),
+    transition('true => false, collapsed => expanded', [
+      animate(duration + 'ms ease', keyframes([
+        style({opacity: '1'}),
+        style({height: '*'})
+      ]))
+    ]),
+    transition('false => true, expanded => collapsed', [
+      animate(duration + 'ms ease', style({height: '0'}))
+    ])
+  ]);
 }

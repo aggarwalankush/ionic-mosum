@@ -105,7 +105,7 @@
                     [name]="item.showDetails?'arrow-up':'arrow-down'"></ion-icon>
         </button>
         <ion-item text-wrap color="primary" style="padding-left: 12%;"
-                  *ngIf="item.showDetails" [@collapseExpand]="'default'">
+                  [@collapse]="item.showDetails?'false':'true'">
           <ion-grid>
             <ion-row *ngFor="let detail of item.details">
               <ion-col>

@@ -23,4 +23,8 @@ page-weather-detail {
   .segment-button.activated, .segment-button.segment-activated {
     border-color: #051326 !important;
   }
+
+  .item-block {
+    min-height: 0 !important;
+  }
 }

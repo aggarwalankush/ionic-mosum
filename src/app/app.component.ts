@@ -4,7 +4,8 @@ import {StatusBar, Splashscreen, InAppBrowser} from "ionic-native";
 import {TabsPage} from "../pages/tabs/tabs";
 import {SettingsPage} from "../pages/settings/settings";
 import {PageInterface, UtilService} from "../pages/providers";
-import * as _ from "lodash";
+import {HomeWeatherPage} from "../pages/home-weather/home-weather";
+import {WorldWeatherPage} from "../pages/world-weather/world-weather";
 
 @Component({
   templateUrl: 'app.html'
@@ -12,18 +13,18 @@ import * as _ from "lodash";
 export class MosumApp {
   @ViewChild(Nav) nav: Nav;
   rootPage = TabsPage;
-  pages: Array<{heading: string,items: PageInterface[]}> = [
+  pages: Array<{heading: string, items: PageInterface[]}> = [
     {
       heading: 'Weather',
       items: [
-        {title: 'Home', component: TabsPage, index: 0, icon: 'home', active: true},
-        {title: 'World', component: TabsPage, index: 1, icon: 'globe', active: false}
+        {title: 'Home', component: TabsPage, tabComponent: HomeWeatherPage, index: 0, icon: 'home'},
+        {title: 'World', component: TabsPage, tabComponent: WorldWeatherPage, index: 1, icon: 'globe'}
       ]
     },
     {
       heading: 'Settings',
       items: [
-        {title: 'Settings', component: SettingsPage, icon: 'settings', active: false}
+        {title: 'Settings', component: SettingsPage, icon: 'settings'}
       ]
     }
   ];
@@ -35,52 +36,32 @@ export class MosumApp {
       StatusBar.styleLightContent();
       StatusBar.backgroundColorByHexString("#12121c");
       Splashscreen.hide();
-      this.init();
     });
   }
 
   openPage(page: PageInterface) {
-    //if page active, do nothing
-    if (page.active) {
-      return;
-    }
-    //inactive all pages
-    this.resetMenu();
-    //active current page
-    page.active = !page.active;
-    if (page.index === undefined) {
-      this.nav.setRoot(page.component);
-    } else {
+    if (page.index) {
       this.nav.setRoot(page.component, {tabIndex: page.index});
+    } else {
+      this.nav.setRoot(page.component);
     }
   }
 
-  init() {
-    this.utilService.getTabChangeEvent().subscribe(tabIndex => {
-      this.resetMenu();
-      let obj = this.findPage(tabIndex);
-      if (obj) {
-        _.set(obj, 'active', true);
-      }
-    });
-  }
+  isActive(page: PageInterface): boolean {
+    let childNav = this.nav.getActiveChildNav();
 
-  resetMenu() {
-    _.forEach(this.pages, page => _.forEach(page.items, item => {
-      item.active = false
-    }));
-  }
-
-  findPage(index: number): PageInterface {
-    let result = null;
-    _.forEach(this.pages, page => {
-      let obj = _.find(page.items, {index: index});
-      if (obj) {
-        result = obj;
-        return false;
+    // Tabs are a special case because they have their own navigation
+    if (childNav) {
+      if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
+        return true;
       }
-    });
-    return result;
+      return false;
+    }
+
+    if (this.nav.getActive() && this.nav.getActive().component === page.component) {
+      return true;
+    }
+    return false;
   }
 
   poweredBy() {

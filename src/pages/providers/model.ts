@@ -91,5 +91,5 @@ export interface PageInterface {
   component: any;
   icon: string;
   index?: number;
-  active: boolean;
+  tabComponent?:any;
 }

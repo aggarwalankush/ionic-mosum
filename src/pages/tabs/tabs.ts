@@ -17,8 +17,4 @@ export class TabsPage {
               public utilService: UtilService) {
     this.mySelectedIndex = navParams.data.tabIndex || 0;
   }
-
-  tabChange(ev) {
-    this.utilService.getTabChangeEvent().emit(ev.index);
-  }
 }

@@ -6,26 +6,29 @@ const win: any = window;
 
 @Injectable()
 export class Sql {
-  _db: any;
+  private _dbPromise: Promise<any>;
 
   constructor(public platform: Platform) {
-  }
-
-  init() {
-    return this.platform.ready()
-      .then(() => {
-        if (this.platform.is('cordova') && win.sqlitePlugin) {
-          this._db = win.sqlitePlugin.openDatabase({
-            name: DB_NAME,
-            location: 'default'
-          });
-        } else {
-          console.warn('Storage: SQLite plugin not installed, falling back to WebSQL. Make sure to install cordova-sqlite-storage in production!');
-          this._db = win.openDatabase(DB_NAME, '1.0', 'database', 5 * 1024 * 1024);
-        }
-        return this._db;
-      })
-      .then(() => this._tryInit());
+    this._dbPromise = new Promise((resolve, reject) => {
+      try {
+        let _db: any;
+        this.platform.ready().then(() => {
+          if (this.platform.is('cordova') && win.sqlitePlugin) {
+            _db = win.sqlitePlugin.openDatabase({
+              name: DB_NAME,
+              location: 'default'
+            });
+          } else {
+            console.warn('Storage: SQLite plugin not installed, falling back to WebSQL. Make sure to install cordova-sqlite-storage in production!');
+            _db = win.openDatabase(DB_NAME, '1.0', 'database', 5 * 1024 * 1024);
+          }
+          resolve(_db);
+        });
+      } catch (err) {
+        reject({err: err});
+      }
+    });
+    this._tryInit();
   }
 
   // Initialize the DB with our required tables
@@ -47,12 +50,14 @@ export class Sql {
   query(query: string, params: any[] = []): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
-        this._db.transaction((tx: any) => {
-            tx.executeSql(query, params,
-              (tx: any, res: any) => resolve({tx: tx, res: res}),
-              (tx: any, err: any) => reject({tx: tx, err: err}));
-          },
-          (err: any) => reject({err: err}));
+        this._dbPromise.then(db => {
+          db.transaction((tx: any) => {
+              tx.executeSql(query, params,
+                (tx: any, res: any) => resolve({tx: tx, res: res}),
+                (tx: any, err: any) => reject({tx: tx, err: err}));
+            },
+            (err: any) => reject({err: err}));
+        });
       } catch (err) {
         reject({err: err});
       }
@@ -87,7 +92,6 @@ export class Sql {
       try {
         return JSON.parse(value);
       } catch (e) {
-        console.error('Storage getJson(): unable to parse value for key', key, ' as JSON');
         throw e; // rethrowing exception so it can be handled with .catch()
       }
     });

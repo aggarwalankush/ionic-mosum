@@ -7,10 +7,8 @@ export class DatabaseService {
 
   private table_forecast = "forecast";
   private table_world_location = "world_location";
-  private initDb: Promise<any>;
 
   constructor(public _db: Sql) {
-    this.initDb = _db.init();
   }
 
   //
@@ -21,8 +19,7 @@ export class DatabaseService {
     let insertQuery: string = `INSERT OR REPLACE INTO ${this.table_forecast} (name, forecast, lastUpdated) VALUES (?, ?, ?)`;
     let createTableQuery: string = `CREATE TABLE IF NOT EXISTS ${this.table_forecast} (name TEXT PRIMARY KEY, forecast TEXT, lastUpdated TEXT)`;
     let self = this;
-    return this.initDb
-      .then(() => self._db.query(createTableQuery))
+    return self._db.query(createTableQuery)
       .then(() => self._db.query(insertQuery, [name, JSON.stringify(forecast), '' + lastUpdated]))
       .then(data => {
         console.debug(name + " > Inserted with id -> " + data.res.insertId);
@@ -34,10 +31,9 @@ export class DatabaseService {
       });
   }
 
-  getForecast(name: string): Promise<{forecast: Forecast,lastUpdated: number}> {
+  getForecast(name: string): Promise<{forecast: Forecast, lastUpdated: number}> {
     let getQuery: string = `SELECT forecast, lastUpdated FROM ${this.table_forecast} WHERE name = ?`;
-    return this.initDb
-      .then(() => this._db.query(getQuery, [name]))
+    return this._db.query(getQuery, [name])
       .then(data => {
         if (data.res.rows.length > 0) {
           let obj: any = data.res.rows.item(0);
@@ -47,7 +43,8 @@ export class DatabaseService {
           };
         }
         return null;
-      }).catch(error => {
+      })
+      .catch(error => {
         console.error("Getting forecast error -> " + error.err.message);
         return null;
       });
@@ -60,8 +57,7 @@ export class DatabaseService {
     let insertQuery: string = `INSERT OR REPLACE INTO ${this.table_world_location} (name, lat, lng) VALUES (?, ?, ?)`;
     let createTableQuery: string = `CREATE TABLE IF NOT EXISTS ${this.table_world_location} (name TEXT PRIMARY KEY, lat TEXT, lng TEXT)`;
     let self = this;
-    return this.initDb
-      .then(() => self._db.query(createTableQuery))
+    return self._db.query(createTableQuery)
       .then(() => self._db.query(insertQuery, [location.name, location.lat, location.lng]))
       .then(data => {
         console.debug(location.name + " > Inserted with id -> " + data.res.insertId);
@@ -75,8 +71,7 @@ export class DatabaseService {
 
   getWorldLocation(name: string): Promise<Location> {
     let getQuery: string = `SELECT name, lat, lng FROM ${this.table_world_location} WHERE name = ?`;
-    return this.initDb
-      .then(() => this._db.query(getQuery, [name]))
+    return this._db.query(getQuery, [name])
       .then(data => {
         if (data.res.rows.length > 0) {
           let obj: any = data.res.rows.item(0);
@@ -87,7 +82,8 @@ export class DatabaseService {
           };
         }
         return null;
-      }).catch(error => {
+      })
+      .catch(error => {
         console.error("Getting world location error -> " + error.err.message);
         return null;
       });
@@ -96,8 +92,7 @@ export class DatabaseService {
   removeWorldLocation(name: string): Promise<boolean> {
     let query: string = `DELETE FROM ${this.table_world_location} WHERE name = ?`;
     let self = this;
-    return this.initDb
-      .then(() => self._db.query(query, [name]))
+    return self._db.query(query, [name])
       .then(() => true)
       .catch(error => {
         console.error("Removing world location error -> " + error.err.message);
@@ -107,12 +102,10 @@ export class DatabaseService {
 
   getAllWorldLocations(): Promise<Array<Location>> {
     let getQuery: string = `SELECT name, lat, lng FROM ${this.table_world_location}`;
-    let self = this;
     let resultArray: Array<Location> = [];
-    return this.initDb
-      .then(() => self._db.query(getQuery))
+    return this._db.query(getQuery)
       .then(data => {
-        for (var i = 0; i < data.res.rows.length; i++) {
+        for (let i = 0; i < data.res.rows.length; i++) {
           let obj: any = data.res.rows.item(i);
           resultArray.push({
             name: obj.name,
@@ -121,7 +114,8 @@ export class DatabaseService {
           });
         }
         return resultArray;
-      }).catch(error => {
+      })
+      .catch(error => {
         console.error("Getting all world locations error -> " + error.err.message);
         return resultArray;
       });
@@ -131,8 +125,7 @@ export class DatabaseService {
   // Shared getter setter
   //
   set(key: string, value: string): Promise<boolean> {
-    return this.initDb
-      .then(() => this._db.set(key, value))
+    return this._db.set(key, value)
       .then(() => true)
       .catch(err => {
         console.error('[Error] Saving ' + key + ' - ' + JSON.stringify(err));
@@ -141,8 +134,7 @@ export class DatabaseService {
   }
 
   get(key: string): Promise<string> {
-    return this.initDb
-      .then(() => this._db.get(key))
+    return this._db.get(key)
       .then(value => {
         if (value) {
           return value;
@@ -157,8 +149,7 @@ export class DatabaseService {
   }
 
   remove(key: string): Promise<boolean> {
-    return this.initDb
-      .then(() => this._db.remove(key))
+    return this._db.remove(key)
       .then(() => true)
       .catch(err => {
         console.error('[Error] Removing ' + key + ' - ' + JSON.stringify(err));

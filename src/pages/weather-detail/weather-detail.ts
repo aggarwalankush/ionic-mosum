@@ -58,7 +58,6 @@ export class WeatherDetailPage implements OnInit {
       this.showSegment = false;
     }
     this.detailsArray = this.getDetailsArray(this.currentForecast);
-    console.debug('Details Array > ' + JSON.stringify(this.detailsArray));
   }
 
   ionViewWillEnter() {

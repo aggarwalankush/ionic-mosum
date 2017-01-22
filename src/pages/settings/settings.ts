@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {
   Location,
   Metrics,
@@ -20,7 +20,7 @@ import {ModalController} from "ionic-angular";
     }
   `]
 })
-export class SettingsPage {
+export class SettingsPage implements OnInit {
   public enumTemp = MetricTemp;
   public enumLength = MetricLength;
   public enumDistance = MetricDistance;
@@ -32,12 +32,12 @@ export class SettingsPage {
               public modalCtrl: ModalController) {
   }
 
-  ionViewWillEnter() {
-    this.databaseService.getJson(CONFIG.METRICS).then(data => {
-      this.metrics = data;
-    });
+  ngOnInit() {
     this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data => {
       this.homeLocation = data;
+    });
+    this.databaseService.getJson(CONFIG.METRICS).then(data => {
+      this.metrics = data;
     });
   }
 

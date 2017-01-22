@@ -40,6 +40,9 @@ export class MosumApp {
   }
 
   openPage(page: PageInterface) {
+    if(this.isActive(page)) {
+      return;
+    }
     if (page.index) {
       this.nav.setRoot(page.component, {tabIndex: page.index});
     } else {

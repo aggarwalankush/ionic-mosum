@@ -1,5 +1,5 @@
-import {Component, OnInit} from "@angular/core";
-import {NavParams} from "ionic-angular";
+import {Component, OnInit, ViewChild} from "@angular/core";
+import {NavParams, Content} from "ionic-angular";
 import {UtilService, Forecast, DataPoint, Metrics, Location, KV, collapse} from "../providers";
 import * as _ from "lodash";
 import {StatusBar} from "ionic-native";
@@ -10,6 +10,8 @@ import {StatusBar} from "ionic-native";
   animations: [collapse()]
 })
 export class WeatherDetailPage implements OnInit {
+  @ViewChild(Content) content: Content;
+
   forecast: Forecast;
   currentForecast: DataPoint;
   currentLocation: Location;
@@ -27,7 +29,9 @@ export class WeatherDetailPage implements OnInit {
     showDetails: boolean,
     details: Array<KV>
   }> = [];
+  tempArray = [];
   firstHourlyObj: DataPoint;
+  infiniteInc = 10;
 
   constructor(public params: NavParams,
               public utilService: UtilService) {
@@ -73,8 +77,23 @@ export class WeatherDetailPage implements OnInit {
         });
       });
     }
+    self.tempArray = _.slice(self.hourlyArray, 0, this.infiniteInc);
   }
 
+  doInfinite(infiniteScroll) {
+    this.tempArray = _.concat(this.tempArray, _.slice(this.hourlyArray, this.infiniteInc, this.infiniteInc + 10));
+    this.infiniteInc += 10;
+    if (this.infiniteInc >= this.hourlyArray.length) {
+      infiniteScroll.enable(false);
+    }
+    infiniteScroll.complete();
+  }
+
+  segmentChange() {
+    this.content.scrollToTop();
+    this.infiniteInc = 10;
+    this.tempArray = _.slice(this.hourlyArray, 0, this.infiniteInc);
+  }
 
   toggleDetails(item) {
     item.showDetails = !item.showDetails;

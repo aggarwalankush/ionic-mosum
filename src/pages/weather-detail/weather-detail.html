@@ -4,7 +4,7 @@
     <ion-title>Weather Detail</ion-title>
   </ion-navbar>
   <ion-toolbar *ngIf="showSegment" color="white">
-    <ion-segment [(ngModel)]="whichSegment">
+    <ion-segment [(ngModel)]="whichSegment" (ionChange)="segmentChange($event)">
       <ion-segment-button value="detail">
         Detail
       </ion-segment-button>
@@ -83,11 +83,7 @@
     <!--Hourly Segment-->
 
     <ion-list class="full-screen" *ngIf="whichSegment==='hourly'">
-      <ion-list-header color="primary" class="center">
-        <span class="x-small bold">{{currentLocation.name}}</span>
-      </ion-list-header>
-
-      <div *ngFor="let item of hourlyArray">
+      <div *ngFor="let item of tempArray">
         <button ion-item detail-none text-wrap (click)="toggleDetails(item)">
           <img [src]="utilService.getWeatherIcon(item.icon)"
                onerror="this.src='assets/img/default.png'"
@@ -119,5 +115,8 @@
         </ion-item>
       </div>
     </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="whichSegment==='hourly'">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
 </ion-content>

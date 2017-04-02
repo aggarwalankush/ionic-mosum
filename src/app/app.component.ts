@@ -1,6 +1,8 @@
 import {Component, ViewChild} from "@angular/core";
-import {Platform, Nav} from "ionic-angular";
-import {StatusBar, Splashscreen, InAppBrowser} from "ionic-native";
+import {Nav, Platform} from "ionic-angular";
+import {StatusBar} from "@ionic-native/status-bar";
+import {SplashScreen} from "@ionic-native/splash-screen";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {TabsPage} from "../pages/tabs/tabs";
 import {SettingsPage} from "../pages/settings/settings";
 import {PageInterface, UtilService} from "../pages/providers";
@@ -13,7 +15,7 @@ import {WorldWeatherPage} from "../pages/world-weather/world-weather";
 export class MosumApp {
   @ViewChild(Nav) nav: Nav;
   rootPage = TabsPage;
-  pages: Array<{heading: string, items: PageInterface[]}> = [
+  pages: Array<{ heading: string, items: PageInterface[] }> = [
     {
       heading: 'Weather',
       items: [
@@ -29,18 +31,22 @@ export class MosumApp {
     }
   ];
 
-  constructor(platform: Platform, public utilService: UtilService) {
+  constructor(public platform: Platform,
+              public utilService: UtilService,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              public inAppBrowser: InAppBrowser) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleLightContent();
-      StatusBar.backgroundColorByHexString("#12121c");
-      Splashscreen.hide();
+      this.statusBar.styleLightContent();
+      this.statusBar.backgroundColorByHexString("#12121c");
+      this.splashScreen.hide();
     });
   }
 
   openPage(page: PageInterface) {
-    if(this.isActive(page)) {
+    if (this.isActive(page)) {
       return;
     }
     if (page.index) {
@@ -68,6 +74,6 @@ export class MosumApp {
   }
 
   poweredBy() {
-    new InAppBrowser('https://darksky.net/poweredby/', '_system');
+    this.inAppBrowser.create('https://darksky.net/poweredby/', '_system');
   }
 }

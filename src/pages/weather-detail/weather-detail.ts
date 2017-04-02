@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {NavParams, Content} from "ionic-angular";
-import {UtilService, Forecast, DataPoint, Metrics, Location, KV, collapse} from "../providers";
+import {Content, NavParams} from "ionic-angular";
+import {StatusBar} from "@ionic-native/status-bar";
+import {collapse, DataPoint, Forecast, KV, Location, Metrics, UtilService} from "../providers";
 import * as _ from "lodash";
-import {StatusBar} from "ionic-native";
 
 @Component({
   selector: 'page-weather-detail',
@@ -34,6 +34,7 @@ export class WeatherDetailPage implements OnInit {
   infiniteInc = 10;
 
   constructor(public params: NavParams,
+              public statusBar: StatusBar,
               public utilService: UtilService) {
     this.forecast = params.data.forecast;
     this.currentForecast = params.data.currentForecast;
@@ -53,11 +54,11 @@ export class WeatherDetailPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    StatusBar.styleDefault();
+    this.statusBar.styleDefault();
   }
 
   ionViewWillLeave() {
-    StatusBar.styleLightContent();
+    this.statusBar.styleLightContent();
   }
 
   ionViewDidLoad() {

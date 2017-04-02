@@ -31,14 +31,14 @@ Ionic 2 Weather App
 
 ```bash
     $ ionic platform add android
-    $ ionic build android
-    $ ionic run android
+    $ ionic build android --prod
+    $ ionic run android --prod
 ```
 
 ### iOS
 ```bash
     $ ionic platform add ios
-    $ ionic build ios
+    $ ionic build ios --prod
 ```    
     Run using XCode
     
@@ -48,3 +48,14 @@ Run post_install script
     $ ./post_install.sh
 ```    
     
+### Screenshots
+
+* Phone
+
+  <img src="screenshots/phone1.png" alt="phone1" width="250"/>
+  <img src="screenshots/phone2.png" alt="phone2" width="250"/>
+  
+* Tablet
+  
+  <img src="screenshots/tablet1.png" alt="tablet1" width="350"/>
+  <img src="screenshots/tablet2.png" alt="tablet2" width="350"/>

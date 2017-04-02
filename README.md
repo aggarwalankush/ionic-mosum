@@ -57,5 +57,5 @@ Run post_install script
   
 * Tablet
   
-  <img src="screenshots/tablet1.png" alt="tablet1" width="400"
-  <img src="screenshots/tablet2.png" alt="tablet2" width="400"/>
+  <img src="screenshots/tablet1.png" alt="tablet1" width="350"/>
+  <img src="screenshots/tablet2.png" alt="tablet2" width="350"/>

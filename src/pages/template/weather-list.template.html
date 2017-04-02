@@ -40,7 +40,7 @@
   </button>
   <ion-scroll scrollX="true" class="center scroll-hourly"
               *ngIf="hourlyArray?.length>1">
-    <ion-row>
+    <ion-row nowrap>
       <ion-col col-2 *ngFor="let item of hourlyArray">
         <img [src]="utilService.getWeatherIcon(item.icon)"
              onerror="this.src='assets/img/default.png'" style="max-width: 40%">

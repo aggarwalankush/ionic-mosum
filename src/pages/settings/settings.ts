@@ -1,13 +1,13 @@
 import {Component, OnInit} from "@angular/core";
 import {
-  Location,
-  Metrics,
-  MetricTemp,
-  MetricLength,
-  MetricDistance,
-  MetricPressure,
+  CONFIG,
   DatabaseService,
-  CONFIG
+  Location,
+  MetricDistance,
+  MetricLength,
+  MetricPressure,
+  Metrics,
+  MetricTemp
 } from "../providers";
 import {ModalLocation} from "../location/location";
 import {ModalController} from "ionic-angular";

@@ -1,6 +1,6 @@
-import {Injectable, EventEmitter} from "@angular/core";
+import {EventEmitter, Injectable} from "@angular/core";
 import {ToastController} from "ionic-angular";
-import {Metrics, MetricTemp, MetricLength, MetricDistance, MetricPressure} from "./model";
+import {MetricDistance, MetricLength, MetricPressure, Metrics, MetricTemp} from "./model";
 import moment from "moment";
 import * as _ from "lodash";
 import "moment-timezone";

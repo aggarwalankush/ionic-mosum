@@ -1,16 +1,16 @@
 import {Component, OnInit} from "@angular/core";
-import {NavController, ModalController} from "ionic-angular";
+import {ModalController, NavController} from "ionic-angular";
 import {Subscription} from "rxjs/Subscription";
 import {
-  DatabaseService,
-  Location,
-  ForecastService,
-  UtilService,
   CONFIG,
+  DatabaseService,
+  DataPoint,
   DEFAULT_METRICS,
   Forecast,
-  DataPoint,
-  Metrics
+  ForecastService,
+  Location,
+  Metrics,
+  UtilService
 } from "../providers";
 import {ModalLocation} from "../location/location";
 import {WorldWeatherDetailPage} from "../world-weather-detail/world-weather-detail";

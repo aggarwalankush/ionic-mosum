@@ -1,15 +1,15 @@
-import {Component, Input, OnInit, OnDestroy, EventEmitter} from "@angular/core";
+import {Component, EventEmitter, Input, OnDestroy, OnInit} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {
-  UtilService,
-  ForecastService,
-  Forecast,
+  CONFIG,
   DatabaseService,
-  Metrics,
   DataPoint,
-  Location,
   DEFAULT_METRICS,
-  CONFIG
+  Forecast,
+  ForecastService,
+  Location,
+  Metrics,
+  UtilService
 } from "../providers";
 import {WeatherDetailPage} from "../weather-detail/weather-detail";
 import {Subscription} from "rxjs/Subscription";

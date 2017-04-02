@@ -31,7 +31,7 @@ export class DatabaseService {
       });
   }
 
-  getForecast(name: string): Promise<{forecast: Forecast, lastUpdated: number}> {
+  getForecast(name: string): Promise<{ forecast: Forecast, lastUpdated: number }> {
     let getQuery: string = `SELECT forecast, lastUpdated FROM ${this.table_forecast} WHERE name = ?`;
     return this._db.query(getQuery, [name])
       .then(data => {

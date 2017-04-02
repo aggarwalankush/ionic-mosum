@@ -1,5 +1,5 @@
 import {Component, NgZone, ViewChild} from "@angular/core";
-import {ViewController, NavParams} from "ionic-angular";
+import {NavParams, ViewController} from "ionic-angular";
 import * as _ from "lodash";
 import {Location} from "../providers";
 
@@ -9,7 +9,7 @@ import {Location} from "../providers";
 export class ModalLocation {
   @ViewChild('searchInput') searchInput;
   heading: string;
-  autocompleteItems: Array<{description: string,place_id: string}>;
+  autocompleteItems: Array<{ description: string, place_id: string }>;
   query: string;
   acService: any;
   locationObj: Location;

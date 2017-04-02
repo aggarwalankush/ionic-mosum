@@ -1,4 +1,4 @@
-import {trigger, state, style, transition, animate, keyframes} from "@angular/core";
+import {animate, keyframes, state, style, transition, trigger} from "@angular/core";
 
 export interface Location {
   name: string;

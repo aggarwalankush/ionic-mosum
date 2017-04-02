@@ -11,7 +11,7 @@ import {Location} from "../providers";
     </ion-header>
     <ion-content class="bg-light">
       <weather-list [location]="location"></weather-list>
-    </ion-content>  
+    </ion-content>
   `
 })
 export class WorldWeatherDetailPage {

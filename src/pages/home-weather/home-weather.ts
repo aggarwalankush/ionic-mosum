@@ -1,6 +1,6 @@
 import {Component, EventEmitter} from "@angular/core";
 import {ModalController} from "ionic-angular";
-import {DatabaseService, Location, CONFIG} from "../providers";
+import {CONFIG, DatabaseService, Location} from "../providers";
 import {ModalLocation} from "../location/location";
 
 @Component({

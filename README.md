@@ -52,10 +52,10 @@ Run post_install script
 
 * Phone
 
-  <img src="screenshots/phone1.png" alt="phone1" width="400"/>
-  <img src="screenshots/phone2.png" alt="phone2" width="400"/>
+  <img src="screenshots/phone1.png" alt="phone1" width="250"/>
+  <img src="screenshots/phone2.png" alt="phone2" width="250"/>
   
 * Tablet
   
-  <img src="screenshots/tablet1.png" alt="tablet1" width="400"/>
+  <img src="screenshots/tablet1.png" alt="tablet1" width="400"
   <img src="screenshots/tablet2.png" alt="tablet2" width="400"/>

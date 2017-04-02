@@ -9,15 +9,14 @@ Ionic 2 Weather App
 * Install Ionic, cordova and node_modules
 
     ```bash
-    $ npm install -g ionic
-    $ sudo npm install -g cordova@6.3.1
+    $ npm install -g ionic cordova
     $ npm install
     ```
 * Get weather API key from [DarkSky](https://darksky.net)
   * Replace API_KEY in `src/pages/providers/constants.ts`
   ```js
   export const FORECAST_CONFIG = {
-    API_ENDPOINT: 'https://api.darksky.net/forecast/'
+    API_ENDPOINT: 'https://api.darksky.net/forecast/',
     API_KEY: '9bb59ff3063ac4930fc96890570b0c6f'
   };
   ```

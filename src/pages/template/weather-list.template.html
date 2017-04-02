@@ -7,7 +7,7 @@
     <div class="small">{{utilService.getCalendarDay(todayForecast.time,forecast.timezone)}}</div>
     <ion-grid>
       <ion-row>
-        <ion-col width-33 class="center-child">
+        <ion-col col-4 class="center-child">
           <div>
             <div class="xx-large">
               {{utilService.formatTemp(todayForecast.temperatureMax,metrics)}}
@@ -17,12 +17,12 @@
             </div>
           </div>
         </ion-col>
-        <ion-col width-33>
+        <ion-col col-4>
           <img [src]="utilService.getWeatherIcon(todayForecast.icon)"
                onerror="this.src='assets/img/default.png'">
           <span class="bold small">{{utilService.startCase(todayForecast.icon)}}</span>
         </ion-col>
-        <ion-col width-33 class="center-child">
+        <ion-col col-4 class="center-child">
           <div>
             <img [src]="utilService.getWeatherIcon('sunrise')" style="max-width:40%"
                  onerror="this.src='assets/img/default.png'">
@@ -41,7 +41,7 @@
   <ion-scroll scrollX="true" class="center scroll-hourly"
               *ngIf="hourlyArray?.length>1">
     <ion-row>
-      <ion-col width-22 *ngFor="let item of hourlyArray">
+      <ion-col col-2 *ngFor="let item of hourlyArray">
         <img [src]="utilService.getWeatherIcon(item.icon)"
              onerror="this.src='assets/img/default.png'" style="max-width: 40%">
         <p class="bold" ion-text color="text2" no-margin no-padding>

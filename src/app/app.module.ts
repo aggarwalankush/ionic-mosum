@@ -1,5 +1,7 @@
 import {NgModule} from "@angular/core";
 import {JsonpModule} from "@angular/http";
+import {BrowserModule} from "@angular/platform-browser";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {IonicApp, IonicModule} from "ionic-angular";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {SplashScreen} from "@ionic-native/splash-screen";
@@ -29,6 +31,8 @@ import {WeatherListTemplate} from "../pages/template/weather-list.template";
     WorldWeatherDetailPage
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MosumApp, {tabsPlacement: 'bottom'}),
     JsonpModule
   ],

@@ -1,5 +1,5 @@
 # ionic2-mosum
-Ionic 2 Weather App
+Ionic 2 Weather App - The goal of this weather app is to demo different ionic component in a nice working app. Contributions are welcome for any good feature.
 - Android - https://play.google.com/store/apps/details?id=com.aggarwalankush.mosum
 
 ## Getting Started
@@ -60,7 +60,7 @@ Run post_install script
   <img src="screenshots/tablet1.png" alt="tablet1" width="350"/>
   <img src="screenshots/tablet2.png" alt="tablet2" width="350"/>
 
-### Existing Features
+## Existing Features
 
 * Tabs, Side Menu with image
 * Various Animations
@@ -71,7 +71,7 @@ Run post_install script
 * 3rd party libraries - lodash, moment, moment-timezone
 * Works in all timezones 
 
-### Contribution
+## Contribution
 Contributions are welcome!
 
 See [features planned for future](https://github.com/aggarwalankush/ionic2-mosum/issues/2) to get contributing ideas.
@@ -80,5 +80,5 @@ See [features planned for future](https://github.com/aggarwalankush/ionic2-mosum
 * Open pull request with improvements
 * Spread the word
 
-### License
+## License
 ionic2-mosum is available under the MIT license. See the LICENSE file for more info.

@@ -2,6 +2,16 @@
 Ionic 2 Weather App - The goal of this weather app is to demo different ionic component in a nice working app. Contributions are welcome for any good feature.
 - Android - https://play.google.com/store/apps/details?id=com.aggarwalankush.mosum
 
+## Prerequisites
+- Download nodejs from https://nodejs.org/en/download/current/ It will install `node` and `npm`
+```bash
+node -v
+ - should be >= 6.0.0
+npm -v
+ - should be >= 3.0.0
+```
+- For iOS, update XCode version to 8.0 or higher
+
 ## Getting Started
 
 * Clone this repository
@@ -26,6 +36,18 @@ Ionic 2 Weather App - The goal of this weather app is to demo different ionic co
   <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAZL0jdvdtBV_DmzLZ8yW53GHnhlRrbIAY&libraries=places">
   </script>
   ```
+
+## Run
+
+#### Browser
+```bash
+    # iOS 
+    ionic serve --platform ios
+    # Android
+    ionic serve --platform android
+    # All Platforms(iOS, Android and Windows)
+    ionic serve --lab
+```
 
 ### Android
 

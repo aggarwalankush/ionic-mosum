@@ -3,6 +3,8 @@ import {NavParams, ViewController} from "ionic-angular";
 import * as _ from "lodash";
 import {Location} from "../providers";
 
+declare let google: any;
+
 @Component({
   templateUrl: 'location.html'
 })

@@ -22,6 +22,7 @@ npm -v
     $ npm uninstall -g ionic cordova
     $ npm install -g ionic cordova
     $ npm install
+    $ npm install --only=dev  
     ```
 * Get weather API key from [DarkSky](https://darksky.net)
   * Replace API_KEY in `src/pages/providers/constants.ts`

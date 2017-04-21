@@ -38,15 +38,15 @@ export class UtilService {
   }
 
   getCurrentHour(tz: string): number {
-    return moment().tz(tz).hour();
+    return (<any>moment()).tz(tz).hour();
   }
 
   epochToHour(epoch: number, tz: string): number {
-    return moment(epoch * 1000).tz(tz).hour();
+    return (<any>moment(epoch * 1000)).tz(tz).hour();
   }
 
   formatEpoch(epoch: number, pattern: string, tz: string): string {
-    return moment(epoch * 1000).tz(tz).format(pattern);
+    return (<any>moment(epoch * 1000)).tz(tz).format(pattern);
   }
 
   formatTemp(temp: number, metrics: Metrics): string {

@@ -3,7 +3,6 @@ import {Nav, Platform} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
-import {TabsPage} from "../pages/tabs/tabs";
 import {PageInterface, UtilService} from "../pages/providers";
 import {HomeWeatherPage} from "../pages/home-weather/home-weather";
 import {WorldWeatherPage} from "../pages/world-weather/world-weather";
@@ -13,13 +12,13 @@ import {WorldWeatherPage} from "../pages/world-weather/world-weather";
 })
 export class MosumApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage = TabsPage;
+  rootPage: string = 'TabsPage';
   pages: Array<{ heading: string, items: PageInterface[] }> = [
     {
       heading: 'Weather',
       items: [
-        {title: 'Home', component: TabsPage, tabComponent: HomeWeatherPage, index: 0, icon: 'home'},
-        {title: 'World', component: TabsPage, tabComponent: WorldWeatherPage, index: 1, icon: 'globe'}
+        {title: 'Home', component: 'TabsPage', tabComponent: HomeWeatherPage, index: 0, icon: 'home'},
+        {title: 'World', component: 'TabsPage', tabComponent: WorldWeatherPage, index: 1, icon: 'globe'}
       ]
     },
     {

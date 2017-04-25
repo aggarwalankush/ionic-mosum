@@ -10,7 +10,7 @@ import {
   MetricTemp
 } from "../providers";
 import {ModalLocation} from "../location/location";
-import { ModalController, IonicPage } from "ionic-angular";
+import {ModalController, IonicPage} from "ionic-angular";
 
 @IonicPage()
 @Component({

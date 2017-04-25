@@ -1,9 +1,10 @@
 import {Component} from "@angular/core";
-import {NavParams} from "ionic-angular";
+import {NavParams, IonicPage} from "ionic-angular";
 import {HomeWeatherPage} from "../home-weather/home-weather";
 import {WorldWeatherPage} from "../world-weather/world-weather";
 import {UtilService} from "../providers/util.service";
 
+@IonicPage()
 @Component({
   selector: 'page-tabs',
   templateUrl: 'tabs.html'

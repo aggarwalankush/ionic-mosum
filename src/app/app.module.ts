@@ -10,7 +10,6 @@ import {DatabaseService, ForecastService, Sql, UtilService} from "../pages/provi
 import {MosumApp} from "./app.component";
 import {ModalLocation} from "../pages/location/location";
 import {HomeWeatherPage} from "../pages/home-weather/home-weather";
-import {WeatherDetailPage} from "../pages/weather-detail/weather-detail";
 import {WorldWeatherDetailPage} from "../pages/world-weather-detail/world-weather-detail";
 import {WeatherListTemplate} from "../pages/template/weather-list.template";
 
@@ -19,7 +18,6 @@ import {WeatherListTemplate} from "../pages/template/weather-list.template";
     MosumApp,
     ModalLocation,
     HomeWeatherPage,
-    WeatherDetailPage,
     WeatherListTemplate,
     WorldWeatherDetailPage
   ],
@@ -34,7 +32,6 @@ import {WeatherListTemplate} from "../pages/template/weather-list.template";
     MosumApp,
     ModalLocation,
     HomeWeatherPage,
-    WeatherDetailPage,
     WeatherListTemplate,
     WorldWeatherDetailPage
   ],

@@ -11,7 +11,6 @@ import {
   Metrics,
   UtilService
 } from "../providers";
-import {WeatherDetailPage} from "../weather-detail/weather-detail";
 import {Subscription} from "rxjs/Subscription";
 import * as _ from "lodash";
 
@@ -40,7 +39,7 @@ export class WeatherListTemplate implements OnInit, OnDestroy {
   }
 
   itemClicked(item: any) {
-    this.navCtrl.push(WeatherDetailPage, {
+    this.navCtrl.push('WeatherDetailPage', {
       forecast: this.forecast,
       currentForecast: item,
       currentLocation: this.location,

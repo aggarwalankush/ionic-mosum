@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ModalController, NavController} from "ionic-angular";
+import {ModalController, NavController, IonicPage} from "ionic-angular";
 import {Subscription} from "rxjs/Subscription";
 import {
   CONFIG,
@@ -16,6 +16,7 @@ import {ModalLocation} from "../location/location";
 import {WorldWeatherDetailPage} from "../world-weather-detail/world-weather-detail";
 import * as _ from "lodash";
 
+@IonicPage()
 @Component({
   templateUrl: 'world-weather.html'
 })

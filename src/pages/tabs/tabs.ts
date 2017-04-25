@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {NavParams, IonicPage} from "ionic-angular";
 import {HomeWeatherPage} from "../home-weather/home-weather";
-import {WorldWeatherPage} from "../world-weather/world-weather";
 import {UtilService} from "../providers/util.service";
 
 @IonicPage()
@@ -11,7 +10,7 @@ import {UtilService} from "../providers/util.service";
 })
 export class TabsPage {
   tab1Root: any = HomeWeatherPage;
-  tab2Root: any = WorldWeatherPage;
+  tab2Root: string = 'WorldWeatherPage';
   mySelectedIndex: number;
 
   constructor(public navParams: NavParams,

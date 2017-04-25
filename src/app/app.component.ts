@@ -5,7 +5,6 @@ import {SplashScreen} from "@ionic-native/splash-screen";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {PageInterface, UtilService} from "../pages/providers";
 import {HomeWeatherPage} from "../pages/home-weather/home-weather";
-import {WorldWeatherPage} from "../pages/world-weather/world-weather";
 
 @Component({
   templateUrl: 'app.html'
@@ -18,7 +17,7 @@ export class MosumApp {
       heading: 'Weather',
       items: [
         {title: 'Home', component: 'TabsPage', tabComponent: HomeWeatherPage, index: 0, icon: 'home'},
-        {title: 'World', component: 'TabsPage', tabComponent: WorldWeatherPage, index: 1, icon: 'globe'}
+        {title: 'World', component: 'TabsPage', tabComponent: 'WorldWeatherPage', index: 1, icon: 'globe'}
       ]
     },
     {

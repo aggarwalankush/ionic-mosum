@@ -13,7 +13,6 @@ import {ModalLocation} from "../pages/location/location";
 import {HomeWeatherPage} from "../pages/home-weather/home-weather";
 import {WeatherDetailPage} from "../pages/weather-detail/weather-detail";
 import {WorldWeatherPage} from "../pages/world-weather/world-weather";
-import {SettingsPage} from "../pages/settings/settings";
 import {WorldWeatherDetailPage} from "../pages/world-weather-detail/world-weather-detail";
 import {WeatherListTemplate} from "../pages/template/weather-list.template";
 
@@ -26,7 +25,6 @@ import {WeatherListTemplate} from "../pages/template/weather-list.template";
     HomeWeatherPage,
     WeatherDetailPage,
     WorldWeatherPage,
-    SettingsPage,
     WeatherListTemplate,
     WorldWeatherDetailPage
   ],
@@ -44,7 +42,6 @@ import {WeatherListTemplate} from "../pages/template/weather-list.template";
     HomeWeatherPage,
     WeatherDetailPage,
     WorldWeatherPage,
-    SettingsPage,
     WeatherListTemplate,
     WorldWeatherDetailPage
   ],

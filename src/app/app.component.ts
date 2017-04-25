@@ -4,7 +4,6 @@ import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {TabsPage} from "../pages/tabs/tabs";
-import {SettingsPage} from "../pages/settings/settings";
 import {PageInterface, UtilService} from "../pages/providers";
 import {HomeWeatherPage} from "../pages/home-weather/home-weather";
 import {WorldWeatherPage} from "../pages/world-weather/world-weather";
@@ -26,7 +25,7 @@ export class MosumApp {
     {
       heading: 'Settings',
       items: [
-        {title: 'Settings', component: SettingsPage, icon: 'settings'}
+        {title: 'Settings', component: 'SettingsPage', icon: 'settings'}
       ]
     }
   ];

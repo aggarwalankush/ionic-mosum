@@ -2,7 +2,9 @@ import { Component, EventEmitter } from '@angular/core';
 import { IonicPage, ModalController } from 'ionic-angular';
 import { CONFIG, DatabaseService, Location } from '../../providers';
 
-@IonicPage()
+@IonicPage({
+  priority: "high"
+})
 @Component({
   selector: 'page-home-weather',
   templateUrl: 'home-weather.html'

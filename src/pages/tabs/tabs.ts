@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { UtilService } from '../../providers';
 
-@IonicPage()
+@IonicPage({
+  priority: "high"
+})
 @Component({
   selector: 'page-tabs',
   templateUrl: 'tabs.html'

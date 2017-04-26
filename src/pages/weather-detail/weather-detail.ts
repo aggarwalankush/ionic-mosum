@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {Content, NavParams, IonicPage} from "ionic-angular";
-import {StatusBar} from "@ionic-native/status-bar";
-import {collapse, DataPoint, Forecast, KV, Location, Metrics, UtilService} from "../providers";
-import * as _ from "lodash";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Content, IonicPage, NavParams } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { collapse, DataPoint, Forecast, KV, Location, Metrics, UtilService } from '../providers';
+import * as _ from 'lodash';
 
 @IonicPage()
 @Component({
@@ -108,7 +108,7 @@ export class WeatherDetailPage implements OnInit {
       let elemVal = _.get(dp, elem, 0);
       if (elemVal !== 0) {
         let value = self.formatDetailElem(elem, elemVal);
-        detailsArray.push({key: _.startCase(elem), value: value});
+        detailsArray.push({ key: _.startCase(elem), value: value });
       }
     });
     return detailsArray;

@@ -1,10 +1,10 @@
-import {Component, ViewChild} from "@angular/core";
-import {Nav, Platform} from "ionic-angular";
-import {StatusBar} from "@ionic-native/status-bar";
-import {SplashScreen} from "@ionic-native/splash-screen";
-import {InAppBrowser} from "@ionic-native/in-app-browser";
-import {PageInterface, UtilService} from "../pages/providers";
-import {HomeWeatherPage} from "../pages/home-weather/home-weather";
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { PageInterface, UtilService } from '../pages/providers';
+import { HomeWeatherPage } from '../pages/home-weather/home-weather';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,14 +16,14 @@ export class MosumApp {
     {
       heading: 'Weather',
       items: [
-        {title: 'Home', component: 'TabsPage', tabComponent: HomeWeatherPage, index: 0, icon: 'home'},
-        {title: 'World', component: 'TabsPage', tabComponent: 'WorldWeatherPage', index: 1, icon: 'globe'}
+        { title: 'Home', component: 'TabsPage', tabComponent: HomeWeatherPage, index: 0, icon: 'home' },
+        { title: 'World', component: 'TabsPage', tabComponent: 'WorldWeatherPage', index: 1, icon: 'globe' }
       ]
     },
     {
       heading: 'Settings',
       items: [
-        {title: 'Settings', component: 'SettingsPage', icon: 'settings'}
+        { title: 'Settings', component: 'SettingsPage', icon: 'settings' }
       ]
     }
   ];
@@ -37,7 +37,7 @@ export class MosumApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleLightContent();
-      this.statusBar.backgroundColorByHexString("#12121c");
+      this.statusBar.backgroundColorByHexString('#12121c');
       this.splashScreen.hide();
     });
   }
@@ -47,7 +47,7 @@ export class MosumApp {
       return;
     }
     if (page.index) {
-      this.nav.setRoot(page.component, {tabIndex: page.index});
+      this.nav.setRoot(page.component, { tabIndex: page.index });
     } else {
       this.nav.setRoot(page.component);
     }

@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {ModalController, NavController, IonicPage} from "ionic-angular";
-import {Subscription} from "rxjs/Subscription";
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, ModalController, NavController } from 'ionic-angular';
+import { Subscription } from 'rxjs/Subscription';
 import {
   CONFIG,
   DatabaseService,
@@ -11,10 +11,10 @@ import {
   Location,
   Metrics,
   UtilService
-} from "../providers";
-import {ModalLocation} from "../location/location";
-import {WorldWeatherDetailPage} from "../world-weather-detail/world-weather-detail";
-import * as _ from "lodash";
+} from '../providers';
+import { ModalLocation } from '../location/location';
+import { WorldWeatherDetailPage } from '../world-weather-detail/world-weather-detail';
+import * as _ from 'lodash';
 
 @IonicPage()
 @Component({
@@ -86,7 +86,7 @@ export class WorldWeatherPage implements OnInit {
 
   addLocation() {
     let self = this;
-    let modal = self.modalCtrl.create(ModalLocation, {heading: 'Add New City'});
+    let modal = self.modalCtrl.create(ModalLocation, { heading: 'Add New City' });
     modal.onDidDismiss((data: Location) => {
       if (!data) {
         return;
@@ -97,7 +97,7 @@ export class WorldWeatherPage implements OnInit {
         }
         let exists = _.find(self.arrWorldWeather, obj => obj.location.name === data.name);
         if (exists) {
-          self.utilService.showToast(data.name + " already exists");
+          self.utilService.showToast(data.name + ' already exists');
           return;
         }
         self.arrWorldWeather.push({
@@ -109,7 +109,7 @@ export class WorldWeatherPage implements OnInit {
         self.forecastService.getForecast(data)
           .subscribe((forecast: Forecast) => {
             if (forecast && forecast.daily && forecast.daily.data) {
-              let obj = _.find(self.arrWorldWeather, {location: data});
+              let obj = _.find(self.arrWorldWeather, { location: data });
               if (obj) {
                 obj.firstDailyForecast = forecast.daily.data[0];
                 obj.timezone = forecast.timezone;
@@ -134,7 +134,7 @@ export class WorldWeatherPage implements OnInit {
   }
 
   locationClicked(location: Location) {
-    this.navCtrl.push(WorldWeatherDetailPage, {location: location});
+    this.navCtrl.push(WorldWeatherDetailPage, { location: location });
   }
 }
 

@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, Renderer} from "@angular/core";
+import { Directive, ElementRef, Input, Renderer } from '@angular/core';
 
 @Directive({
   selector: '[animateItemSliding]'

@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
-import {NavParams} from "ionic-angular";
-import {Location} from "../providers";
+import { Component } from '@angular/core';
+import { NavParams } from 'ionic-angular';
+import { Location } from '../providers';
 
 @Component({
   template: `

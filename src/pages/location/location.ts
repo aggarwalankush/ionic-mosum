@@ -1,7 +1,7 @@
-import {Component, NgZone, ViewChild} from "@angular/core";
-import {NavParams, ViewController} from "ionic-angular";
-import * as _ from "lodash";
-import {Location} from "../providers";
+import { Component, NgZone, ViewChild } from '@angular/core';
+import { NavParams, ViewController } from 'ionic-angular';
+import * as _ from 'lodash';
+import { Location } from '../providers';
 
 declare let google: any;
 
@@ -44,7 +44,7 @@ export class ModalLocation {
   }
 
   updateSearch() {
-    console.debug("modal > updateSearch > query ", this.query);
+    console.debug('modal > updateSearch > query ', this.query);
     if (this.query.trim() == '') {
       this.autocompleteItems = [];
       return;

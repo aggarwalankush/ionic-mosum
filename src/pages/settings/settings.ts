@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   CONFIG,
   DatabaseService,
@@ -8,9 +8,9 @@ import {
   MetricPressure,
   Metrics,
   MetricTemp
-} from "../providers";
-import {ModalLocation} from "../location/location";
-import {ModalController, IonicPage} from "ionic-angular";
+} from '../providers';
+import { ModalLocation } from '../location/location';
+import { IonicPage, ModalController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -48,7 +48,7 @@ export class SettingsPage implements OnInit {
 
   changeHomeLocation() {
     let self = this;
-    let modal = self.modalCtrl.create(ModalLocation, {heading: 'Enter Home City'});
+    let modal = self.modalCtrl.create(ModalLocation, { heading: 'Enter Home City' });
     modal.onDidDismiss((data: Location) => {
       if (data) {
         self.databaseService.setJson(CONFIG.HOME_LOCATION, data);

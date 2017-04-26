@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import {Platform} from "ionic-angular";
+import { Injectable } from '@angular/core';
+import { Platform } from 'ionic-angular';
 
 const DB_NAME: string = '__sunshine';
 const win: any = window;
@@ -25,7 +25,7 @@ export class Sql {
           resolve(_db);
         });
       } catch (err) {
-        reject({err: err});
+        reject({ err: err });
       }
     });
     this._tryInit();
@@ -53,13 +53,13 @@ export class Sql {
         this._dbPromise.then(db => {
           db.transaction((tx: any) => {
               tx.executeSql(query, params,
-                (tx: any, res: any) => resolve({tx: tx, res: res}),
-                (tx: any, err: any) => reject({tx: tx, err: err}));
+                (tx: any, res: any) => resolve({ tx: tx, res: res }),
+                (tx: any, err: any) => reject({ tx: tx, err: err }));
             },
-            (err: any) => reject({err: err}));
+            (err: any) => reject({ err: err }));
         });
       } catch (err) {
-        reject({err: err});
+        reject({ err: err });
       }
     });
   }

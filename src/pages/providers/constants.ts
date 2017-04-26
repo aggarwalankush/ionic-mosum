@@ -1,4 +1,4 @@
-import {MetricPressure, MetricDistance, MetricLength, MetricTemp} from "./model";
+import { MetricDistance, MetricLength, MetricPressure, MetricTemp } from './model';
 
 export const DEFAULT_METRICS = {
   temp: MetricTemp.F,

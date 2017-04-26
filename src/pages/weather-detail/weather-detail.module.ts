@@ -4,14 +4,15 @@ import { IonicPageModule } from 'ionic-angular';
 import { WeatherDetailPage } from './weather-detail';
 
 @NgModule({
-	declarations: [
-		WeatherDetailPage,
-	],
-	imports: [
-		IonicPageModule.forChild(WeatherDetailPage)
-	],
-	entryComponents: [
-		WeatherDetailPage
-	]
+  declarations: [
+    WeatherDetailPage
+  ],
+  imports: [
+    IonicPageModule.forChild(WeatherDetailPage)
+  ],
+  entryComponents: [
+    WeatherDetailPage
+  ]
 })
-export class WeatherDetailPageModule {}
+export class WeatherDetailPageModule {
+}

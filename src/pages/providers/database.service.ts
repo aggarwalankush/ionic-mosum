@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {Sql} from "./sql";
-import {Forecast, Location} from "./model";
+import { Injectable } from '@angular/core';
+import { Sql } from './sql';
+import { Forecast, Location } from './model';
 
 @Injectable()
 export class DatabaseService {
 
-  private table_forecast = "forecast";
-  private table_world_location = "world_location";
+  private table_forecast = 'forecast';
+  private table_world_location = 'world_location';
 
   constructor(public _db: Sql) {
   }
@@ -22,11 +22,11 @@ export class DatabaseService {
     return self._db.query(createTableQuery)
       .then(() => self._db.query(insertQuery, [name, JSON.stringify(forecast), '' + lastUpdated]))
       .then(data => {
-        console.debug(name + " > Inserted with id -> " + data.res.insertId);
+        console.debug(name + ' > Inserted with id -> ' + data.res.insertId);
         return true;
       })
       .catch(error => {
-        console.error("Saving forecast error -> " + error.err.message);
+        console.error('Saving forecast error -> ' + error.err.message);
         return false;
       });
   }
@@ -45,7 +45,7 @@ export class DatabaseService {
         return null;
       })
       .catch(error => {
-        console.error("Getting forecast error -> " + error.err.message);
+        console.error('Getting forecast error -> ' + error.err.message);
         return null;
       });
   }
@@ -60,11 +60,11 @@ export class DatabaseService {
     return self._db.query(createTableQuery)
       .then(() => self._db.query(insertQuery, [location.name, location.lat, location.lng]))
       .then(data => {
-        console.debug(location.name + " > Inserted with id -> " + data.res.insertId);
+        console.debug(location.name + ' > Inserted with id -> ' + data.res.insertId);
         return true;
       })
       .catch(error => {
-        console.error("Saving world location error -> " + error.err.message);
+        console.error('Saving world location error -> ' + error.err.message);
         return false;
       });
   }
@@ -84,7 +84,7 @@ export class DatabaseService {
         return null;
       })
       .catch(error => {
-        console.error("Getting world location error -> " + error.err.message);
+        console.error('Getting world location error -> ' + error.err.message);
         return null;
       });
   }
@@ -95,7 +95,7 @@ export class DatabaseService {
     return self._db.query(query, [name])
       .then(() => true)
       .catch(error => {
-        console.error("Removing world location error -> " + error.err.message);
+        console.error('Removing world location error -> ' + error.err.message);
         return false;
       });
   }
@@ -116,7 +116,7 @@ export class DatabaseService {
         return resultArray;
       })
       .catch(error => {
-        console.error("Getting all world locations error -> " + error.err.message);
+        console.error('Getting all world locations error -> ' + error.err.message);
         return resultArray;
       });
   }

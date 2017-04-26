@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
-import {NavParams, IonicPage} from "ionic-angular";
-import {HomeWeatherPage} from "../home-weather/home-weather";
-import {UtilService} from "../providers/util.service";
+import { Component } from '@angular/core';
+import { IonicPage, NavParams } from 'ionic-angular';
+import { HomeWeatherPage } from '../home-weather/home-weather';
+import { UtilService } from '../providers/util.service';
 
 @IonicPage()
 @Component({

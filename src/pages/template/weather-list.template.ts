@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit} from "@angular/core";
-import {NavController} from "ionic-angular";
+import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import {
   CONFIG,
   DatabaseService,
@@ -10,9 +10,9 @@ import {
   Location,
   Metrics,
   UtilService
-} from "../providers";
-import {Subscription} from "rxjs/Subscription";
-import * as _ from "lodash";
+} from '../providers';
+import { Subscription } from 'rxjs/Subscription';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'weather-list',

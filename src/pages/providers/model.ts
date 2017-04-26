@@ -1,4 +1,4 @@
-import {animate, keyframes, state, style, transition, trigger} from "@angular/animations";
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 
 export interface Location {
   name: string;
@@ -111,12 +111,12 @@ export function collapse(duration: number = 200) {
     })),
     transition('true => false, collapsed => expanded', [
       animate(duration + 'ms ease', keyframes([
-        style({opacity: '1'}),
-        style({height: '*'})
+        style({ opacity: '1' }),
+        style({ height: '*' })
       ]))
     ]),
     transition('false => true, expanded => collapsed', [
-      animate(duration + 'ms ease', style({height: '0'}))
+      animate(duration + 'ms ease', style({ height: '0' }))
     ])
   ]);
 }

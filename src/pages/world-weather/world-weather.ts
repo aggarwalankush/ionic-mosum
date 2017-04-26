@@ -12,7 +12,6 @@ import {
   Metrics,
   UtilService
 } from '../providers';
-import { ModalLocation } from '../location/location';
 import { WorldWeatherDetailPage } from '../world-weather-detail/world-weather-detail';
 import * as _ from 'lodash';
 
@@ -86,7 +85,7 @@ export class WorldWeatherPage implements OnInit {
 
   addLocation() {
     let self = this;
-    let modal = self.modalCtrl.create(ModalLocation, { heading: 'Add New City' });
+    let modal = self.modalCtrl.create('LocationPage', { heading: 'Add New City' });
     modal.onDidDismiss((data: Location) => {
       if (!data) {
         return;

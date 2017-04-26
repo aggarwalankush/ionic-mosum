@@ -9,7 +9,6 @@ import {
   Metrics,
   MetricTemp
 } from '../providers';
-import { ModalLocation } from '../location/location';
 import { IonicPage, ModalController } from 'ionic-angular';
 
 @IonicPage()
@@ -34,12 +33,8 @@ export class SettingsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data => {
-      this.homeLocation = data;
-    });
-    this.databaseService.getJson(CONFIG.METRICS).then(data => {
-      this.metrics = data;
-    });
+    this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data => this.homeLocation = data);
+    this.databaseService.getJson(CONFIG.METRICS).then(data => this.metrics = data);
   }
 
   metricChange() {
@@ -48,7 +43,7 @@ export class SettingsPage implements OnInit {
 
   changeHomeLocation() {
     let self = this;
-    let modal = self.modalCtrl.create(ModalLocation, { heading: 'Enter Home City' });
+    let modal = self.modalCtrl.create('LocationPage', { heading: 'Enter Home City' });
     modal.onDidDismiss((data: Location) => {
       if (data) {
         self.databaseService.setJson(CONFIG.HOME_LOCATION, data);

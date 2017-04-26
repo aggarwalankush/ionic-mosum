@@ -8,14 +8,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { DatabaseService, ForecastService, Sql, UtilService } from '../pages/providers';
 import { MosumApp } from './app.component';
-import { ModalLocation } from '../pages/location/location';
 import { WorldWeatherDetailPage } from '../pages/world-weather-detail/world-weather-detail';
 import { WeatherListTemplate } from '../pages/template/weather-list.template';
 
 @NgModule({
   declarations: [
     MosumApp,
-    ModalLocation,
     WeatherListTemplate,
     WorldWeatherDetailPage
   ],
@@ -28,7 +26,6 @@ import { WeatherListTemplate } from '../pages/template/weather-list.template';
   bootstrap: [IonicApp],
   entryComponents: [
     MosumApp,
-    ModalLocation,
     WeatherListTemplate,
     WorldWeatherDetailPage
   ],

@@ -1,14 +1,16 @@
 import { Component, NgZone, ViewChild } from '@angular/core';
-import { NavParams, ViewController } from 'ionic-angular';
-import * as _ from 'lodash';
+import { IonicPage, NavParams, ViewController } from 'ionic-angular';
 import { Location } from '../providers';
+import * as _ from 'lodash';
 
 declare let google: any;
 
+@IonicPage()
 @Component({
+  selector: 'page-location',
   templateUrl: 'location.html'
 })
-export class ModalLocation {
+export class LocationPage {
   @ViewChild('searchInput') searchInput;
   heading: string;
   autocompleteItems: Array<{ description: string, place_id: string }>;
@@ -17,11 +19,11 @@ export class ModalLocation {
   locationObj: Location;
   showCancel: boolean;
 
-  constructor(public viewCtrl: ViewController,
-              public zone: NgZone,
-              public params: NavParams) {
-    this.heading = params.get('heading') ? params.get('heading') : 'Search City Name';
-    this.showCancel = params.data.showCancel !== undefined ? params.data.showCancel : true;
+  constructor(public navParams: NavParams,
+              public viewCtrl: ViewController,
+              public zone: NgZone) {
+    this.heading = navParams.get('heading') ? navParams.get('heading') : 'Search City Name';
+    this.showCancel = navParams.data.showCancel !== undefined ? navParams.data.showCancel : true;
   }
 
   ionViewDidEnter() {
@@ -86,4 +88,5 @@ export class ModalLocation {
       });
     });
   }
+
 }

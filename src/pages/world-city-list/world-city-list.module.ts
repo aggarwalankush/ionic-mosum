@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { WorldCityListPage } from './world-city-list';
-import { AnimateItemSliding } from '../providers/animateItemSliding.directive';
+import { DirectivesModule } from '../../directives';
 
 @NgModule({
   declarations: [
-    WorldCityListPage,
-    AnimateItemSliding
+    WorldCityListPage
   ],
   imports: [
+    DirectivesModule,
     IonicPageModule.forChild(WorldCityListPage)
   ],
   exports: [

@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
+import { BrowserTab } from '@ionic-native/browser-tab';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { PageInterface, UtilService } from '../pages/providers';
 import { HomeWeatherPage } from '../pages/home-weather/home-weather';
 
@@ -32,14 +32,22 @@ export class MosumApp {
               public utilService: UtilService,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public inAppBrowser: InAppBrowser) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleLightContent();
-      this.statusBar.backgroundColorByHexString('#12121c');
-      this.splashScreen.hide();
+              public browserTab: BrowserTab) {
+    this.platformReady();
+  }
+
+  platformReady() {
+    this.platform.ready().then(() => {
+      if (this.platform.is('cordova')) {
+        this.initPlugins();
+      }
     });
+  }
+
+  initPlugins() {
+    this.statusBar.styleLightContent();
+    this.statusBar.backgroundColorByHexString('#12121c');
+    this.splashScreen.hide();
   }
 
   openPage(page: PageInterface) {
@@ -71,6 +79,13 @@ export class MosumApp {
   }
 
   poweredBy() {
-    this.inAppBrowser.create('https://darksky.net/poweredby/', '_system');
+    let url = 'https://darksky.net/poweredby/';
+    this.browserTab.isAvailable()
+      .then((isAvailable: boolean) => {
+        if (isAvailable) {
+          this.browserTab.openUrl(url);
+        }
+      })
+      .catch(err => console.error(err));
   }
 }

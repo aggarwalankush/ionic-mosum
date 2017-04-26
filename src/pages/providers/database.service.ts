@@ -128,7 +128,7 @@ export class DatabaseService {
     return this._db.set(key, value)
       .then(() => true)
       .catch(err => {
-        console.error('[Error] Saving ' + key + ' - ' + JSON.stringify(err));
+        console.error('[Error] Saving ' + key + ' - ' + err);
         return false;
       });
   }
@@ -143,7 +143,7 @@ export class DatabaseService {
         }
       })
       .catch(err => {
-        console.error('[Error] Getting ' + key + ' - ' + JSON.stringify(err));
+        console.error('[Error] Getting ' + key + ' - ' + err);
         return null;
       });
   }
@@ -152,7 +152,7 @@ export class DatabaseService {
     return this._db.remove(key)
       .then(() => true)
       .catch(err => {
-        console.error('[Error] Removing ' + key + ' - ' + JSON.stringify(err));
+        console.error('[Error] Removing ' + key + ' - ' + err);
         return false;
       });
   }
@@ -162,8 +162,8 @@ export class DatabaseService {
       try {
         return JSON.parse(value);
       } catch (err) {
-        console.error('Storage getJson(): unable to parse value for key', key, ' as JSON');
-        throw null;
+        console.error('[Error] getJson(): unable to parse value for key', key, ' as JSON');
+        return null;
       }
     });
   }
@@ -172,7 +172,7 @@ export class DatabaseService {
     try {
       return this.set(key, JSON.stringify(value));
     } catch (err) {
-      return Promise.reject(false);
+      return Promise.resolve(false);
     }
   }
 }

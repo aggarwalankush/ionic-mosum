@@ -3,7 +3,7 @@ import { JsonpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicApp, IonicModule } from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BrowserTab } from '@ionic-native/browser-tab';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { DatabaseService, ForecastService, Sql, UtilService } from '../pages/providers';
@@ -40,9 +40,9 @@ import { WeatherListTemplate } from '../pages/template/weather-list.template';
     DatabaseService,
     UtilService,
     ForecastService,
-    InAppBrowser,
     SplashScreen,
-    StatusBar
+    StatusBar,
+    BrowserTab
   ]
 })
 export class AppModule {

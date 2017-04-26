@@ -1,7 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 import { IonicPage, ModalController } from 'ionic-angular';
 import { CONFIG, DatabaseService, Location } from '../providers';
-// import { ModalLocation } from '../location/location';
 
 @IonicPage()
 @Component({
@@ -23,16 +22,16 @@ export class HomeWeatherPage {
     let self = this;
     this.databaseService.getJson(CONFIG.HOME_LOCATION).then(data => {
       if (data === null) {
-        // let modal = self.modalCtrl.create(ModalLocation, { heading: 'Enter Home City', showCancel: false });
-        // modal.onDidDismiss((data: Location) => {
-        //   console.debug('page > modal dismissed > data > ', data);
-        //   if (data) {
-        //     self.databaseService.setJson(CONFIG.HOME_LOCATION, data);
-        //     self.location = data;
-        //     self.emitInit();
-        //   }
-        // });
-        // modal.present();
+        let modal = self.modalCtrl.create('LocationPage', { heading: 'Enter Home City', showCancel: false });
+        modal.onDidDismiss((data: Location) => {
+          console.debug('page > modal dismissed > data > ', data);
+          if (data) {
+            self.databaseService.setJson(CONFIG.HOME_LOCATION, data);
+            self.location = data;
+            self.emitInit();
+          }
+        });
+        modal.present();
       } else {
         self.location = data;
         self.emitInit();

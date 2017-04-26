@@ -1,27 +1,27 @@
-import { Directive, ElementRef, Input, Renderer } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[animateItemSliding]'
 })
-export class AnimateItemSliding {
+export class AnimateItemSliding implements OnInit {
   @Input('animateItemSliding') shouldAnimate: boolean;
 
   constructor(public element: ElementRef,
-              public renderer: Renderer) {
+              public renderer: Renderer2) {
   }
 
   ngOnInit() {
     if (this.shouldAnimate) {
-      this.renderer.setElementClass(this.element.nativeElement, 'active-slide', true);
-      this.renderer.setElementClass(this.element.nativeElement, 'active-options-right', true);
+      this.renderer.addClass(this.element.nativeElement, 'active-slide');
+      this.renderer.addClass(this.element.nativeElement, 'active-options-right');
       // Wait to apply animation
       setTimeout(() => {
-        this.renderer.setElementClass(this.element.nativeElement.firstElementChild, 'itemSlidingAnimation', true);
+        this.renderer.addClass(this.element.nativeElement.firstElementChild, 'itemSlidingAnimation');
         // disables after first animation
         setTimeout(() => {
-          this.renderer.setElementClass(this.element.nativeElement, 'active-slide', false);
-          this.renderer.setElementClass(this.element.nativeElement, 'active-options-right', false);
-          this.renderer.setElementClass(this.element.nativeElement.firstElementChild, 'itemSlidingAnimation', false);
+          this.renderer.removeClass(this.element.nativeElement, 'active-slide');
+          this.renderer.removeClass(this.element.nativeElement, 'active-options-right');
+          this.renderer.removeClass(this.element.nativeElement.firstElementChild, 'itemSlidingAnimation');
         }, 1000);
       }, 500);
     }

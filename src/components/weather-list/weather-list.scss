@@ -1,0 +1,10 @@
+weather-list {
+  button[ion-item], ion-item {
+    border: 0 !important;
+  }
+
+  .no-label-margin ion-label {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}

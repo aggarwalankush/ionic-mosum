@@ -9,7 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { DatabaseService, ForecastService, Sql, UtilService } from '../pages/providers';
 import { MosumApp } from './app.component';
 import { ModalLocation } from '../pages/location/location';
-import { HomeWeatherPage } from '../pages/home-weather/home-weather';
 import { WorldWeatherDetailPage } from '../pages/world-weather-detail/world-weather-detail';
 import { WeatherListTemplate } from '../pages/template/weather-list.template';
 
@@ -17,7 +16,6 @@ import { WeatherListTemplate } from '../pages/template/weather-list.template';
   declarations: [
     MosumApp,
     ModalLocation,
-    HomeWeatherPage,
     WeatherListTemplate,
     WorldWeatherDetailPage
   ],
@@ -31,7 +29,6 @@ import { WeatherListTemplate } from '../pages/template/weather-list.template';
   entryComponents: [
     MosumApp,
     ModalLocation,
-    HomeWeatherPage,
     WeatherListTemplate,
     WorldWeatherDetailPage
   ],

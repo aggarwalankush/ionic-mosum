@@ -1,0 +1,70 @@
+<!--suppress ALL -->
+<ion-list *ngIf="forecast && metrics && location">
+  <button ion-item detail-none text-wrap color="primary"
+          class="center no-label-margin" style="margin-bottom:-1px;"
+          *ngIf="todayForecast" (click)="itemClicked(todayForecast)">
+    <div class="bold large">{{location.name}}</div>
+    <div class="small">{{utilService.getCalendarDay(todayForecast.time,forecast.timezone)}}</div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4 class="center-child">
+          <div>
+            <div class="xx-large">
+              {{utilService.formatTemp(todayForecast.temperatureMax,metrics)}}
+            </div>
+            <div class="large">
+              {{utilService.formatTemp(todayForecast.temperatureMin,metrics)}}
+            </div>
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <img [src]="utilService.getWeatherIcon(todayForecast.icon)"
+               onerror="this.src='assets/img/default.png'">
+          <span class="bold small">{{utilService.startCase(todayForecast.icon)}}</span>
+        </ion-col>
+        <ion-col col-4 class="center-child">
+          <div>
+            <img [src]="utilService.getWeatherIcon('sunrise')" style="max-width:40%"
+                 onerror="this.src='assets/img/default.png'">
+            <div class="bold small">
+              {{utilService.getTime(todayForecast.sunriseTime,metrics,forecast.timezone)}}
+            </div>
+            <img [src]="utilService.getWeatherIcon('sunset')" style="max-width:40%">
+            <div class="bold small">
+              {{utilService.getTime(todayForecast.sunsetTime,metrics,forecast.timezone)}}
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </button>
+  <ion-scroll scrollX="true" class="center scroll-hourly"
+              *ngIf="hourlyArray?.length>1">
+    <ion-row nowrap>
+      <ion-col col-3 *ngFor="let item of hourlyArray">
+        <img [src]="utilService.getWeatherIcon(item.icon)"
+             onerror="this.src='assets/img/default.png'" style="max-width: 40%">
+        <p class="bold" ion-text color="text2" no-margin no-padding>
+          <span ion-text color="text1">
+            {{utilService.formatTemp(item.temperature,metrics)}}
+          </span>
+          {{utilService.getTime(item.time,metrics,forecast.timezone)}}
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-scroll>
+  <button ion-item detail-none text-wrap
+          *ngFor="let item of forecast.daily?.data | slice:1;let i = index"
+          (click)="itemClicked(item)">
+    <img [src]="utilService.getWeatherIcon(item.icon)"
+         onerror="this.src='assets/img/default.png'"
+         item-left style="max-width: 12%">
+    <div class="small">{{utilService.getCalendarDay(item.time,forecast.timezone)}}</div>
+    <p class="bold" ion-text color="text2">{{utilService.startCase(item.icon)}}</p>
+    <div class="large" ion-text color="text1" item-right>
+      {{utilService.formatTemp(forecast.daily.data[i+1]?.temperatureMax,metrics)}}
+    </div>
+    <p class="medium bold" ion-text color="text2" item-right>
+      {{utilService.formatTemp(forecast.daily.data[i+1]?.temperatureMin,metrics)}}</p>
+  </button>
+</ion-list>

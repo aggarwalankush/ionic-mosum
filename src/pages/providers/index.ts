@@ -4,4 +4,3 @@ export * from './database.service';
 export * from './sql';
 export * from './model';
 export * from './constants';
-export * from './animateItemSliding.directive';

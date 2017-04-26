@@ -3,7 +3,7 @@ import { IonicPage, ModalController } from 'ionic-angular';
 import { CONFIG, DatabaseService, Location } from '../../providers';
 
 @IonicPage({
-  priority: "high"
+  priority: 'high'
 })
 @Component({
   selector: 'page-home-weather',

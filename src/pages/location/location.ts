@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 declare let google: any;
 
 @IonicPage({
-  priority: "high"
+  priority: 'high'
 })
 @Component({
   selector: 'page-location',

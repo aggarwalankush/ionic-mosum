@@ -3,7 +3,7 @@ import { IonicPage, NavParams } from 'ionic-angular';
 import { UtilService } from '../../providers';
 
 @IonicPage({
-  priority: "high"
+  priority: 'high'
 })
 @Component({
   selector: 'page-tabs',

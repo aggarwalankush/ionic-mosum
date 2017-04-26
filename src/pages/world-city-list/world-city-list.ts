@@ -12,14 +12,14 @@ import {
   Metrics,
   UtilService
 } from '../providers';
-import { WorldWeatherDetailPage } from '../world-weather-detail/world-weather-detail';
 import * as _ from 'lodash';
 
 @IonicPage()
 @Component({
-  templateUrl: 'world-weather.html'
+  selector: 'page-world-city-list',
+  templateUrl: 'world-city-list.html'
 })
-export class WorldWeatherPage implements OnInit {
+export class WorldCityListPage implements OnInit {
   arrWorldWeather: Array<WorldWeather>;
   subscribers: Array<Subscription>;
   metrics: Metrics;
@@ -133,7 +133,7 @@ export class WorldWeatherPage implements OnInit {
   }
 
   locationClicked(location: Location) {
-    this.navCtrl.push(WorldWeatherDetailPage, { location: location });
+    this.navCtrl.push('CityWeatherPage', { location: location });
   }
 }
 

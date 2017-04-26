@@ -16,7 +16,7 @@ export class MosumApp {
       heading: 'Weather',
       items: [
         { title: 'Home', component: 'TabsPage', tabComponent: 'HomeWeatherPage', index: 0, icon: 'home' },
-        { title: 'World', component: 'TabsPage', tabComponent: 'WorldWeatherPage', index: 1, icon: 'globe' }
+        { title: 'World', component: 'TabsPage', tabComponent: 'WorldCityListPage', index: 1, icon: 'globe' }
       ]
     },
     {

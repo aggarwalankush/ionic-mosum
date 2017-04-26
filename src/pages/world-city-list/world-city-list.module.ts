@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-
-import { WorldWeatherPage } from './world-weather';
+import { WorldCityListPage } from './world-city-list';
 import { AnimateItemSliding } from '../providers/animateItemSliding.directive';
 
 @NgModule({
   declarations: [
-    WorldWeatherPage,
+    WorldCityListPage,
     AnimateItemSliding
   ],
   imports: [
-    IonicPageModule.forChild(WorldWeatherPage)
+    IonicPageModule.forChild(WorldCityListPage)
   ],
-  entryComponents: [
-    WorldWeatherPage
+  exports: [
+    WorldCityListPage
   ]
 })
-export class WorldWeatherPageModule {
+export class WorldCityListPageModule {
 }

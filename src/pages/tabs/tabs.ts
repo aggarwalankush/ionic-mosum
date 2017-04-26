@@ -9,7 +9,7 @@ import { UtilService } from '../providers/util.service';
 })
 export class TabsPage {
   tab1Root: any = 'HomeWeatherPage';
-  tab2Root: string = 'WorldWeatherPage';
+  tab2Root: string = 'WorldCityListPage';
   mySelectedIndex: number;
 
   constructor(public navParams: NavParams,

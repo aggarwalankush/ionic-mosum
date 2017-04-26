@@ -90,10 +90,10 @@ export enum MetricPressure{
 
 export interface PageInterface {
   title: string;
-  component: any;
+  name: any;
   icon: string;
   index?: number;
-  tabComponent?: any;
+  tabName?: any;
 }
 
 //https://github.com/FuelInteractive/fuel-ui/tree/master/src/animations/Collapse

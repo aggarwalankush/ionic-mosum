@@ -15,14 +15,14 @@ export class MosumApp {
     {
       heading: 'Weather',
       items: [
-        { title: 'Home', component: 'TabsPage', tabComponent: 'HomeWeatherPage', index: 0, icon: 'home' },
-        { title: 'World', component: 'TabsPage', tabComponent: 'WorldCityListPage', index: 1, icon: 'globe' }
+        { title: 'Home', name: 'TabsPage', tabName: 'HomeWeatherPage', index: 0, icon: 'home' },
+        { title: 'World', name: 'TabsPage', tabName: 'WorldCityListPage', index: 1, icon: 'globe' }
       ]
     },
     {
       heading: 'Settings',
       items: [
-        { title: 'Settings', component: 'SettingsPage', icon: 'settings' }
+        { title: 'Settings', name: 'SettingsPage', icon: 'settings' }
       ]
     }
   ];
@@ -53,28 +53,20 @@ export class MosumApp {
     if (this.isActive(page)) {
       return;
     }
-    if (page.index) {
-      this.nav.setRoot(page.component, { tabIndex: page.index });
+    let params = page.index ? { tabIndex: page.index } : {};
+    if (this.nav.getActiveChildNav() && page.index != undefined) {
+      this.nav.getActiveChildNav().select(page.index);
     } else {
-      this.nav.setRoot(page.component);
+      this.nav.setRoot(page.name, params).catch(err => console.error(err));
     }
   }
 
   isActive(page: PageInterface): boolean {
     let childNav = this.nav.getActiveChildNav();
-
-    // Tabs are a special case because they have their own navigation
     if (childNav) {
-      if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
-        return true;
-      }
-      return false;
+      return childNav.getSelected() && childNav.getSelected().root === page.tabName;
     }
-
-    if (this.nav.getActive() && this.nav.getActive().component === page.component) {
-      return true;
-    }
-    return false;
+    return !!(this.nav.getActive() && this.nav.getActive().name === page.name);
   }
 
   poweredBy() {

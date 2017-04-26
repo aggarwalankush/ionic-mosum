@@ -14,10 +14,12 @@ import { MosumApp } from './app.component';
     MosumApp
   ],
   imports: [
+    JsonpModule,
     BrowserModule,
     BrowserAnimationsModule,
-    IonicModule.forRoot(MosumApp, { tabsPlacement: 'bottom' }),
-    JsonpModule
+    IonicModule.forRoot(MosumApp, {
+      preloadModules: true
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

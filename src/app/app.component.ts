@@ -3,7 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { BrowserTab } from '@ionic-native/browser-tab';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { PageInterface, UtilService } from '../pages/providers';
+import { PageInterface, UtilService } from '../providers';
 
 @Component({
   templateUrl: 'app.html'

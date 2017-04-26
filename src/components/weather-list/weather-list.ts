@@ -10,7 +10,7 @@ import {
   Location,
   Metrics,
   UtilService
-} from '../../pages/providers';
+} from '../../providers';
 import { Subscription } from 'rxjs/Subscription';
 import * as _ from 'lodash';
 

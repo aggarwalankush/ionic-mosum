@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Content, IonicPage, NavParams } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { collapse, DataPoint, Forecast, KV, Location, Metrics, UtilService } from '../providers';
+import { collapse, DataPoint, Forecast, KV, Location, Metrics, UtilService } from '../../providers';
 import * as _ from 'lodash';
 
 @IonicPage()

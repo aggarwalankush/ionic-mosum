@@ -11,7 +11,7 @@ import {
   Location,
   Metrics,
   UtilService
-} from '../providers';
+} from '../../providers';
 import * as _ from 'lodash';
 
 @IonicPage()

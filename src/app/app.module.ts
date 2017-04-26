@@ -6,7 +6,7 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { BrowserTab } from '@ionic-native/browser-tab';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { DatabaseService, ForecastService, Sql, UtilService } from '../pages/providers';
+import { DatabaseService, ForecastService, Sql, UtilService } from '../providers';
 import { MosumApp } from './app.component';
 
 @NgModule({

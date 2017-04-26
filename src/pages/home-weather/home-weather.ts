@@ -1,6 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 import { IonicPage, ModalController } from 'ionic-angular';
-import { CONFIG, DatabaseService, Location } from '../providers';
+import { CONFIG, DatabaseService, Location } from '../../providers';
 
 @IonicPage()
 @Component({

@@ -1,6 +1,6 @@
 import { Component, NgZone, ViewChild } from '@angular/core';
 import { IonicPage, NavParams, ViewController } from 'ionic-angular';
-import { Location } from '../providers';
+import { Location } from '../../providers';
 import * as _ from 'lodash';
 
 declare let google: any;

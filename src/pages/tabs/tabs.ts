@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
-import { UtilService } from '../providers/util.service';
+import { UtilService } from '../../providers';
 
 @IonicPage()
 @Component({

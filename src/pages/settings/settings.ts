@@ -8,7 +8,7 @@ import {
   MetricPressure,
   Metrics,
   MetricTemp
-} from '../providers';
+} from '../../providers';
 import { IonicPage, ModalController } from 'ionic-angular';
 
 @IonicPage()

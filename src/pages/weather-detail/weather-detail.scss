@@ -9,19 +9,19 @@ page-weather-detail {
   }
 
   ion-content {
-    background: #051326 !important;
+    background: $primary-color !important;
   }
 
   button[ion-item], ion-item {
     border: 0 !important;
   }
 
-  ion-segment-button {
-    color: #051326 !important;
+  .segment-md > ion-segment-button {
+    color: $primary-color !important;
   }
 
   .segment-button.activated, .segment-button.segment-activated {
-    border-color: #051326 !important;
+    border-color: $primary-color !important;
   }
 
   .item-block {

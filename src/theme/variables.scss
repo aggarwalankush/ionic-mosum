@@ -11,9 +11,6 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-$text-color: #051326;
-$background-color: #fff;
-
 // Named Color Variables
 // --------------------------------------------------
 // Named colors makes it easy to reuse colors on various components.
@@ -31,6 +28,9 @@ $colors: (
   text3: #a7afb2,
   white: #ffffff
 );
+$primary-color: color($colors, primary);
+$text-color: $primary-color;
+$background-color: #fff;
 
 // App iOS Variables
 // --------------------------------------------------

@@ -63,7 +63,7 @@
 }
 
 .menu-image {
-  background: #051326 !important;
+  background: $primary-color !important;
   margin-bottom: -30% !important;
   margin-top: -10% !important;
 }
@@ -163,7 +163,7 @@ ion-col[width-22] {
 }
 
 .scroll-hourly {
-  min-height: 65px !important;
+  min-height: 70px !important;
   background-color: #ffffff !important;
   border-bottom: 1px solid #dedede !important;
 }

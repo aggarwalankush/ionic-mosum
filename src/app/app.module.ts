@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { BrowserTab } from '@ionic-native/browser-tab';
+import { Keyboard } from '@ionic-native/keyboard';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { DatabaseService, ForecastService, Sql, UtilService } from '../providers';
@@ -26,6 +27,7 @@ import { MosumApp } from './app.component';
     MosumApp
   ],
   providers: [
+    Keyboard,
     Sql,
     DatabaseService,
     UtilService,

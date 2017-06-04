@@ -1,5 +1,6 @@
 import { Component, NgZone, ViewChild } from '@angular/core';
 import { IonicPage, NavParams, ViewController } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard';
 import { Location } from '../../providers';
 import * as _ from 'lodash';
 
@@ -23,13 +24,17 @@ export class LocationPage {
 
   constructor(public navParams: NavParams,
               public viewCtrl: ViewController,
+              public keyboard: Keyboard,
               public zone: NgZone) {
     this.heading = navParams.get('heading') ? navParams.get('heading') : 'Search City Name';
     this.showCancel = navParams.data.showCancel !== undefined ? navParams.data.showCancel : true;
   }
 
   ionViewDidEnter() {
-    this.searchInput.setFocus();
+    this.zone.run(() => {
+      this.searchInput.setFocus();
+      this.keyboard.show();
+    });
   }
 
   ionViewWillEnter() {
@@ -41,6 +46,10 @@ export class LocationPage {
       lat: null,
       lng: null
     };
+  }
+
+  ionViewWillLeave() {
+    this.keyboard.close();
   }
 
   dismiss() {

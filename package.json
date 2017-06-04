@@ -8,34 +8,38 @@
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve"
   },
+  "config": {
+    "ionic_uglifyjs": "./config/uglifyjs.config.js"
+  },
   "dependencies": {
-    "@angular/animations": "4.0.0",
-    "@angular/common": "4.0.0",
-    "@angular/compiler": "4.0.0",
-    "@angular/compiler-cli": "4.0.0",
-    "@angular/core": "4.0.0",
-    "@angular/forms": "4.0.0",
-    "@angular/http": "4.0.0",
-    "@angular/platform-browser": "4.0.0",
-    "@angular/platform-browser-dynamic": "4.0.0",
-    "@ionic-native/browser-tab": "^3.5.0",
-    "@ionic-native/core": "^3.5.0",
-    "@ionic-native/splash-screen": "^3.5.0",
-    "@ionic-native/status-bar": "^3.5.0",
-    "ionic-angular": "3.0.1",
+    "@angular/animations": "4.1.2",
+    "@angular/common": "4.1.2",
+    "@angular/compiler": "4.1.2",
+    "@angular/compiler-cli": "4.1.2",
+    "@angular/core": "4.1.2",
+    "@angular/forms": "4.1.2",
+    "@angular/http": "4.1.2",
+    "@angular/platform-browser": "4.1.2",
+    "@angular/platform-browser-dynamic": "4.1.2",
+    "@ionic-native/browser-tab": "^3.12.1",
+    "@ionic-native/core": "^3.12.1",
+    "@ionic-native/splash-screen": "^3.12.1",
+    "@ionic-native/status-bar": "^3.12.1",
+    "@ionic-native/keyboard": "^3.12.1",
+    "ionic-angular": "3.3.0",
     "ionicons": "3.0.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.6.0",
-    "zone.js": "^0.8.9"
+    "zone.js": "0.8.11"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "1.3.0",
-    "@types/googlemaps": "^3.26.10",
-    "@types/lodash": "^4.14.63",
+    "@ionic/app-scripts": "1.3.7",
+    "@types/googlemaps": "^3.26.13",
+    "@types/lodash": "^4.14.65",
     "@types/moment-timezone": "^0.2.34",
-    "typescript": "~2.2.1"
+    "typescript": "2.3.4"
   }
 }

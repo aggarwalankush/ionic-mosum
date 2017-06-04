@@ -76,8 +76,7 @@ Run post_install script
 
 * Phone
 
-  <img src="screenshots/phone1.png" alt="phone1" width="250"/>
-  <img src="screenshots/phone2.png" alt="phone2" width="250"/>
+  <img src="screenshots/android-ios-phone.jpg" alt="android-ios-phone" width="500"/>
   
 * Tablet
   

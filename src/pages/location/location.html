@@ -3,9 +3,11 @@
   <ion-toolbar color="primary">
     <ion-title>{{heading}}</ion-title>
     <ion-buttons start *ngIf="showCancel">
-      <button ion-button (click)="dismiss()">
-        <span showWhen="ios">Cancel</span>
-        <span showWhen="android,windows">Cancel</span>
+      <button showWhen="ios" ion-button (click)="dismiss()">
+        <span ion-text color="white">Cancel</span>
+      </button>
+      <button showWhen="android" ion-button icon-only (click)="dismiss()">
+        <ion-icon name="md-close" color="white"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>

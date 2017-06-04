@@ -2,5 +2,5 @@
 
 rm -r resources
 mkdir resources
-cp icons/* resources/
+cp -r icons/* resources/
 ionic cordova resources

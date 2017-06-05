@@ -1,0 +1,244 @@
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, button, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline
+}
+
+ol, ul {
+    list-style: none
+}
+
+#content, body, html {
+    height: 100%
+}
+
+html {
+    font-size: 62.5%;
+    background: white;
+    font-family: Arial, sans-serif
+}
+
+body {
+    color: #333333;
+    line-height: normal;
+    font-size: 12px
+}
+
+
+a {
+    color: #051326;
+    text-decoration: none
+}
+
+#content {
+    min-height: 500px
+}
+
+.hidden {
+    display: none
+}
+
+.content {
+    font-size: 16px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.content *, .content *:after, .content *:before {
+    box-sizing: inherit
+}
+
+.wrap {
+    width: 100%;
+    max-width: 86%;
+    margin: 0 auto;
+    position: relative;
+    line-height: 1.35
+}
+
+.wrap:after {
+    content: " ";
+    display: table;
+    clear: both
+}
+
+.main .wrap {
+    padding: 40px 0
+}
+
+@media screen and (min-width: 480px) {
+    .main .wrap {
+        padding: 60px 0
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .wrap {
+        padding: 0
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .wrap {
+        max-width: 976px
+    }
+}
+
+.wrap img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 100%
+}
+
+.main {
+    position: relative
+}
+
+@media screen and (min-width: 992px) {
+    .main > .wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 40%;
+        margin-top: 0;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%)
+    }
+}
+
+.col-3:not(:only-child) {
+    margin-bottom: 20px
+}
+
+@media screen and (min-width: 992px) {
+    .col-3:not(:only-child) {
+        margin-bottom: 0
+    }
+}
+
+.col-3:last-of-type {
+    margin-bottom: 0
+}
+
+@media screen and (min-width: 992px) {
+    .col-3 {
+        float: left;
+        display: block;
+        position: relative;
+        margin: 0 3.2% 0 0
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .col-3:last-of-type {
+        margin-right: 0
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .col-3 {
+        width: 48.4%
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .push-3 {
+        left: 51.6%
+    }
+}
+
+.app-stores:after {
+    content: " ";
+    display: table;
+    clear: both
+}
+
+.app-stores li {
+    width: 100%;
+    max-width: 148px;
+    height: 50px;
+    display: block;
+    margin: 0 auto 5%
+}
+
+.app-stores li:last-child {
+    margin-bottom: 0
+}
+
+@media screen and (min-width: 480px) {
+    .app-stores li {
+        display: inline-block;
+        width: 32%;
+        margin-right: 2%;
+        margin-bottom: 0
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .app-stores li:last-child {
+        margin-right: 0
+    }
+}
+
+.app-stores svg {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%
+}
+
+.mosum {
+    background-color: #051326;
+    color: #fff;
+    min-height: 768px;
+    background: url("ios.png"), url("android.png") #051326;
+    background-size: auto 70%, auto 70%;
+    background-repeat: no-repeat;
+    background-position: right 180%, left 180%;
+}
+
+@media screen and (min-width: 992px) {
+    .mosum {
+        min-height: 768px;
+        background: url("ios.png"), url("android.png") #051326;
+        background-size: auto 70%, auto 70%;
+        background-repeat: no-repeat;
+        background-position: 25% 55%, 12% center;
+    }
+}
+
+
+body {
+    background: #051326;
+    text-align: center;
+}
+
+@font-face {
+    font-family: 'FredokaOne-Regular';
+    src: url('FredokaOne-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    font-family: "FredokaOne-Regular", Arial, Helvetica, sans-serif;
+    font-size: 70px;
+    padding-top: 55px;
+    color: #FFF;
+    margin-bottom: 0;
+}
+
+.subtitle {
+    font-family: "Proxima Nova Bold", Arial, sans-serif;
+    font-size: 16px;
+    color: #FFF;
+    margin-top: -10px;
+    margin-bottom: 10%;
+}

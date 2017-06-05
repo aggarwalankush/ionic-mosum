@@ -1,101 +1,137 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Ionic2-mosum by aggarwalankush</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Ionic2-mosum</h1>
-      <h2 class="project-tagline">Ionic 2 Weather App</h2>
-      <a href="https://github.com/aggarwalankush/ionic2-mosum" class="btn">View on GitHub</a>
-      <a href="https://github.com/aggarwalankush/ionic2-mosum/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/aggarwalankush/ionic2-mosum/tarball/master" class="btn">Download .tar.gz</a>
+    <title>Mosum</title>
+    <link rel="stylesheet" href="assets/mosum.css">
+    <link rel='shortcut icon' type='image/x-icon' href='assets/favicon.ico'/>
+</head>
+<body>
+<div id="content" class="content">
+    <section class="mosum main">
+        <div class="wrap">
+            <div class="col-3 push-3">
+                <h1>Mosum</h1>
+                <p class="subtitle">Open source, NO ADS free weather app</p>
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0">
+                    <linearGradient id="a" x1="34.26" y1="55.15" x2="8.35" y2="29.25"
+                                    gradientTransform="matrix(1 0 0 -1 0 74)" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#00a0ff"></stop>
+                        <stop offset=".01" stop-color="#00a1ff"></stop>
+                        <stop offset=".26" stop-color="#00beff"></stop>
+                        <stop offset=".51" stop-color="#00d2ff"></stop>
+                        <stop offset=".76" stop-color="#00dfff"></stop>
+                        <stop offset="1" stop-color="#00e3ff"></stop>
+                    </linearGradient>
+                    <linearGradient id="b" x1="52.83" y1="37.72" x2="15.48" y2="37.72"
+                                    gradientTransform="matrix(1 0 0 -1 0 74)" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#ffe000"></stop>
+                        <stop offset=".41" stop-color="#ffbd00"></stop>
+                        <stop offset=".78" stop-color="orange"></stop>
+                        <stop offset="1" stop-color="#ff9c00"></stop>
+                    </linearGradient>
+                    <linearGradient id="c" x1="38.93" y1="34.18" x2="3.8" y2="-.95"
+                                    gradientTransform="matrix(1 0 0 -1 0 74)" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#ff3a44"></stop>
+                        <stop offset="1" stop-color="#c31162"></stop>
+                    </linearGradient>
+                    <linearGradient id="d" x1="11.87" y1="68.33" x2="27.56" y2="52.64"
+                                    gradientTransform="matrix(1 0 0 -1 0 74)" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#32a071"></stop>
+                        <stop offset=".07" stop-color="#2da771"></stop>
+                        <stop offset=".48" stop-color="#15cf74"></stop>
+                        <stop offset=".8" stop-color="#06e775"></stop>
+                        <stop offset="1" stop-color="#00f076"></stop>
+                    </linearGradient>
+                    <symbol id="google-play-badge" viewBox="0 0 210 72"><title>Google Play badge</title>
+                        <rect width="210" height="72" rx="8" ry="8"></rect>
+                        <path d="M73.8 21.21a4.18 4.18 0 0 1-1.15 3.09 4.49 4.49 0 0 1-3.4 1.37 4.77 4.77 0 0 1-4.81-4.84A4.77 4.77 0 0 1 69.25 16a4.78 4.78 0 0 1 1.9.39 3.82 3.82 0 0 1 1.45 1l-.81.81a3.13 3.13 0 0 0-2.54-1.1 3.58 3.58 0 0 0-3.6 3.7 3.64 3.64 0 0 0 6.18 2.67 2.91 2.91 0 0 0 .78-1.88h-3.36v-1.08h4.49a3.93 3.93 0 0 1 .06.7zM80.91 17.35H76.7v2.94h3.8v1.11h-3.8v2.94h4.22v1.14h-5.41v-9.27h5.41v1.14zM85.93 25.47h-1.19v-8.12h-2.59v-1.14h6.36v1.14h-2.58v8.12zM93.12 25.47v-9.26h1.19v9.26h-1.19zM99.59 25.47H98.4v-8.12h-2.59v-1.14h6.36v1.14h-2.58v8.12zM114.23 24.27a4.81 4.81 0 0 1-6.79 0 4.73 4.73 0 0 1-1.36-3.43 4.73 4.73 0 0 1 1.36-3.43 4.79 4.79 0 0 1 6.78 0 5 5 0 0 1 .01 6.86zm-5.91-.78a3.56 3.56 0 0 0 5 0 3.62 3.62 0 0 0 1-2.66 3.62 3.62 0 0 0-1-2.66 3.56 3.56 0 0 0-5 0 3.63 3.63 0 0 0-1 2.66 3.63 3.63 0 0 0 .99 2.67zM117.26 25.47v-9.26h1.45l4.5 7.2h.05l-.05-1.78v-5.42h1.19v9.26h-1.24l-4.71-7.55h-.05l.05 1.78v5.77h-1.19z"
+                              fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width=".309"></path>
+                        <path d="M105.78 39a6.56 6.56 0 1 0 6.59 6.56 6.47 6.47 0 0 0-6.59-6.56zm0 10.54a4 4 0 1 1 3.71-4 3.8 3.8 0 0 1-3.71 3.98zM91.4 39a6.56 6.56 0 1 0 6.6 6.54A6.47 6.47 0 0 0 91.4 39zm0 10.54a4 4 0 1 1 3.71-4 3.8 3.8 0 0 1-3.71 3.98zM74.3 41v2.78H81a5.81 5.81 0 0 1-1.52 3.51 6.82 6.82 0 0 1-5.15 2 7.41 7.41 0 0 1 0-14.82 7.1 7.1 0 0 1 5 2l2-2a9.72 9.72 0 0 0-7-2.81 10.2 10.2 0 1 0 0 20.39 9.32 9.32 0 0 0 7.11-2.86 9.2 9.2 0 0 0 2.41-6.52 9.06 9.06 0 0 0-.17-1.67H74.3zm69.93 2.16a6.1 6.1 0 0 0-5.61-4.16 6.24 6.24 0 0 0-6.19 6.56 6.42 6.42 0 0 0 6.52 6.56 6.53 6.53 0 0 0 5.47-2.91l-2.24-1.49a3.75 3.75 0 0 1-3.23 1.82 3.34 3.34 0 0 1-3.18-2l8.78-3.63zm-9 2.19a3.6 3.6 0 0 1 3.43-3.83 2.54 2.54 0 0 1 2.44 1.39zm-7.14 6.37H131V32.41h-2.88v19.3zm-4.72-11.26h-.1a4.55 4.55 0 0 0-3.4-1.46 6.57 6.57 0 0 0 0 13.13 4.48 4.48 0 0 0 3.46-1.49h.1v.94c0 2.51-1.34 3.85-3.51 3.85a3.63 3.63 0 0 1-3.31-2.34l-2.51 1a6.26 6.26 0 0 0 5.82 3.91c3.38 0 6.24-2 6.24-6.84V39.37h-2.74v1.07zm-3.31 9.08a4 4 0 0 1 0-8c2 0 3.51 1.69 3.51 4a3.67 3.67 0 0 1-3.46 3.98zm37.63-17.11h-6.9v19.3h2.88V44.4h4a6 6 0 1 0 .08-11.99zm.07 9.3h-4.1V35.1h4.1a3.31 3.31 0 1 1 .06 6.61zm17.8-2.77a5.41 5.41 0 0 0-5.14 3L173 43a2.73 2.73 0 0 1 2.63-1.42 2.77 2.77 0 0 1 3 2.48v.2a6.37 6.37 0 0 0-3-.74c-2.76 0-5.56 1.51-5.56 4.34 0 2.58 2.26 4.25 4.79 4.25a4.06 4.06 0 0 0 3.67-1.89h.1v1.49h2.78v-7.4c.07-3.46-2.49-5.37-5.79-5.37zm-.35 10.58c-.94 0-2.26-.47-2.26-1.64 0-1.49 1.64-2.06 3.05-2.06a5.13 5.13 0 0 1 2.63.65 3.49 3.49 0 0 1-3.36 3.03zm16.33-10.15l-3.3 8.37h-.1l-3.43-8.37h-3.1l5.14 11.69-2.93 6.5h3l7.92-18.2h-3.2zm-25.87 12.32h2.88v-19.3h-2.88v19.3z"
+                              fill="#fff"></path>
+                        <path d="M16.71 17a3.09 3.09 0 0 0-.71 2.21v34.13a3.09 3.09 0 0 0 .71 2.17l.11.11L36 36.5V36L16.83 16.93z"
+                              fill="url(#a)"></path>
+                        <path d="M42.33 42.88L36 36.5V36l6.38-6.38.14.08L50 34c2.16 1.23 2.16 3.23 0 4.46l-7.53 4.34z"
+                              fill="url(#b)"></path>
+                        <path d="M42.47 42.79L36 36.27 16.71 55.51c.71.75 1.88.85 3.21.09l22.55-12.81"
+                              fill="url(#c)"></path>
+                        <path d="M42.47 29.75L19.92 16.94c-1.32-.75-2.5-.66-3.21.09L36 36.27z" fill="url(#d)"></path>
+                        <path d="M42.33 42.65L19.92 55.38a2.57 2.57 0 0 1-3.09 0l-.11.11.11.11a2.57 2.57 0 0 0 3.09 0l22.55-12.81z"
+                              style="isolation:isolate" opacity=".2"></path>
+                        <path d="M16.71 55.29a3.09 3.09 0 0 1-.71-2.17v.23a3.09 3.09 0 0 0 .71 2.17l.11-.11zM50 38.28l-7.7 4.37.14.14L50 38.5a2.71 2.71 0 0 0 1.62-2.23A2.87 2.87 0 0 1 50 38.28z"
+                              style="isolation:isolate" opacity=".12"></path>
+                        <path d="M19.92 17.17L50 34.27a2.87 2.87 0 0 1 1.62 2A2.71 2.71 0 0 0 50 34L19.9 16.9c-2.14-1.18-3.9-.16-3.9 2.31v.23c0-2.44 1.76-3.5 3.92-2.27z"
+                              style="isolation:isolate" fill="#fff" opacity=".25"></path>
+                    </symbol>
+                    <symbol id="app-store-badge" viewBox="0 0 210 72"><title>App Store badge</title>
+                        <rect width="210" height="72" rx="8" ry="8"></rect>
+                        <path d="M43.31,35.37a9.13,9.13,0,0,1,4.35-7.66,9.35,9.35,0,0,0-7.37-4c-3.1-.33-6.11,1.85-7.68,1.85s-4-1.82-6.66-1.77a9.81,9.81,0,0,0-8.26,5c-3.57,6.18-.91,15.26,2.51,20.26,1.71,2.45,3.71,5.18,6.33,5.08s3.52-1.63,6.61-1.63,4,1.63,6.63,1.57,4.48-2.46,6.13-4.93a20.22,20.22,0,0,0,2.8-5.71A8.83,8.83,0,0,1,43.31,35.37Z"
+                              style="fill:#fff"></path>
+                        <path d="M38.27,20.44A9,9,0,0,0,40.33,14a9.16,9.16,0,0,0-5.92,3.06,8.55,8.55,0,0,0-2.11,6.2A7.56,7.56,0,0,0,38.27,20.44Z"
+                              style="fill:#fff"></path>
+                        <path d="M80.36,53.84H76.79l-2-6.16H68l-1.87,6.16H62.66l6.75-21h4.17ZM74.24,45.1l-1.77-5.47q-0.28-.84-1.06-3.95H71.34Q71,37,70.35,39.62L68.61,45.1h5.63Z"
+                              style="fill:#fff"></path>
+                        <path d="M97.72,46.09a8.59,8.59,0,0,1-2.08,6.1,6.09,6.09,0,0,1-4.64,2A4.63,4.63,0,0,1,86.71,52H86.65v8H83.29V43.7q0-2.42-.12-5h3l0.19,2.4h0.06a6,6,0,0,1,9.56-.59A8.33,8.33,0,0,1,97.72,46.09Zm-3.42.12a6.22,6.22,0,0,0-1-3.64,3.44,3.44,0,0,0-2.92-1.49,3.49,3.49,0,0,0-2.25.82,3.82,3.82,0,0,0-1.32,2.16,4.4,4.4,0,0,0-.16,1v2.52a4,4,0,0,0,1,2.79,3.35,3.35,0,0,0,2.63,1.14,3.44,3.44,0,0,0,3-1.46A6.43,6.43,0,0,0,94.3,46.22Z"
+                              style="fill:#fff"></path>
+                        <path d="M115.11,46.09a8.58,8.58,0,0,1-2.09,6.1,6.09,6.09,0,0,1-4.63,2A4.63,4.63,0,0,1,104.1,52H104v8h-3.36V43.7q0-2.42-.12-5h3l0.19,2.4h0.06a6,6,0,0,1,9.57-.59A8.35,8.35,0,0,1,115.11,46.09Zm-3.42.12a6.22,6.22,0,0,0-1-3.64,3.43,3.43,0,0,0-2.92-1.49,3.5,3.5,0,0,0-2.26.82,3.82,3.82,0,0,0-1.32,2.16,4.48,4.48,0,0,0-.16,1v2.52a4.05,4.05,0,0,0,1,2.79,3.36,3.36,0,0,0,2.63,1.14,3.44,3.44,0,0,0,3-1.46A6.43,6.43,0,0,0,111.69,46.22Z"
+                              style="fill:#fff"></path>
+                        <path d="M134.55,48a5.59,5.59,0,0,1-1.86,4.35A8.25,8.25,0,0,1,127,54.15a10,10,0,0,1-5.43-1.31l0.78-2.8a9.21,9.21,0,0,0,4.86,1.34,4.59,4.59,0,0,0,3-.86,2.8,2.8,0,0,0,1.06-2.29,2.92,2.92,0,0,0-.87-2.15,8.1,8.1,0,0,0-2.89-1.62q-5.51-2.05-5.5-6a5.32,5.32,0,0,1,1.93-4.24A7.61,7.61,0,0,1,129,32.57a10.18,10.18,0,0,1,4.76,1L132.9,36.3a8.26,8.26,0,0,0-4-1,4.06,4.06,0,0,0-2.77.87,2.49,2.49,0,0,0-.84,1.9,2.56,2.56,0,0,0,1,2.05,10.88,10.88,0,0,0,3.05,1.62,10.35,10.35,0,0,1,4,2.55A5.33,5.33,0,0,1,134.55,48Z"
+                              style="fill:#fff"></path>
+                        <path d="M145.66,41.24H142v7.34q0,2.8,2,2.8a6,6,0,0,0,1.49-.16l0.09,2.55a7.61,7.61,0,0,1-2.61.37,4,4,0,0,1-3.11-1.21,6,6,0,0,1-1.12-4.08V41.24h-2.21V38.72h2.21V35.95l3.3-1v3.76h3.7v2.52Z"
+                              style="fill:#fff"></path>
+                        <path d="M162.36,46.16a8.29,8.29,0,0,1-2,5.72,7.11,7.11,0,0,1-5.54,2.3,6.76,6.76,0,0,1-5.3-2.21,8,8,0,0,1-2-5.57,8.21,8.21,0,0,1,2-5.75,7.05,7.05,0,0,1,5.49-2.24,6.9,6.9,0,0,1,5.35,2.21A8,8,0,0,1,162.36,46.16Zm-3.49.11a6.8,6.8,0,0,0-.9-3.59,3.32,3.32,0,0,0-3-1.81,3.37,3.37,0,0,0-3.08,1.81,6.93,6.93,0,0,0-.9,3.65,6.79,6.79,0,0,0,.9,3.59,3.43,3.43,0,0,0,6.07,0A6.82,6.82,0,0,0,158.88,46.26Z"
+                              style="fill:#fff"></path>
+                        <path d="M173.28,41.68a5.83,5.83,0,0,0-1.06-.09,3.17,3.17,0,0,0-2.74,1.34,5,5,0,0,0-.84,3v7.93h-3.36l0-10.36q0-2.61-.13-4.76h2.93l0.12,2.89h0.09A5.17,5.17,0,0,1,170,39.22a4.06,4.06,0,0,1,2.43-.81,5.39,5.39,0,0,1,.84.06v3.2Z"
+                              style="fill:#fff"></path>
+                        <path d="M188.3,45.57a7.88,7.88,0,0,1-.12,1.52H178.1a4.39,4.39,0,0,0,1.46,3.42,5,5,0,0,0,3.3,1.06,11.15,11.15,0,0,0,4.08-.72l0.53,2.33a12.61,12.61,0,0,1-5.07.93,7.34,7.34,0,0,1-5.52-2.07,7.64,7.64,0,0,1-2-5.55,8.66,8.66,0,0,1,1.87-5.69A6.44,6.44,0,0,1,182,38.38,5.63,5.63,0,0,1,187,40.81,8.18,8.18,0,0,1,188.3,45.57Zm-3.2-.87a4.56,4.56,0,0,0-.65-2.58,2.93,2.93,0,0,0-2.68-1.4,3.19,3.19,0,0,0-2.67,1.37,5,5,0,0,0-1,2.61h7Z"
+                              style="fill:#fff"></path>
+                        <path d="M73.12,20a5.17,5.17,0,0,1-1.67,4.19,6.63,6.63,0,0,1-4.38,1.3,20.33,20.33,0,0,1-2.42-.12V15.21A17.82,17.82,0,0,1,67.5,15a6.13,6.13,0,0,1,4.08,1.18A4.76,4.76,0,0,1,73.12,20Zm-1.74,0a3.77,3.77,0,0,0-1-2.77,3.76,3.76,0,0,0-2.79-1,7,7,0,0,0-1.33.11v7.7a8.72,8.72,0,0,0,1.12,0,3.91,3.91,0,0,0,2.93-1.05A4.22,4.22,0,0,0,71.38,20Z"
+                              style="fill:#fff"></path>
+                        <path d="M82.36,21.59a4.07,4.07,0,0,1-1,2.81,3.49,3.49,0,0,1-2.72,1.13,3.32,3.32,0,0,1-2.61-1.09,4,4,0,0,1-1-2.74,4,4,0,0,1,1-2.83,3.47,3.47,0,0,1,2.7-1.1,3.4,3.4,0,0,1,2.63,1.08A3.92,3.92,0,0,1,82.36,21.59Zm-1.71.05a3.36,3.36,0,0,0-.44-1.76A1.63,1.63,0,0,0,78.72,19a1.66,1.66,0,0,0-1.51.89,3.4,3.4,0,0,0-.44,1.79,3.36,3.36,0,0,0,.44,1.76,1.67,1.67,0,0,0,1.5.89,1.65,1.65,0,0,0,1.48-.9A3.34,3.34,0,0,0,80.64,21.65Z"
+                              style="fill:#fff"></path>
+                        <path d="M94.73,17.94l-2.32,7.43H90.9l-1-3.23a24.14,24.14,0,0,1-.6-2.4h0a17.57,17.57,0,0,1-.6,2.4l-1,3.23H86.16L84,17.94h1.7l0.84,3.53q0.3,1.25.5,2.38h0q0.18-.93.61-2.37l1.05-3.54h1.35l1,3.47q0.37,1.27.6,2.45h0a23.36,23.36,0,0,1,.5-2.45l0.9-3.47h1.62Z"
+                              style="fill:#fff"></path>
+                        <path d="M103.29,25.37h-1.65V21.11q0-2-1.5-2a1.49,1.49,0,0,0-1.19.54A1.92,1.92,0,0,0,98.49,21v4.41H96.84v-5.3q0-1-.06-2.13h1.45l0.08,1.16h0a2.39,2.39,0,0,1,.86-0.9,2.79,2.79,0,0,1,1.5-.42,2.37,2.37,0,0,1,1.73.67,3.27,3.27,0,0,1,.86,2.46v4.45Z"
+                              style="fill:#fff"></path>
+                        <path d="M107.85,25.37H106.2V14.53h1.65V25.37Z" style="fill:#fff"></path>
+                        <path d="M117.57,21.59a4.07,4.07,0,0,1-1,2.81,3.49,3.49,0,0,1-2.72,1.13,3.31,3.31,0,0,1-2.61-1.09,4,4,0,0,1-1-2.74,4,4,0,0,1,1-2.83,3.47,3.47,0,0,1,2.7-1.1,3.4,3.4,0,0,1,2.63,1.08A3.92,3.92,0,0,1,117.57,21.59Zm-1.71.05a3.36,3.36,0,0,0-.44-1.76,1.63,1.63,0,0,0-1.48-.89,1.65,1.65,0,0,0-1.51.89,3.4,3.4,0,0,0-.44,1.79,3.36,3.36,0,0,0,.44,1.76,1.67,1.67,0,0,0,1.5.89,1.65,1.65,0,0,0,1.48-.9A3.32,3.32,0,0,0,115.85,21.65Z"
+                              style="fill:#fff"></path>
+                        <path d="M125.56,25.37h-1.48L124,24.51h0a2.54,2.54,0,0,1-2.17,1,2.24,2.24,0,0,1-1.7-.67,2.11,2.11,0,0,1-.58-1.51,2.31,2.31,0,0,1,1.14-2.08,5.91,5.91,0,0,1,3.2-.7V20.43A1.33,1.33,0,0,0,122.26,19a3.45,3.45,0,0,0-1.94.55L120,18.43a4.76,4.76,0,0,1,2.55-.64q2.91,0,2.91,3.07V23.6A11.6,11.6,0,0,0,125.56,25.37Zm-1.71-2.55V21.67q-2.73,0-2.73,1.5a1.12,1.12,0,0,0,.32.87,1.15,1.15,0,0,0,.81.29,1.67,1.67,0,0,0,1-.34A1.41,1.41,0,0,0,123.84,22.82Z"
+                              style="fill:#fff"></path>
+                        <path d="M134.94,25.37h-1.47l-0.08-1.19h0A2.47,2.47,0,0,1,131,25.54a2.8,2.8,0,0,1-2.23-1.05,4.11,4.11,0,0,1-.89-2.74,4.31,4.31,0,0,1,1-2.92,3,3,0,0,1,2.29-1,2.23,2.23,0,0,1,2.09,1h0V14.53h1.65v8.83Q134.88,24.45,134.94,25.37Zm-1.71-3.13V21a2.43,2.43,0,0,0,0-.52,1.88,1.88,0,0,0-.6-1,1.62,1.62,0,0,0-1.1-.4,1.69,1.69,0,0,0-1.45.73,3.15,3.15,0,0,0-.53,1.88,2.93,2.93,0,0,0,.51,1.79,1.7,1.7,0,0,0,1.44.73,1.59,1.59,0,0,0,1.3-.61A2,2,0,0,0,133.23,22.24Z"
+                              style="fill:#fff"></path>
+                        <path d="M149.06,21.59a4.07,4.07,0,0,1-1,2.81,3.49,3.49,0,0,1-2.72,1.13,3.32,3.32,0,0,1-2.61-1.09,4,4,0,0,1-1-2.74,4,4,0,0,1,1-2.83,3.47,3.47,0,0,1,2.7-1.1,3.39,3.39,0,0,1,2.63,1.08A3.92,3.92,0,0,1,149.06,21.59Zm-1.71.05a3.36,3.36,0,0,0-.44-1.76,1.63,1.63,0,0,0-1.48-.89,1.66,1.66,0,0,0-1.51.89,3.4,3.4,0,0,0-.44,1.79,3.36,3.36,0,0,0,.44,1.76,1.69,1.69,0,0,0,3,0A3.35,3.35,0,0,0,147.35,21.65Z"
+                              style="fill:#fff"></path>
+                        <path d="M157.94,25.37h-1.65V21.11q0-2-1.5-2a1.48,1.48,0,0,0-1.19.54,1.91,1.91,0,0,0-.46,1.27v4.41h-1.65v-5.3q0-1-.06-2.13h1.45L153,19.1h0a2.41,2.41,0,0,1,.86-0.9,2.8,2.8,0,0,1,1.5-.42,2.37,2.37,0,0,1,1.73.67,3.26,3.26,0,0,1,.86,2.46v4.45Z"
+                              style="fill:#fff"></path>
+                        <path d="M169.05,19.18h-1.82v3.61c0,0.92.32,1.38,1,1.38a2.91,2.91,0,0,0,.74-0.08l0,1.25a3.71,3.71,0,0,1-1.28.18,2,2,0,0,1-1.53-.6,2.91,2.91,0,0,1-.55-2V19.18h-1.09V17.94h1.09V16.58l1.62-.49v1.85H169v1.24h0Z"
+                              style="fill:#fff"></path>
+                        <path d="M177.79,25.37h-1.65V21.15q0-2-1.5-2a1.58,1.58,0,0,0-1.58,1.16,2.07,2.07,0,0,0-.08.59v4.47h-1.65V14.53H173V19h0a2.5,2.5,0,0,1,2.23-1.22,2.3,2.3,0,0,1,1.7.67,3.38,3.38,0,0,1,.84,2.49v4.42Z"
+                              style="fill:#fff"></path>
+                        <path d="M186.81,21.3a4,4,0,0,1-.06.75h-5a2.17,2.17,0,0,0,.72,1.68,2.46,2.46,0,0,0,1.62.52,5.47,5.47,0,0,0,2-.35L186.39,25a6.22,6.22,0,0,1-2.49.46,3.6,3.6,0,0,1-2.71-1,3.74,3.74,0,0,1-1-2.73,4.25,4.25,0,0,1,.92-2.8,3.16,3.16,0,0,1,2.6-1.19A2.76,2.76,0,0,1,186.15,19,4,4,0,0,1,186.81,21.3Zm-1.58-.43a2.22,2.22,0,0,0-.32-1.27,1.44,1.44,0,0,0-1.31-.69,1.57,1.57,0,0,0-1.31.67,2.5,2.5,0,0,0-.49,1.28h3.44Z"
+                              style="fill:#fff"></path>
+                    </symbol>
+                </svg>
+                <ul class="app-stores up_open">
+                    <li class="app-stores-apple"><a
+                            href="https://itunes.apple.com/us/app/mosum/id1244641359?ls=1&mt=8"
+                            target="itunes_store">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#app-store-badge"></use>
+                        </svg>
+                    </a></li>
+                    <li class="app-stores-google"><a
+                            href="https://play.google.com/store/apps/details?id=com.aggarwalankush.mosum"
+                            target="_blank">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#google-play-badge"></use>
+                        </svg>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
     </section>
-
-    <section class="main-content">
-      <h1>
-<a id="ionic2-mosum" class="anchor" href="#ionic2-mosum" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ionic2-mosum</h1>
-
-<p>Ionic 2 Weather App</p>
-
-<ul>
-<li>Android - <a href="https://play.google.com/store/apps/details?id=com.aggarwalankush.mosum">https://play.google.com/store/apps/details?id=com.aggarwalankush.mosum</a>
-</li>
-</ul>
-
-<h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
-
-<ul>
-<li><p>Clone this repository</p></li>
-<li>
-<p>Install Ionic, cordova and node_modules</p>
-
-<div class="highlight highlight-source-shell"><pre>$ npm install -g ionic
-$ sudo npm install -g cordova@6.3.1
-$ npm install</pre></div>
-</li>
-<li>Get weather API key from <a href="https://darksky.net">DarkSky</a>
-
-<ul>
-<li>Replace API_KEY in <code>src/pages/providers/constants.ts</code>
-</li>
-</ul>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">export</span> <span class="pl-k">const</span> <span class="pl-c1">FORECAST_CONFIG</span> <span class="pl-k">=</span> {
-  API_ENDPOINT<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>https://api.darksky.net/forecast/<span class="pl-pds">'</span></span>
-  API_KEY<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>9bb59ff3063ac4930fc96890570b0c6f<span class="pl-pds">'</span></span>
-};</pre></div>
-</li>
-<li>Get google API key from <a href="https://console.developers.google.com/apis/credentials">Google Developers Console</a>
-
-<ul>
-<li>Replace key in <code>src/index.html</code>
-</li>
-</ul>
-
-<div class="highlight highlight-text-html-basic"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://maps.googleapis.com/maps/api/js?v=3<span class="pl-ii">&amp;</span>key=AIzaSyAZL0jdvdtBV_DmzLZ8yW53GHnhlRrbIAY<span class="pl-ii">&amp;</span>libraries=places<span class="pl-pds">"</span></span>&gt;</span>
-<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
-</li>
-</ul>
-
-<h3>
-<a id="android" class="anchor" href="#android" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Android</h3>
-
-<div class="highlight highlight-source-shell"><pre>    $ ionic platform add android
-    $ ionic build android
-    $ ionic run android</pre></div>
-
-<h3>
-<a id="ios" class="anchor" href="#ios" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>iOS</h3>
-
-<div class="highlight highlight-source-shell"><pre>    $ ionic platform add ios
-    $ ionic build ios</pre></div>
-
-<pre><code>Run using XCode
-</code></pre>
-
-<h3>
-<a id="icon-resources" class="anchor" href="#icon-resources" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>icon resources</h3>
-
-<p>Run post_install script</p>
-
-<div class="highlight highlight-source-shell"><pre>    $ ./post_install.sh</pre></div>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/aggarwalankush/ionic2-mosum">Ionic2-mosum</a> is maintained by <a href="https://github.com/aggarwalankush">aggarwalankush</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
-  </body>
+</div>
+</body>
 </html>

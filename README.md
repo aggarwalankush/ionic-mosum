@@ -1,5 +1,7 @@
 # ionic2-mosum
 Ionic 2 Weather App - The goal of this weather app is to demo different ionic component in a nice working app. Contributions are welcome for any good feature.
+- Website - https://aggarwalankush.github.io/ionic2-mosum
+- iOS - https://itunes.apple.com/us/app/mosum/id1244641359?ls=1&mt=8
 - Android - https://play.google.com/store/apps/details?id=com.aggarwalankush.mosum
 
 ## Prerequisites
@@ -54,15 +56,15 @@ npm -v
 ### Android
 
 ```bash
-    $ ionic platform add android
-    $ ionic build android --prod
-    $ ionic run android --prod
+    $ ionic cordova platform add android
+    $ ionic cordova build android --prod
+    $ ionic cordova run android --prod
 ```
 
 ### iOS
 ```bash
-    $ ionic platform add ios
-    $ ionic build ios --prod
+    $ ionic cordova platform add ios
+    $ ionic cordova build ios --prod
 ```    
     Run using XCode
     
@@ -80,8 +82,8 @@ Run post_install script
   
 * Tablet
   
-  <img src="screenshots/tablet1.png" alt="tablet1" width="350"/>
-  <img src="screenshots/tablet2.png" alt="tablet2" width="350"/>
+  <img src="screenshots/android-tablet.png" alt="android-tablet" width="350"/>
+  <img src="screenshots/ios-tablet.png" alt="ios-tablet" width="350"/>
 
 ## Existing Features
 

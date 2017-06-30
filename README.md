@@ -1,6 +1,6 @@
-# ionic2-mosum
-Ionic 2 Weather App - The goal of this weather app is to demo different ionic component in a nice working app. Contributions are welcome for any good feature.
-- Website - https://aggarwalankush.github.io/ionic2-mosum
+# ionic-mosum
+Ionic Weather App - The goal of this weather app is to demo different ionic component in a nice working app. Contributions are welcome for any good feature.
+- Website - https://aggarwalankush.github.io/ionic-mosum
 - iOS - https://itunes.apple.com/us/app/mosum/id1244641359?ls=1&mt=8
 - Android - https://play.google.com/store/apps/details?id=com.aggarwalankush.mosum
 
@@ -99,11 +99,11 @@ Run post_install script
 ## Contribution
 Contributions are welcome!
 
-See [features planned for future](https://github.com/aggarwalankush/ionic2-mosum/issues/2) to get contributing ideas.
+See [features planned for future](https://github.com/aggarwalankush/ionic-mosum/issues/2) to get contributing ideas.
 
 * Report issues
 * Open pull request with improvements
 * Spread the word
 
 ## License
-ionic2-mosum is available under the MIT license. See the LICENSE file for more info.
+ionic-mosum is available under the MIT license. See the LICENSE file for more info.

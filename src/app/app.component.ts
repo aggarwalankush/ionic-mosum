@@ -54,15 +54,15 @@ export class MosumApp {
       return;
     }
     let params = page.index ? { tabIndex: page.index } : {};
-    if (this.nav.getActiveChildNav() && page.index != undefined) {
-      this.nav.getActiveChildNav().select(page.index);
+    if (this.nav.getActiveChildNavs().length && page.index != undefined) {
+      this.nav.getActiveChildNavs()[0].select(page.index);
     } else {
       this.nav.setRoot(page.name, params).catch(err => console.error(err));
     }
   }
 
   isActive(page: PageInterface): boolean {
-    let childNav = this.nav.getActiveChildNav();
+    let childNav = this.nav.getActiveChildNavs()[0];
     if (childNav) {
       return childNav.getSelected() && childNav.getSelected().root === page.tabName;
     }

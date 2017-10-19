@@ -49,7 +49,7 @@ export class WeatherListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //these emitters are used to programmatically activate lifecycle events
-    //because in Ionic 2, changing tabs doesn't activate lifecycle of templates
+    //because in Ionic, changing tabs doesn't activate lifecycle of templates
     if (this.onInitEmitter) {
       this.onInitEmitter.subscribe(() => this.init());
     }

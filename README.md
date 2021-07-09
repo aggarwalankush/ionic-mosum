@@ -5,7 +5,7 @@ Ionic Weather App - The goal of this weather app is to demo different ionic comp
 - Android - https://play.google.com/store/apps/details?id=com.aggarwalankush.mosum
 
 ## Prerequisites
-- Download nodejs from https://nodejs.org/en/download/current/ It will install `node` and `npm`
+- Download nodejs from https://nodejs.org/en/download/current/ and it will install `node` and `npm`
 ```bash
 node -v
  - should be >= 6.0.0
